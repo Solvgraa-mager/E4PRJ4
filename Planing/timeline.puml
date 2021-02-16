@@ -7,6 +7,7 @@ sunday are closed
 -- FASER I PROJEKTET --
 
 [Projektdefinering] as [PD] starts the 2021/02/01 and ends at 2020/02/12
+[Projektdefinering Deadline] happens at [PD]'s end
 [Krav] as [Krav] starts the 2021/02/15 and ends at 2021/03/01
 [Strukturering] as [Strukturering] starts the 2021/03/01 and ends at 2021/03/15
 [Analyse] as [Analyse] starts the 2021/03/15 and ends at 2021/03/29
