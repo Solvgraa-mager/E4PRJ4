@@ -1,1 +1,2 @@
-
+<h1>Planlægning</h1>
+![Tidsplanen](http://www.plantuml.com/plantuml/proxy?cache=no&src=https://raw.githubusercontent.com/Solvgraa-mager/E4PRJ4/main/Planing/timeline.puml)
