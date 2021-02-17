@@ -1,6 +1,6 @@
-<h1>Planlægning</h1>
+# Planlægning
 
-<h2>Projekt faser</h2>
+## Projekt faser
 
 | Faser             | Start      | Slut       |
 |-------------------|------------|------------|
@@ -14,7 +14,7 @@
 
 ![Tidsplanen](http://www.plantuml.com/plantuml/proxy?cache=no&src=https://raw.githubusercontent.com/Solvgraa-mager/E4PRJ4/main/Planing/timeline.puml)
 
-<h2>Møder</h2>
+## Møder
 
 ### Krav 1
 ##### Dato: 17/02/2021
