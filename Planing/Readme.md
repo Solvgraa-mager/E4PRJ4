@@ -31,8 +31,8 @@
 
 ##### Action Item Liste: 
 
- Opsætning af LaTeX (Adam)
- Formulering af ikke-funktionelle krav (Alle)
+- [ ] Opsætning af LaTeX (Adam)
+- [ ] Formulering af ikke-funktionelle krav (Alle)
 
 ### Krav 2
 ##### Dato: 24/02/2021<br>Tidspunkt: 10:00 - 12:00
@@ -58,9 +58,9 @@
 3. Uddellegering af moduler
   
 ##### Action Item Liste: 
- Systemet IBD fra sketch til flot
- Detaljeret spec af forbindelser 
- IBD af delmoduler med interne forbindelser og fuld spec
+- [ ] Systemet IBD fra sketch til flot
+- [ ] Detaljeret spec af forbindelser 
+- [ ] IBD af delmoduler med interne forbindelser og fuld spec
 
 ### Strukturering 2
 ##### Dato: 10/03/2021<br>Tidspunkt: 10:00 - 12:00
