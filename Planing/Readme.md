@@ -17,13 +17,9 @@
 ## Møder
 
 ### Krav 1
-
 ##### Dato: 17/02/2021
-
 ##### Tidspunkt: 10:00 - 12:00
-
 ###### Mødeleder:
-
 ###### Referent:
 
 ###### Agenda: 
@@ -38,6 +34,7 @@
 ##### Dato: 24/02/2021<br>Tidspunkt: 10:00 - 12:00
 ###### Mødeleder: 
 ###### Referent: 
+
 ##### Agenda:
 1. Gennemgang af krav (sidste rettelser inden input) 
 2. Arrangere møde med Josefine 
@@ -49,6 +46,7 @@
 ##### Dato: 03/03/2021<br>Tidspunkt: 10:00 - 12:00
 ###### Mødeleder: 
 ###### Referent: 
+
 ##### Agenda:
 
 1. Hvordan gør vi strukturering? 
@@ -66,6 +64,7 @@
 ##### Dato: 10/03/2021<br>Tidspunkt: 10:00 - 12:00
 ###### Mødeleder: 
 ###### Referent: 
+
 ##### Agenda:
 1. Grupper viser deres delmoduler og gruppen kommer med kommentarer
   
@@ -76,6 +75,7 @@
 ##### Dato: 17/03/2021<br>Tidspunkt: 10:00 - 12:00
 ###### Mødeleder: 
 ###### Referent: 
+
 ##### Agenda:
 1. Hvordan gør vi analyse? 
   
@@ -86,6 +86,7 @@
 ##### Dato: 24/03/2021<br>Tidspunkt: 10:00 - 12:00
 ###### Mødeleder: 
 ###### Referent: 
+
 ##### Agenda:
 1. Grupperne viser analyseafsnit for modul og gruppen kommer med kommentarer
   
@@ -96,16 +97,18 @@
 ##### Dato: 07/04/2021<br>Tidspunkt: 10:00 - 12:00
 ###### Mødeleder: 
 ###### Referent: 
+
 ##### Agenda:
 1. Hvordan gør vi design? 
   
-#####Action Item Liste: 
+##### Action Item Liste: 
 - [ ] Design udarbejdes for moduler
 
 ### Design 2
 ##### Dato: 14/04/2021<br>Tidspunkt: 10:00 - 12:00
 ###### Mødeleder: 
 ###### Referent: 
+
 ##### Agenda:
 1. Grupperne viser designafsnit og gruppen kommer med kommentarer
   
@@ -116,6 +119,7 @@
 ##### Dato: 21/04/2021<br>Tidspunkt: 10:00 - 12:00
 ###### Mødeleder: 
 ###### Referent: 
+
 ##### Agenda:
   1. Hvordan gør vi implementering? 
   
@@ -126,6 +130,7 @@
 ##### Dato: 28/04/2021<br>Tidspunkt: 10:00 - 12:00
 ###### Mødeleder: 
 ###### Referent: 
+
 ##### Agenda:
   1. Implementeringsafsnit fremvises og gruppen kommer med kommentarer
   
@@ -136,6 +141,7 @@
 ##### Dato: 05/05/2021<br>Tidspunkt: 10:00 - 12:00
 ###### Mødeleder: 
 ###### Referent: 
+
 ##### Agenda:
   1. Hvordan gør vi test? 
   2. Hvem laver integrationstest? 
@@ -147,6 +153,7 @@
 ##### Dato: 12/05/2021<br>Tidspunkt: 10:00 - 12:00
 ###### Mødeleder: 
 ###### Referent: 
+
 ##### Agenda:
   1. Testafsnit fremvises og gruppen kommer med kommentarer 
   
