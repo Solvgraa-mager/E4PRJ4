@@ -6,13 +6,13 @@ sunday are closed
 
 -- FASER I PROJEKTET --
 
-[Projektdefinering] as [Projektdefinering] starts the 2021/02/01 and ends at 2021/02/12
-[Krav] as [Krav] starts the 2021/02/26 and ends at 2021/03/05
-[Strukturering] as [Strukturering] starts the 2021/03/01 and ends at 2021/03/01	2021/03/12
-[Analyse] as [Analyse] starts the 2021/03/15 and ends at 2021/03/26
-[Design] as [Design] starts the 2021/03/05 and ends at 2021/04/16
-[Implementering] as [Implementering] starts the 2021/04/19 and ends at 2021/05/07
-[Rapport] as [Rapport] starts the 2021/05/10 and ends at 2021/05/21
+[Projektdefinering] as [Projektdefinering] starts 2021/02/01 and ends at 2021/02/12
+[Krav] as [Krav] starts 2021/02/26 and ends at 2021/03/05
+[Strukturering] as [Strukturering] starts 2021/03/01 and ends at 2021/03/01	2021/03/12
+[Analyse] as [Analyse] starts 2021/03/15 and ends at 2021/03/26
+[Design] as [Design] starts 2021/03/05 and ends at 2021/04/16
+[Implementering] as [Implementering] starts 2021/04/19 and ends at 2021/05/07
+[Rapport] as [Rapport] starts 2021/05/10 and ends at 2021/05/21
 
 [Projektdefinering deadline] happens at 2021/02/19
 [Krav deadline] happens at 2021/03/05
