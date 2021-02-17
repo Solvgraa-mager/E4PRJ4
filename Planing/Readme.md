@@ -70,7 +70,7 @@
 1. Grupper viser deres delmoduler og gruppen kommer med kommentarer
   
 ##### Action Item Liste: 
- IBDer og forbindelser rettes jf. kommentarer
+- [ ] IBDer og forbindelser rettes jf. kommentarer
 
 ### Analyse 1
 ##### Dato: 17/03/2021<br>Tidspunkt: 10:00 - 12:00
@@ -80,7 +80,7 @@
 1. Hvordan gør vi analyse? 
   
 ##### Action Item Liste: 
- Analyseafsnit for delmoduler udarbejdes 
+- [ ] Analyseafsnit for delmoduler udarbejdes 
 
 ### Analyse 2
 ##### Dato: 24/03/2021<br>Tidspunkt: 10:00 - 12:00
@@ -90,7 +90,7 @@
 1. Grupperne viser analyseafsnit for modul og gruppen kommer med kommentarer
   
 ##### Action Item Liste: 
- Analyseafsnit tilrettes jf. kommentarer
+- [ ] Analyseafsnit tilrettes jf. kommentarer
 
 ### Design 1
 ##### Dato: 07/04/2021<br>Tidspunkt: 10:00 - 12:00
@@ -100,7 +100,7 @@
 1. Hvordan gør vi design? 
   
 #####Action Item Liste: 
- Design udarbejdes for moduler
+- [ ] Design udarbejdes for moduler
 
 ### Design 2
 ##### Dato: 14/04/2021<br>Tidspunkt: 10:00 - 12:00
@@ -110,7 +110,7 @@
 1. Grupperne viser designafsnit og gruppen kommer med kommentarer
   
 ##### Action Item Liste: 
- Designafsnit tilrettes jf. feedback fra gruppen
+- [ ] Designafsnit tilrettes jf. feedback fra gruppen
 
 ### Implementering 1
 ##### Dato: 21/04/2021<br>Tidspunkt: 10:00 - 12:00
@@ -120,7 +120,7 @@
   1. Hvordan gør vi implementering? 
   
 ##### Action Item Liste: 
- Implementeringafsnit udarbejdes for modulerne
+- [ ] Implementeringafsnit udarbejdes for modulerne
   
 ### Implementering 2
 ##### Dato: 28/04/2021<br>Tidspunkt: 10:00 - 12:00
@@ -130,7 +130,7 @@
   1. Implementeringsafsnit fremvises og gruppen kommer med kommentarer
   
 ##### Action Item Liste: 
- Implementeringsafsnit rettes jf. kommentarer fra gruppen
+- [ ] Implementeringsafsnit rettes jf. kommentarer fra gruppen
 
 ### Test 1
 ##### Dato: 05/05/2021<br>Tidspunkt: 10:00 - 12:00
@@ -141,7 +141,7 @@
   2. Hvem laver integrationstest? 
   
 ##### Action Item Liste: 
- Testafsnit udarbejdes 
+- [ ] Testafsnit udarbejdes 
 
 ### Test 2
 ##### Dato: 12/05/2021<br>Tidspunkt: 10:00 - 12:00
@@ -151,6 +151,6 @@
   1. Testafsnit fremvises og gruppen kommer med kommentarer 
   
 ##### Action Item Liste:  
- Testafsnit rettes jf. gruppens kommentarer
+- [ ] Testafsnit rettes jf. gruppens kommentarer
 
 
