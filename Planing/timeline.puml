@@ -6,21 +6,24 @@ sunday are closed
 
 -- FASER I PROJEKTET --
 
-[Projektdefinering] as [PD] starts the 2021/02/01 and ends at 2021/02/12
-[Projektdefinering Deadline] happens at [PD]'s end
-[Krav] as [Krav] starts the 2021/02/15 and ends at 2021/03/01
-[Krav Deadline] happens at [Krav]'s end
-[Strukturering] as [Strukturering] starts the 2021/03/01 and ends at 2021/03/15
-[Strukturering Deadline] happens at [Strukturering]'s end
-[Analyse] as [Analyse] starts the 2021/03/15 and ends at 2021/03/29
-[Analyse Deadline] happens at [Analyse]'s end
-[Design] as [Design] starts the 2021/03/29 and ends at 2021/04/19
-[Design Deadline] happens at [Design]'s end
-[Krav Deadline] happens at [Krav]'s end
-[Implementering] as [Implementering] starts the 2021/04/19 and ends at 2021/05/10
-[Implementering Deadline] happens at [Implementering]'s end
-[Rapport] as [Rapport] starts the 2021/05/10 and ends at 2021/05/28
-[Aflevering] happens at [Rapport]'s end
+[Projektdefinering] as [Projektdefinering] starts the 2021/02/01 and ends at 2021/02/12
+[Krav] as [Krav] starts the 2021/02/26 and ends at 2021/03/05
+[Strukturering] as [Strukturering] starts the 2021/03/01 and ends at 2021/03/01	2021/03/12
+[Analyse] as [Analyse] starts the 2021/03/15 and ends at 2021/03/26
+[Design] as [Design] starts the 2021/03/05 and ends at 2021/04/16
+[Implementering] as [Implementering] starts the 2021/04/19 and ends at 2021/05/07
+[Rapport] as [Rapport] starts the 2021/05/10 and ends at 2021/05/21
+
+[Projektdefinering deadline] happens at 2021/02/19
+[Krav deadline] happens at 2021/03/05
+[Strukturering deadline] happens at 2021/03/19
+[Analyse deadline] happens at 2021/04/02
+[Design deadline] happens at 2021/04/23
+[Implementering deadline] happens at 2021/05/14
+[Rapport deadline] happens at 2021/05/21
+
+
+
 
 
 @endgantt
