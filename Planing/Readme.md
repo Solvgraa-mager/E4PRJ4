@@ -15,44 +15,44 @@
 <h2>Møder</h2>
 
 <h3>Krav 1</H3>
-<b>Dato: 17/02/2021 Tidspunkt: 10:00 - 12:00</b>
+<b>Dato: 17/02/2021<br>Tidspunkt: 10:00 - 12:00</b>
 
 
 <h3>Krav 2</H3>
-<b>Dato: 24/02/2021 Tidspunkt: 10:00 - 12:00</b>
+<b>Dato: 24/02/2021<br>Tidspunkt: 10:00 - 12:00</b>
 
 
 <h3>Strukturering 1</H3>
-<b>Dato: 03/03/2021 Tidspunkt: 10:00 - 12:00</b>
+<b>Dato: 03/03/2021<br>Tidspunkt: 10:00 - 12:00</b>
 
 
 <h3>Strukturering 2</H3>
-<b>Dato: 10/03/2021 Tidspunkt: 10:00 - 12:00</b>
+<b>Dato: 10/03/2021<br>Tidspunkt: 10:00 - 12:00</b>
 
 
 <h3>Analyse 1</H3>
-<b>Dato: 17/03/2021 Tidspunkt: 10:00 - 12:00</b>
+<b>Dato: 17/03/2021<br>Tidspunkt: 10:00 - 12:00</b>
 
 <h3>Analyse 2</H3>
-<b>Dato: 24/03/2021 Tidspunkt: 10:00 - 12:00</b>
+<b>Dato: 24/03/2021<br>Tidspunkt: 10:00 - 12:00</b>
 
 <h3>Design 1</H3>
-<b>Dato: 07/04/2021 Tidspunkt: 10:00 - 12:00</b>
+<b>Dato: 07/04/2021<br>Tidspunkt: 10:00 - 12:00</b>
 
 <h3>Design 2</H3>
-<b>Dato: 14/04/2021 Tidspunkt: 10:00 - 12:00</b>
+<b>Dato: 14/04/2021<br>Tidspunkt: 10:00 - 12:00</b>
 
 <h3>Implementering 1</H3>
-<b>Dato: 21/04/2021 Tidspunkt: 10:00 - 12:00</b>
+<b>Dato: 21/04/2021<br>Tidspunkt: 10:00 - 12:00</b>
 
 <h3>Implementering 2</H3>
-<b>Dato: 28/04/2021 Tidspunkt: 10:00 - 12:00</b>
+<b>Dato: 28/04/2021<br>Tidspunkt: 10:00 - 12:00</b>
 
 <h3>Test 1</H3>
-<b>Dato: 05/05/2021 Tidspunkt: 10:00 - 12:00</b>
+<b>Dato: 05/05/2021<br>Tidspunkt: 10:00 - 12:00</b>
 
 <h3>Test 2</H3>
-<b>Dato: 12/05/2021 Tidspunkt: 10:00 - 12:00</b>
+<b>Dato: 12/05/2021<br>Tidspunkt: 10:00 - 12:00</b>
 
 
 ![Tidsplanen](http://www.plantuml.com/plantuml/proxy?cache=no&src=https://raw.githubusercontent.com/Solvgraa-mager/E4PRJ4/main/Planing/timeline.puml)
