@@ -30,6 +30,7 @@
 - [ ] Opsætning af LaTeX (Adam)
 - [ ] Formulering af ikke-funktionelle krav (Alle)
 
+---
 ### Krav 2
 ##### Dato: 24/02/2021
 ##### Tidspunkt: 10:00 - 12:00
@@ -43,6 +44,7 @@
 ##### Action Item Liste: 
 - [ ] Test cases udarbejdes
 
+---
 ### Strukturering 1
 ##### Dato: 03/03/2021
 ##### Tidspunkt: 10:00 - 12:00
@@ -62,6 +64,7 @@
 - [ ] Detaljeret spec af forbindelser 
 - [ ] IBD af delmoduler med interne forbindelser og fuld spec
 
+---
 ### Strukturering 2
 ##### Dato: 10/03/2021
 ##### Tidspunkt: 10:00 - 12:00
@@ -74,6 +77,7 @@
 ##### Action Item Liste: 
 - [ ] IBDer og forbindelser rettes jf. kommentarer
 
+---
 ### Analyse 1
 ##### Dato: 17/03/2021
 ##### Tidspunkt: 10:00 - 12:00
@@ -86,6 +90,7 @@
 ##### Action Item Liste: 
 - [ ] Analyseafsnit for delmoduler udarbejdes 
 
+---
 ### Analyse 2
 ##### Dato: 24/03/2021
 ##### Tidspunkt: 10:00 - 12:00
@@ -98,6 +103,7 @@
 ##### Action Item Liste: 
 - [ ] Analyseafsnit tilrettes jf. kommentarer
 
+---
 ### Design 1
 ##### Dato: 07/04/2021
 ##### Tidspunkt: 10:00 - 12:00
@@ -110,6 +116,7 @@
 ##### Action Item Liste: 
 - [ ] Design udarbejdes for moduler
 
+---
 ### Design 2
 ##### Dato: 14/04/2021
 ##### Tidspunkt: 10:00 - 12:00
@@ -122,6 +129,7 @@
 ##### Action Item Liste: 
 - [ ] Designafsnit tilrettes jf. feedback fra gruppen
 
+---
 ### Implementering 1
 ##### Dato: 21/04/2021
 ##### Tidspunkt: 10:00 - 12:00
@@ -134,6 +142,7 @@
 ##### Action Item Liste: 
 - [ ] Implementeringafsnit udarbejdes for modulerne
   
+---
 ### Implementering 2
 ##### Dato: 28/04/2021
 ##### Tidspunkt: 10:00 - 12:00
@@ -146,6 +155,7 @@
 ##### Action Item Liste: 
 - [ ] Implementeringsafsnit rettes jf. kommentarer fra gruppen
 
+---
 ### Test 1
 ##### Dato: 05/05/2021
 ##### Tidspunkt: 10:00 - 12:00
@@ -159,6 +169,7 @@
 ##### Action Item Liste: 
 - [ ] Testafsnit udarbejdes 
 
+---
 ### Test 2
 ##### Dato: 12/05/2021
 ##### Tidspunkt: 10:00 - 12:00
