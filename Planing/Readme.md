@@ -1,6 +1,7 @@
 <h1>Planlægning</h1>
 
 <h2>Projekt faser</h2>
+
 | Faser             | Start      | Slut       | Deadline   |
 |-------------------|------------|------------|------------|
 | Projektdefinering | 2021/02/01 | 2021/02/12 | 2021/02/19 |
