@@ -26,7 +26,7 @@
 
 #####Action Item Liste: 
 
- Opsætning af LaTeX (Adam) <br>
+ Opsætning af LaTeX (Adam)
  Formulering af ikke-funktionelle krav (Alle)
 
 ###Krav 2
