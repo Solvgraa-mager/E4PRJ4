@@ -53,8 +53,8 @@
 
 1. Hvordan gør vi strukturering? 
 2. Opdeling af systemet i moduler
-  1. Overskrifter: Delmoduler
-  2. Sketch af forbindelser mellem delmoduler
+   1. Overskrifter: Delmoduler
+   2. Sketch af forbindelser mellem delmoduler
 3. Uddellegering af moduler
   
 ##### Action Item Liste: 
