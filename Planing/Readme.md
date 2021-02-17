@@ -31,7 +31,8 @@
 - [ ] Formulering af ikke-funktionelle krav (Alle)
 
 ### Krav 2
-##### Dato: 24/02/2021<br>Tidspunkt: 10:00 - 12:00
+##### Dato: 24/02/2021
+##### Tidspunkt: 10:00 - 12:00
 ###### Mødeleder: 
 ###### Referent: 
 
@@ -43,7 +44,8 @@
 - [ ] Test cases udarbejdes
 
 ### Strukturering 1
-##### Dato: 03/03/2021<br>Tidspunkt: 10:00 - 12:00
+##### Dato: 03/03/2021
+##### Tidspunkt: 10:00 - 12:00
 ###### Mødeleder: 
 ###### Referent: 
 
@@ -61,7 +63,8 @@
 - [ ] IBD af delmoduler med interne forbindelser og fuld spec
 
 ### Strukturering 2
-##### Dato: 10/03/2021<br>Tidspunkt: 10:00 - 12:00
+##### Dato: 10/03/2021
+##### Tidspunkt: 10:00 - 12:00
 ###### Mødeleder: 
 ###### Referent: 
 
@@ -72,7 +75,8 @@
 - [ ] IBDer og forbindelser rettes jf. kommentarer
 
 ### Analyse 1
-##### Dato: 17/03/2021<br>Tidspunkt: 10:00 - 12:00
+##### Dato: 17/03/2021
+##### Tidspunkt: 10:00 - 12:00
 ###### Mødeleder: 
 ###### Referent: 
 
@@ -83,7 +87,8 @@
 - [ ] Analyseafsnit for delmoduler udarbejdes 
 
 ### Analyse 2
-##### Dato: 24/03/2021<br>Tidspunkt: 10:00 - 12:00
+##### Dato: 24/03/2021
+##### Tidspunkt: 10:00 - 12:00
 ###### Mødeleder: 
 ###### Referent: 
 
@@ -94,7 +99,8 @@
 - [ ] Analyseafsnit tilrettes jf. kommentarer
 
 ### Design 1
-##### Dato: 07/04/2021<br>Tidspunkt: 10:00 - 12:00
+##### Dato: 07/04/2021
+##### Tidspunkt: 10:00 - 12:00
 ###### Mødeleder: 
 ###### Referent: 
 
@@ -105,7 +111,8 @@
 - [ ] Design udarbejdes for moduler
 
 ### Design 2
-##### Dato: 14/04/2021<br>Tidspunkt: 10:00 - 12:00
+##### Dato: 14/04/2021
+##### Tidspunkt: 10:00 - 12:00
 ###### Mødeleder: 
 ###### Referent: 
 
@@ -116,7 +123,8 @@
 - [ ] Designafsnit tilrettes jf. feedback fra gruppen
 
 ### Implementering 1
-##### Dato: 21/04/2021<br>Tidspunkt: 10:00 - 12:00
+##### Dato: 21/04/2021
+##### Tidspunkt: 10:00 - 12:00
 ###### Mødeleder: 
 ###### Referent: 
 
@@ -127,7 +135,8 @@
 - [ ] Implementeringafsnit udarbejdes for modulerne
   
 ### Implementering 2
-##### Dato: 28/04/2021<br>Tidspunkt: 10:00 - 12:00
+##### Dato: 28/04/2021
+##### Tidspunkt: 10:00 - 12:00
 ###### Mødeleder: 
 ###### Referent: 
 
@@ -138,7 +147,8 @@
 - [ ] Implementeringsafsnit rettes jf. kommentarer fra gruppen
 
 ### Test 1
-##### Dato: 05/05/2021<br>Tidspunkt: 10:00 - 12:00
+##### Dato: 05/05/2021
+##### Tidspunkt: 10:00 - 12:00
 ###### Mødeleder: 
 ###### Referent: 
 
@@ -150,7 +160,8 @@
 - [ ] Testafsnit udarbejdes 
 
 ### Test 2
-##### Dato: 12/05/2021<br>Tidspunkt: 10:00 - 12:00
+##### Dato: 12/05/2021
+##### Tidspunkt: 10:00 - 12:00
 ###### Mødeleder: 
 ###### Referent: 
 
