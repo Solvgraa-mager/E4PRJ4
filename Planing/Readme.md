@@ -24,7 +24,7 @@
 
 
 <h5>Action Item Liste: </h5>
- Opsætning af LaTeX (Adam)
+ Opsætning af LaTeX (Adam) <br>
  Formulering af ikke-funktionelle krav (Alle)
 
 <h3>Krav 2</H3>
