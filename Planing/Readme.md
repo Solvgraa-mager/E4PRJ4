@@ -43,7 +43,7 @@
 2. Arrangere møde med Josefine 
 
 ##### Action Item Liste: 
-- [] Test cases udarbejdes
+- [ ] Test cases udarbejdes
 
 ### Strukturering 1
 ##### Dato: 03/03/2021<br>Tidspunkt: 10:00 - 12:00
