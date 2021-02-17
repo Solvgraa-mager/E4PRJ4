@@ -25,6 +25,7 @@
 
 
 #####Action Item Liste: 
+
  Opsætning af LaTeX (Adam) <br>
  Formulering af ikke-funktionelle krav (Alle)
 
@@ -44,6 +45,7 @@
 ######Mødeleder: 
 ######Referent: 
 #####Agenda:#####
+
 1. Hvordan gør vi strukturering? 
 2. Opdeling af systemet i moduler
   1. Overskrifter: Delmoduler
