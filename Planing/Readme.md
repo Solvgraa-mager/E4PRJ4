@@ -40,6 +40,12 @@
 ##### Agenda:
 1. Gennemgang af krav (sidste rettelser inden input) 
 2. Arrangere møde med Josefine 
+3. Gennemgang af AI fra sidst:
+   1. Størrelse og vægt på systemet (Villiam) 
+   2. Sensorer (Adam)  
+   3. Sketch af webpage (Simon)
+   4. Sketch af systemet (Villiam) 
+   5. EMC tilføjet til kravliste (?) 
 
 ##### Action Item Liste: 
 - [ ] Test cases udarbejdes
