@@ -3,24 +3,91 @@ project starts the 2021/02/01
 
 saturday are closed
 sunday are closed
+2021/03/29 to 2021/04/04 are closed 
+
 
 -- FASER I PROJEKTET --
 
-[Projektdefinering] as [PD] starts the 2021/02/01 and ends at 2021/02/12
-[Projektdefinering Deadline] happens at [PD]'s end
-[Krav] as [Krav] starts the 2021/02/15 and ends at 2021/03/01
-[Krav Deadline] happens at [Krav]'s end
-[Strukturering] as [Strukturering] starts the 2021/03/01 and ends at 2021/03/15
-[Strukturering Deadline] happens at [Strukturering]'s end
-[Analyse] as [Analyse] starts the 2021/03/15 and ends at 2021/03/29
-[Analyse Deadline] happens at [Analyse]'s end
-[Design] as [Design] starts the 2021/03/29 and ends at 2021/04/19
-[Design Deadline] happens at [Design]'s end
-[Krav Deadline] happens at [Krav]'s end
-[Implementering] as [Implementering] starts the 2021/04/19 and ends at 2021/05/10
-[Implementering Deadline] happens at [Implementering]'s end
-[Rapport] as [Rapport] starts the 2021/05/10 and ends at 2021/05/28
-[Aflevering] happens at [Rapport]'s end
+[Projektdefinering] as [Projektdefinering] starts 2021/02/03 and lasts 10 days
+[Projektdefinering deadline] happens at [Projektdefinering]'s end
+
+'##### Krav ##### 
+[Krav] as [Krav] starts at [Projektdefinering]'s end and lasts 10 days
+[Krav spec] starts at [Krav]'s start and lasts 5 days 
+[Use Cases] starts at [Krav spec]'s end and lasts 5 days 
+[Krav deadline] happens at [Krav]'s end
+
+'Møder omkr. Krav
+[Krav 1] happens at [Krav]'s start
+[Krav 2] happens 7 days after [Krav]'s start
+
+'##### Strukturering #####
+[Strukturering] as [Strukturering] starts at [Krav]'s end and lasts 10 days
+[System struk.] lasts 5 days and starts at [Strukturering]'s start
+[Modul struk.] lasts 5 days and starts at [System struk.]'s end 
+[Strukturering deadline] happens at [Strukturering]'s end
+
+'Møder omkring Strukturering
+[Strukturering 1] happens at [Strukturering]'s start
+[Strukturering 2] happens 7 days after [Strukturering]'s start
+
+'##### Analyse #####
+[Analyse] as [Analyse] starts at [Strukturering]'s end and lasts 10 days
+[Analyse deadline] happens at [Analyse]'s end
+
+'Møder omkring Analyse
+[Analyse 1] happens at [Analyse]'s start
+[Analyse 2] happens 7 days after [Analyse]'s start
+
+'##### Design #####
+[Design] as [Design] starts at [Analyse]'s end and lasts 10 days
+[Design deadline] happens at [Design]'s end
+
+'Møder omkring Design
+[Design 1] happens at [Design]'s start
+[Design 2] happens 7 days after [Design]'s start
+
+'##### Implementering #####
+
+[Implementering] as [Implementering] starts at [Design]'s end and lasts 10 days
+[Implementering deadline] happens at [Implementering]'s end
+
+'Møder omkring implementering
+[Implementering 1] happens at [Implementering]'s start
+[Implementering 2] happens 7 days after [Implementering]'s start
+ 
+ '##### Test #####
+[Test] starts at [Implementering]'s end and lasts 8 days
+
+'Møder omkring test
+[Test 1] happens at [Test]'s start
+[Test 2] happens 7 days after [Test]'s start
+ 
+ '##### Rapport #####
+[Rapport] as [Rapport] starts at [Test]'s end and lasts 10 days
+[Bløde afsnit] as [BA] starts at [Rapport]'s start and lasts 5 days
+[Korrektur] starts at [BA]'s end and lasts 5 days
+[Rapport deadline] happens at 2021/05/28
+
+[Krav 1] is colored in Red
+[Krav 2] is colored in Red
+
+[Strukturering 1] is colored in Red
+[Strukturering 2] is colored in Red
+
+[Analyse 1] is colored in Red
+[Analyse 2] is colored in Red
+
+[Design 1] is colored in Red
+[Design 2] is colored in Red
+
+[Implementering 1] is colored in Red
+[Implementering 2] is colored in Red
+
+[Test 1] is colored in Red
+[Test 2] is colored in Red
+
+[Rapport deadline] is colored in Green
 
 
 @endgantt
