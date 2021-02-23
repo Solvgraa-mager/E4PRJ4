@@ -39,8 +39,9 @@
 
 ##### Agenda:
 1. Gennemgang af krav (sidste rettelser inden input) 
-2. Arrangere møde med Josefine 
-3. Gennemgang af AI fra sidst:
+   1. Lys?
+3. Arrangere møde med Josefine 
+4. Gennemgang af AI fra sidst:
    1. Størrelse og vægt på systemet (Villiam) 
    2. Sensorer (Adam)  
    3. Sketch af webpage (Simon)
