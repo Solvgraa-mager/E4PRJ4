@@ -88,5 +88,41 @@ Vejledermøde:
 
 Referat:
 
-- Hej:
-  - Hejehej
+Funktionelle krav:
+- Hellere dække HELE systemet i kravspec - og før/efter analysen konkludere, at det bliver for tidskrævende at implementere (fint argument for afgrænsning)
+- Interface til sensorer skal specces hvis de er eksterne!
+- Kom med bud til realistisk opløsning på allerede-lavede sensorer ("custom er for tidskrævende" ... er et fint argument)
+
+- Regulering af vandstand/salt:
+  - Hvor mange vand input er der (salt, salt+vand, vand)?
+
+- Lys:
+  - Spec hvad ALLE kravene er som udgangspunkt!
+  - Total effekt, effekt fordelt på bølgelængder (båndbredder), spektralt indhold, steps, præcision
+  - Lader til at man kan lave fine specs med RGB hvis båndbredden ikke er for snæver (måske der er en standard løsning?)
+  - Hvis det bare er RGB: spørgsmål om intensitet fra kilden (hvad er nok power?)
+    - Bed om nogle initielle bud fra product owner (ellers har vi egentlig teten)
+    - Vi kunne skrive: "der er for mange TBD'er ved lyskilden til at vi vil gå videre med den ... "
+    
+- GUI:
+  - (m) Hvor ofte lagres der? hvert 15 sekund, hver gang der laves ændring af indstillingerne?
+  - (p) er der time limited persistance? Hvor langt tilbage gemmes data?
+  - (s) Hvordan gøres kalibreringen via UI?
+  - Hvad indeholder drop down menu i user interface sketch?
+    - Tilføj evt. flere billeder af alt hvad der sker med interaktion med UI (dropdown menuer, knapper m.m.) - kan yderligere lægges i bilagene. 
+
+- Fysisk user interface:
+  - Få neglet alt ned (strømstik, reset, power, ...)
+ 
+- EMC:
+  - Systemet skal overholde EMC direktivet ...
+
+Use cases:
+  - Der mangler use case diagram
+  - Sensorer:
+    - Ekstern stykke hardware (sekundær aktør) eller en del af systemet
+      - Hvis vi selv tager hånd om det: en del af systemet
+      - Hvis vi køber det og interface er speccet: ekstern stykke hardware (interface skal så bare specces)
+  - Lav en use case for HVER knap som du kan trykke på som giver en handling eller skal eksekvere kode (både GUI og fysisk)
+  - Undtagelser: hvilke fejlmeldinger? Hvordan skal de præsenteres (hvilken logfil)?
+  - Prækondition (for at undgå der kommer brugermanual elementer i use casen): "De fysiske forudsætninger for systemet er bringet til opfyldelse j.f. (en evt. kort brugermanual i bilag som fortæller hvordan systemet fysisk skal sættes op)
