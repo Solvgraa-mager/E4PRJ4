@@ -39,7 +39,7 @@
 
 ##### Agenda:
 1. Gennemgang af krav (sidste rettelser inden input) 
-   1. Lys?
+   1. Husk lys!
 3. Arrangere møde med Josefine 
 4. Gennemgang af AI fra sidst:
    1. Størrelse og vægt på systemet (Villiam) 
@@ -47,6 +47,7 @@
    3. Sketch af webpage (Simon)
    4. Sketch af systemet (Villiam) 
    5. EMC tilføjet til kravliste (?) 
+6. Hvordan laver vi use cases? 
 
 ##### Action Item Liste: 
 - [ ] Test cases udarbejdes
