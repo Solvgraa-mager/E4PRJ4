@@ -47,7 +47,7 @@
    3. Sketch af webpage (Simon)
    4. Sketch af systemet (Villiam) 
    5. EMC tilføjet til kravliste (?) 
-6. Hvordan laver vi use cases? 
+6. Use Cases!  
 
 ##### Action Item Liste: 
 - [ ] Test cases udarbejdes
