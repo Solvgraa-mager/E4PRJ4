@@ -61,11 +61,11 @@
 
 ##### Agenda:
 
-1. Hvordan gør vi strukturering? 
-2. Opdeling af systemet i moduler
+2. Hvordan gør vi strukturering? 
+3. Opdeling af systemet i moduler
    1. Overskrifter: Delmoduler
    2. Sketch af forbindelser mellem delmoduler
-3. Uddellegering af moduler
+4. Uddellegering af moduler
   
 ##### Action Item Liste: 
 - [ ] Systemet IBD fra sketch til flot
