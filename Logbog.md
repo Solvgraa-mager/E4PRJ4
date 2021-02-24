@@ -81,3 +81,11 @@ Referat:
   - Test af 1-2 af de EMC-krav fra direktivet.
 - John kan godt lide Simons plan!
   - Elastikplan, så den kan ændres med 1-2 uger, men ser mega godt ud!
+
+# 24/2
+
+Vejledermøde:
+
+Referat:
+
+- Hej
