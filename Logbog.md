@@ -90,8 +90,6 @@ Referat:
 
 Funktionelle krav:
 - Hellere dække HELE systemet i kravspec - og før/efter analysen konkludere, at det bliver for tidskrævende at implementere (fint argument for afgrænsning)
-- Interface til sensorer skal specces hvis de er eksterne!
-- Kom med bud til realistisk opløsning på allerede-lavede sensorer ("custom er for tidskrævende" ... er et fint argument)
 
 - Regulering af vandstand/salt:
   - Hvor mange vand input er der (salt, salt+vand, vand)?
@@ -126,3 +124,7 @@ Use cases:
   - Lav en use case for HVER knap som du kan trykke på som giver en handling eller skal eksekvere kode (både GUI og fysisk)
   - Undtagelser: hvilke fejlmeldinger? Hvordan skal de præsenteres (hvilken logfil)?
   - Prækondition (for at undgå der kommer brugermanual elementer i use casen): "De fysiske forudsætninger for systemet er bringet til opfyldelse j.f. (en evt. kort brugermanual i bilag som fortæller hvordan systemet fysisk skal sættes op)
+
+Optakt til analyse:
+- Interface til sensorer skal specces hvis de er eksterne!
+- Kom med bud til realistisk opløsning på allerede-lavede sensorer ("custom er for tidskrævende" ... er et fint argument)
