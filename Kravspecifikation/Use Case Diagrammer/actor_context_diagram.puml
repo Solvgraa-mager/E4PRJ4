@@ -1,0 +1,27 @@
+@startuml
+
+'System
+(System) as system
+
+'Primære aktører
+:Bruger: as bruger
+:Havsvampe: as havsvampe
+
+'Sekundære aktører
+:Akvarie: as akvarie
+:Cirkulationspumpe: as pumpe
+:Internet: as internet
+:El-net: as el
+:Dispensersystem: as dispenser
+
+'Forbindelser 
+
+Bruger -> system
+Havsvampe --> system
+
+system -> el
+system ->
+
+
+
+@enduml
