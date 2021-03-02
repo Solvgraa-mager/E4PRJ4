@@ -56,12 +56,12 @@
 ### Strukturering 1
 ##### Dato: 03/03/2021
 ##### Tidspunkt: 10:00 - 12:00
-###### Mødeleder: 
+###### Mødeleder: Christian
 ###### Referent: 
 
 ##### Agenda:
-
-2. Hvordan gør vi strukturering? 
+1. Luk kravfasen, spørgsmål til use cases?
+2.Hvordan gør vi strukturering? 
 3. Opdeling af systemet i moduler
    1. Overskrifter: Delmoduler
    2. Sketch af forbindelser mellem delmoduler
