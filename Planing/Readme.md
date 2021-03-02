@@ -61,7 +61,7 @@
 
 ##### Agenda:
 1. Luk kravfasen, spørgsmål til use cases?
-2.Hvordan gør vi strukturering? 
+2. Hvordan gør vi strukturering? 
 3. Opdeling af systemet i moduler
    1. Overskrifter: Delmoduler
    2. Sketch af forbindelser mellem delmoduler
