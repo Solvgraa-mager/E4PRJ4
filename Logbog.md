@@ -147,11 +147,9 @@ Use cases:
   - MEN: Vi laver det sådan, at det faktisk kræver en handling "Tryk på Tænd" for at køre initialisering (hvis der ikke er en i forvejen). Derfor laves følgende ændring i "UC: Tænd". Se nedenstående:
  
  
- Check init fil  \n
- Undtagelse: der er ikke init fil
- (læg use case "initialisering" under undtagelse: der er ikke init fil)
+ Check init fil  \nUndtagelse: der er ikke init fil(læg use case "initialisering" under undtagelse: der er ikke init fil)
  
-   \nCheck indhold af init fil
+  Check indhold af init fil
  Undtagelse: indholdet af init fil er garbage
  (slet garbage init fil, kør "initialisering")
  
