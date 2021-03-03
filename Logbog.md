@@ -128,3 +128,35 @@ Use cases:
 Optakt til analyse:
 - Interface til sensorer skal specces hvis de er eksterne!
 - Kom med bud til realistisk opløsning på allerede-lavede sensorer ("custom er for tidskrævende" ... er et fint argument)
+
+# 3/3
+Vejledermøde:
+
+Referat:
+
+Use cases:
+- Generelt:
+  - Kommentar fra John: sålænge der er en use case for hver interaktion (alt hvad der kan trykkes på, tændes og slukkes), er det finno!
+  - Undlad dybdegående use cases for processer, der ikke begyndes af en handling (opret i stedet prækondition, se evt. under "Use case: Tænd system" kommentarer
+  - Undlad at referere til use cases på tværs af use cases
+
+- Use case: Tænd system
+  - Tilføj evt. forudsætning (at init.ini) allerede er eksisterende for at undgå at UC tænd bliver vildt lang.
+    - Hermed undgås at man skal beskrive HVORDAN init.ini opstår ved blot at have den på som en prækondition (evt. med specifikation af, hvor den er)
+
+  - MEN: Vi laver det sådan, at det faktisk kræver en handling "Tryk på Tænd" for at køre initialisering (hvis der ikke er en i forvejen). Derfor laves følgende ændring i "UC: Tænd". Se nedenstående:
+ 
+ Check init fil
+ Undtagelse: der er ikke init fil
+ (læg use case "initialisering" under undtagelse: der er ikke init fil)
+ 
+ Check indhold af init fil
+ Undtagelse: indholdet af init fil er garbage
+ (slet garbage init fil, kør "initialisering")
+ 
+- Use case: Initialisering
+  - Ryk "Use case: Initialisering" op til tænd, da den specifikke handling der begynder "initialisering" ER "UC: Tænd"
+
+- Use case: Reguler
+  - Et eller andet sted er der en handling som påbegynder "Reguler"
+    - Tændknap på fysisk interface hvis default (fabriksindstillede setpoints) eller igennem startknap på GUI
