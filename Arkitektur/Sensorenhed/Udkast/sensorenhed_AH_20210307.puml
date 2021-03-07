@@ -1,0 +1,34 @@
+@startuml Sensorenhed
+mainframe **BDD** Sensorenhed
+object "Sensorenhed" as SensorMain
+object "Salinitetssensor" as Salinitet
+object "Temperatursensor" as Temperatur
+object "pH sensor" as pH
+object "Sensor Lav" as VandstandLo
+object "Sensor Høj" as VandstandHi
+object "Vandstandssensor" as Vandstand
+object Kalibrator
+
+map "Signalkonditionering" as SignalTreat  {
+'  Kalibrering *-> Kalibrator
+ Salinitet => Strøm til spænding
+ Temperatur => **Ukendt**
+ pH => **Ukendt**
+ Vandstand => **Ukendt**
+}
+
+' Defining the fields of the objects
+' Starting with the main block
+
+Kalibrator <-- SignalTreat
+SensorMain *-- SignalTreat
+SensorMain *-- Kalibrator
+SignalTreat *-- Salinitet
+SignalTreat *-- Temperatur
+SignalTreat *-- pH
+SignalTreat *-- Vandstand
+
+Vandstand *-- VandstandLo
+Vandstand *-- VandstandHi
+
+@enduml
