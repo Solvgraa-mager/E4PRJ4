@@ -1,0 +1,25 @@
+@startuml Sensorenhed
+mainframe **BDD** Sensorenhed
+object "Sensorenhed" as SensorMain
+object "Salinitetssensor" as Salinitet
+object "Temperatursensor" as Temperatur
+object "pH sensor" as pH
+object "Vandstandsensor Lav" as VandstandLo
+object "Vandstandsensor Høj" as VandstandHi
+object "Vandstandsensor Midt" as VandstandMi
+object "Vandstandssensor" as Vandstand
+
+' Defining the fields of the objects
+' Starting with the main block
+
+SensorMain *-- Salinitet
+SensorMain *-- Temperatur
+SensorMain *-- pH
+SensorMain *-- Vandstand
+
+Vandstand *-- VandstandLo
+Vandstand *-- VandstandMi
+Vandstand *-- VandstandHi
+
+
+@enduml
