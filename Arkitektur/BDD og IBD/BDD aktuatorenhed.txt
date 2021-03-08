@@ -1,0 +1,24 @@
+@startuml
+skinparam BackgroundColor transparent
+
+title BDD for Aktuatorenheden
+
+object "Aktuatorenhed" as Aktenhed
+object "Motor Driver" as MotorDriver
+object "RGB LED Driver" as RGBLEDDriver
+object "Deminiraliseret vand pumpe" as DVand
+object "Salvtand pumpe" as Saltvand
+object "Nærings pumpe" as Næring
+object "Tømnings pumpe" as TØMp
+object "RGB LEDs" as RGB
+
+Aktenhed *-- MotorDriver
+Aktenhed *-- RGBLEDDriver
+RGBLEDDriver *-- RGB
+Aktenhed *-- DVand
+Aktenhed *-- Saltvand
+Aktenhed *-- Næring
+Aktenhed *-- TØMp
+
+
+@enduml
