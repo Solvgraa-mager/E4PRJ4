@@ -111,6 +111,7 @@
   
 ##### Action Item Liste: 
 - [ ] Analyseafsnit tilrettes jf. kommentarer
+- [ ] Simon og Adam: Kategorisering af krav 
 
 ---
 ### Design 1
