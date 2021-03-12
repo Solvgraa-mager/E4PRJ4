@@ -95,8 +95,11 @@
 
 ##### Agenda:
 1. Hvordan gør vi analyse? 
-2. Team SE: Kategorisering af krav for alle blokke? 
-3. Team SE: Hvordan spec'er jeg DC2 9V strømforsyning til Embedded Controller?
+2. Team SE: 
+   1.  Team SE: Kategorisering af krav for alle blokke? 
+   2.  Hjælp til spec af DC2 9V strømforsyning
+   3.  Hjælp til spec af SensorCom SPI forbindelse ift. en lang ledning og noget med impedans.. 
+
   
 ##### Action Item Liste: 
 - [ ] Analyseafsnit for delmoduler udarbejdes 
