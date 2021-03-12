@@ -95,6 +95,8 @@
 
 ##### Agenda:
 1. Hvordan gør vi analyse? 
+2. Team SE: Kategorisering af krav for alle blokke? 
+3. Team SE: Hvordan spec'er jeg DC2 9V strømforsyning til Embedded Controller?
   
 ##### Action Item Liste: 
 - [ ] Analyseafsnit for delmoduler udarbejdes 
@@ -111,7 +113,7 @@
   
 ##### Action Item Liste: 
 - [ ] Analyseafsnit tilrettes jf. kommentarer
-- [ ] Simon og Adam: Kategorisering af krav 
+
 
 ---
 ### Design 1
