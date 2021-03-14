@@ -109,7 +109,9 @@
    3. Er det så i analysen vi finder ud af, om hjemmeside køres med websocket el. lign?
 
 4. Team AE:
-   1. <TODO>
+   1. Specifikation af reguleringsparametre (overshoot, risetime ... ) - i blokbeskrivelse (og i det tilfælde - for signalet eller "outputtet" = væske, varme osv)?
+   2. Afklaring omkring krav for pumper (flow rate m.m.) - har skrevet til regulerings Martin omkring modellering af DC pumper
+   3. Strategi for formulering af afgrænsning. 
   
 ##### Action Item Liste: 
 - [ ] Analyseafsnit for delmoduler udarbejdes 
