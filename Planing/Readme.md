@@ -95,11 +95,21 @@
 
 ##### Agenda:
 1. Hvordan gør vi analyse? 
+   1. Samtale omkring de dele analysen indebærer
+
+
 2. Team SE: 
    1.  Team SE: Kategorisering af krav for alle blokke? 
    2.  Hjælp til spec af DC2 9V strømforsyning
    3.  Hjælp til spec af SensorCom SPI forbindelse ift. en lang ledning og noget med impedans.. 
 
+3. Team CC og samlet system:
+   1. Skal der være blok/signal til samlet system BDD og IBD? Eller er det fint, at disse udspecificeres under respektive afsnit?
+   2. Gennemgang af sekvensdiagram for samlet system
+   3. Er det så i analysen vi finder ud af, om hjemmeside køres med websocket el. lign?
+
+4. Team AE:
+   1. <TODO>
   
 ##### Action Item Liste: 
 - [ ] Analyseafsnit for delmoduler udarbejdes 
