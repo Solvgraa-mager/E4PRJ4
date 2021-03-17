@@ -22,22 +22,23 @@ sunday are closed
 [Krav 2] happens 7 days after [Krav]'s start
 
 '##### Strukturering #####
-[Strukturering] as [Strukturering] starts at [Krav]'s end and lasts 10 days
+[Strukturering] as [Strukturering] starts at [Krav]'s end and lasts 15 days
 [System struk.] lasts 5 days and starts at [Strukturering]'s start
-[Modul struk.] lasts 5 days and starts at [System struk.]'s end 
+[Modul struk.] lasts 10 days and starts at [System struk.]'s end 
 [Strukturering deadline] happens at [Strukturering]'s end
 
 'Møder omkring Strukturering
 [Strukturering 1] happens at [Strukturering]'s start
 [Strukturering 2] happens 7 days after [Strukturering]'s start
+[Strukturering 3] happens 7 days after [Strukturering]'s start
+
 
 '##### Analyse #####
-[Analyse] as [Analyse] starts at [Strukturering]'s end and lasts 10 days
+[Analyse] as [Analyse] starts at [Strukturering]'s end and lasts 5 days
 [Analyse deadline] happens at [Analyse]'s end
 
 'Møder omkring Analyse
 [Analyse 1] happens at [Analyse]'s start
-[Analyse 2] happens 7 days after [Analyse]'s start
 
 '##### Design #####
 [Design] as [Design] starts at [Analyse]'s end and lasts 10 days
