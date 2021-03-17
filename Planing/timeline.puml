@@ -30,7 +30,7 @@ sunday are closed
 'Møder omkring Strukturering
 [Strukturering 1] happens at [Strukturering]'s start
 [Strukturering 2] happens 7 days after [Strukturering]'s start
-[Strukturering 3] happens 7 days after [Strukturering]'s start
+[Strukturering 3] happens 14 days after [Strukturering]'s start
 
 
 '##### Analyse #####
@@ -75,9 +75,9 @@ sunday are closed
 
 [Strukturering 1] is colored in Red
 [Strukturering 2] is colored in Red
+[Strukturering 3] is colored in Red
 
 [Analyse 1] is colored in Red
-[Analyse 2] is colored in Red
 
 [Design 1] is colored in Red
 [Design 2] is colored in Red
