@@ -1,0 +1,25 @@
+@startuml
+
+title Sensor Timing
+concise "Sensorenhed" as SE
+concise "Central Computer" as CC
+
+@-100
+CC is {-}
+SE is Idle
+@0
+CC is Request
+SE is Listen
+@100
+CC is Wait
+SE is Convert
+@700
+SE is Buffer
+@900
+SE is Send
+CC is Recv
+@1000
+SE is Idle
+CC is {-}
+
+@enduml

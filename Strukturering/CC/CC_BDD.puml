@@ -1,0 +1,22 @@
+@startuml
+skinparam BackgroundColor transparent
+
+title Central Computer BDD
+
+object "Central Computer" as CC 
+object "Embedded Controller" as EC
+object "Controlboard" as CB
+
+object "Tænd/sluk-knap" as knap
+object "Indikation" as indikation 
+object "Forbindelsesenhed" as forbind
+
+CC *--"1" EC
+CC *--"1" CB
+
+CB *-- indikation
+CB *-- knap
+
+CB *-- forbind
+
+@enduml

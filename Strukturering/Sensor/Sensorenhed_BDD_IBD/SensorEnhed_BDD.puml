@@ -8,12 +8,14 @@ object "Vandstandsensor Lav" as VandstandLo
 object "Vandstandsensor Høj" as VandstandHi
 object "Vandstandsensor Midt" as VandstandMi
 object "Vandstandssensor" as Vandstand
-object "Signal converter" as SignalTreat 
+object "ADC-Blok" as ADC 
+object "Embedded Controller" as EC
 
 ' Defining the fields of the objects
 ' Starting with the main block
 
-SensorMain *-- SignalTreat
+SensorMain *-- ADC
+SensorMain *-- EC
 SensorMain *-- Salinitet
 SensorMain *-- Temperatur
 SensorMain *-- pH

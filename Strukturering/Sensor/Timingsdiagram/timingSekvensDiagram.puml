@@ -1,0 +1,22 @@
+@startuml
+
+@startuml
+!pragma teoz true
+
+title "Sekvens SensorCom"
+
+actor "Central Computer" as CC
+participant "Embedded Controller" as EC
+
+{start_com} CC -> EC : Request
+EC -> EC : 
+{end_com} EC-->CC : Data
+EC-->CC:Kontrol
+EC --> CC: Checksum
+
+{start_com} <-> {end_com}: 1 sek
+
+{start_read} <-> {end_read}: 800 ms
+
+
+@enduml

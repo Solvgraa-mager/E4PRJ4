@@ -1,0 +1,20 @@
+@startuml
+title "Aflæsning af salinitet"
+
+concise "Sensorenhed" as SE
+concise "Central Computer" as CC
+
+@0
+CC is 0x02
+SE is 0x00
+@50
+@100
+CC is Waiting
+SE is {-}
+@900
+SE is 0x000000
+CC is 0x34FF24
+@1000
+SE is {-}
+CC is {-}
+@enduml

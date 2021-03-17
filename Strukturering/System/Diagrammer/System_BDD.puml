@@ -1,0 +1,17 @@
+@startuml
+skinparam BackgroundColor transparent
+
+title Akvarieregulering BDD
+
+object "Akvarieregulering" as System
+object "PSU" as PSU
+object "Sensorenhed" as sensor
+object "Aktuatorenhed" as aktuator
+object "Central Computer" as CC
+
+System *-- PSU
+System *-- sensor
+System *-- aktuator
+System *-- CC
+
+@enduml

@@ -1,0 +1,24 @@
+@startuml
+!pragma teoz true
+
+title "Aflæsning af salinitet sekvens"
+
+actor "Central Computer" as CC
+participant "Embedded Controller" as EC
+participant "ADC-Blok" as ADC
+participant "Salinitetsensor" as saltsensor
+
+{start_com} CC -> EC : Aflæs salinitet
+{start_read} EC -> ADC: Multiplex til salinitet
+ADC -> saltsensor: Aflæser saltindhold
+{end_read} EC -> ADC: Læs ADC  
+ADC --> EC: Salinitet
+{end_com} EC --> CC: Salinitet
+
+
+{start_com} <-> {end_com}: 1 sek
+
+{start_read} <-> {end_read}: 800 ms
+
+
+@enduml
