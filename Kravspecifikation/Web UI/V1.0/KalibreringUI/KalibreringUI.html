@@ -64,35 +64,23 @@
       width: 17%;
       transform-origin: 50% 50% 0px;
     }
-    .gwd-h2-3p7u {
-      transform-style: preserve-3d;
-      transform: translate3d(0px, 174px, 0px);
-    }
-    .gwd-input-106t {
-      position: absolute;
-      transform-style: preserve-3d;
-      left: 28.04%;
-      top: 55.79%;
-      width: 7.37%;
-      height: 4.64%;
-      transform: translate3d(-48px, -102px, 0px);
-    }
-    .gwd-label-ij3k {
-      position: absolute;
-      transform-origin: 50% 50% 0px;
-      font-size: 24px;
-      left: 35.29%;
-      width: 6.45%;
-      height: 3.92%;
-      top: 44.35%;
-    }
     .gwd-button-i9mi {
       position: absolute;
       transform-origin: 50% 50% 0px;
       width: 7.9%;
       height: 5.35%;
-      left: 20.21%;
-      top: 56%;
+      left: 20.28%;
+      top: 47.68%;
+    }
+    .gwd-label-7gyd {
+      position: absolute;
+      transform-origin: 50% 50% 0px;
+      font-size: 20px;
+      text-align: center;
+      left: 14.48%;
+      top: 34.72%;
+      width: 24.88%;
+      height: 6.54%;
     }
   </style>
 </head>
@@ -102,16 +90,14 @@
     
   </p>
   <h2 id="parameterchoiselabel" class="gwd-label-urfm gwd-h2-1bay gwd-h2-1hij gwd-h2-3u65">Sensor: </h2>
-  <h2 id="OffsetLabel" class="gwd-label-urfm gwd-h2-1bay gwd-h2-1hij gwd-h2-3u65 gwd-h2-3p7u">Offset: </h2>
   <select id="SensorSelect" class="gwd-select-1kls" data-gwd-name="Måling" onchange="$('#plot').attr('src', this.options[this.selectedIndex].value);">
-    <option value="assets/vand.png" selected="">Vandstandssensor</option>
+    <option value="assets/vand.png">Vandstandssensor</option>
     <option value="assets/salt.png">Saltindholdssensor</option>
-    <option value="assets/ph.png">PH-sensor</option>
+    <option value="assets/ph.png" selected="">PH-sensor</option>
     <option value="assets/temp.png">Temperatursensor</option>
   </select>
-  <input type="text" id="kalibreringInput" class="gwd-input-106t" data-gwd-name="kalibreringsoffset" placeholder="-1.2">
-  <label id="unitLabel" class="gwd-label-ij3k" data-gwd-name="unitLabel">cm</label>
-  <button id="saveButton" class="gwd-button-i9mi">Gem indstilling</button>
+  <button id="saveButton" class="gwd-button-i9mi">Kalibrer</button>
+  <strong id="label_1" class="gwd-label-7gyd">Sæt sensoren ned i PH kalibreringsvæsken og tryk på "Kalibrer"</strong>
 </body>
 
 </html>
