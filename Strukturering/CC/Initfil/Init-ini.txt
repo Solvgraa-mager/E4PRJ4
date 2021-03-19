@@ -40,7 +40,7 @@ DEFAULT_PASSWORD= "509219SJKHADS"
 # Log locations
 
 DEFAULT_LOGPATH = "~/logs/"
-LogName = "Aquarium" 
-LogFormat = "csv"
+DEFAULT_LOGNAME = "Aquarium" 
+DEFAULT_LOGFORMAT = "csv"
  
 #///////////////////////////////////////////////////////
