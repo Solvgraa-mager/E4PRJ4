@@ -1,0 +1,46 @@
+[Settings]
+ 
+#///////////////////////////////////////////////////////
+Version=0.1 Build 1 Created 2021-03-18 14:00:00
+#///////////////////////////////////////////////////////
+ 
+# Default setpoint values
+
+DEFAULT_SALINITY=25 
+DEFAULT_TEMPERATURE=25 
+DEFAULT_WATERLEVEL=MID 
+ 
+#///////////////////////////////////////////////////////
+
+# Set log status
+
+LOG_MASTER = True
+LOG_TEMPERATURE=True
+LOG_SALINITY=True
+LOG_WATERADD=True
+LOG_WATERREMOVE=False
+#///////////////////////////////////////////////////////
+
+# Set regulator status
+
+REGULATE_Master = True
+REGULATE_TEMPERATURE=True
+REGULATE_SALINITY=True
+REGULATE_WATERADD=True
+REGULATE_WATERREMOVE=False
+#///////////////////////////////////////////////////////
+
+# Network connetion settings 
+
+DEFAULT_SSID="NETWORK NAME"
+DEFAULT_PASSWORD= "509219SJKHADS"
+ 
+#///////////////////////////////////////////////////////
+
+# Log locations
+
+DEFAULT_LOGPATH = "~/logs/"
+LogName = "Aquarium" 
+LogFormat = "csv"
+ 
+#///////////////////////////////////////////////////////
