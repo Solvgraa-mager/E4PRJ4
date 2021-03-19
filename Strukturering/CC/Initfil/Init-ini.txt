@@ -19,6 +19,8 @@ LOG_TEMPERATURE=True
 LOG_SALINITY=True
 LOG_WATERADD=True
 LOG_WATERREMOVE=False
+LOG_TIME = 900
+
 #///////////////////////////////////////////////////////
 
 # Set regulator status
@@ -28,6 +30,7 @@ REGULATE_TEMPERATURE=True
 REGULATE_SALINITY=True
 REGULATE_WATERADD=True
 REGULATE_WATERREMOVE=False
+
 #///////////////////////////////////////////////////////
 
 # Network connetion settings 
