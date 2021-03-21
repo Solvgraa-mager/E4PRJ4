@@ -128,7 +128,7 @@
 
 2. Team AE:
    1. Ny strukturering af lys enhed gennemgås
-   2. Input output karakteristikker
+   2. output karakteristikker for outputs 
    
   
 ##### Action Item Liste: 
