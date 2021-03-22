@@ -125,6 +125,11 @@
 
 ##### Agenda:
 1. Grupperne viser analyseafsnit for modul og gruppen kommer med kommentarer
+
+2. Team AE:
+   1. Ny strukturering af lys enhed gennemgås
+   2. output karakteristikker for outputs 
+   
   
 ##### Action Item Liste: 
 - [ ] Analyseafsnit tilrettes jf. kommentarer
