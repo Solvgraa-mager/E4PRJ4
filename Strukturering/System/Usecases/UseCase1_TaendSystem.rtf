@@ -26,25 +26,50 @@ alt init-file exists\
     * Setpoint values\
     endrnote\
     CentralComputer -> CentralComputer: init-file read\
+    note right\
+    For details,\
+    read UseCase: Wizard\
+    end note\
     deactivate CentralComputer\
 else init-file doesn't exists\
     CentralComputer -> CentralComputer: Run wizard()\
     CentralComputer -> CentralComputer: Reboot system\
 end\
 \
+CentralComputer -> CentralComputer: initiating timer and start active proc\
+CentralComputer -> CentralComputer: start GUI\
+\
 loop while true\
 \
-    alt Time == 15 min\
-        CentralComputer -> CentralComputer: Update datalog\
+    group if [globalActiveProces_flag == true]\
+        CentralComputer -> CentralComputer: read init.ini for active proc.\
+        CentralComputer -> CentralComputer: set global variables\
     end\
-            CentralComputer -> Sensorenhed: get value\
-            Sensorenhed --> CentralComputer: value\
 \
-            CentralComputer -> CentralComputer: Calculate controlValue\
-        \
-            CentralComputer -> Aktuatorenhed: set output\
-            \
-            CentralComputer -> CentralComputer: Wait()\
+    group if [saveDataAndUpdateGUI_flag == true]\
+        CentralComputer -> CentralComputer: save to log\
+        CentralComputer -> Bruger: update GUI\
+    end\
+\
+\
+    group if [regulate_flag == true]\
+        group if [varmereg == true]\
+            group regulate()\
+                CentralComputer -> Sensorenhed: get value\
+                Sensorenhed --> CentralComputer: value\
+                CentralComputer -> CentralComputer: Calculate controlValue\
+                CentralComputer -> Aktuatorenhed: set output\
+            end\
+        end\
+        group if [saltreg == true]\
+            CentralComputer -> CentralComputer: regulate()\
+        end\
+        group if [vandreg == true]\
+            CentralComputer -> CentralComputer: regulate()\
+        end\
+        group if [lysreg == true]\
+            CentralComputer -> Aktuatorenhed: setOutput()\
+        end\
+    end\
 end\
-\
 @enduml}
