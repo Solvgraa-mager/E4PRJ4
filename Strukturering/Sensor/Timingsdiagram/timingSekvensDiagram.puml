@@ -6,13 +6,13 @@
 title "Sekvens SensorCom"
 
 actor "Central Computer" as CC
-participant "Embedded Controller" as EC
+participant "Sensor Controller" as SC
 
-{start_com} CC -> EC : Request
-EC -> EC : 
-{end_com} EC-->CC : Data
-EC-->CC:Kontrol
-EC --> CC: Checksum
+{start_com} CC -> SC : Request
+SC -> SC : 
+{end_com} SC-->CC : Data
+SC-->CC:Kontrol
+SC --> CC: Checksum
 
 {start_com} <-> {end_com}: 1 sek
 

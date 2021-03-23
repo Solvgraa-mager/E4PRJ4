@@ -1,0 +1,16 @@
+@startuml
+!pragma teoz true
+
+title "ADCData Protokol"
+
+participant "Sensor Controller" as SC
+participant "ADCBlok"
+
+{start_read} CC -> SC : Request
+SC -> SC : 
+{end_read} SC-->CC : Data
+SC-->CC:Kontrol
+SC --> CC: Checksum
+
+{start_read} <-> {end_read}: 1 sek
+@enduml

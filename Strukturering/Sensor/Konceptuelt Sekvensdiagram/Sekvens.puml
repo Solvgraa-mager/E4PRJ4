@@ -4,16 +4,16 @@
 title "Aflæsning af salinitet sekvens"
 
 actor "Central Computer" as CC
-participant "Embedded Controller" as EC
+participant "Sensor Controller" as SC
 participant "ADC-Blok" as ADC
 participant "Salinitetsensor" as saltsensor
 
-{start_com} CC -> EC : Aflæs salinitet
-{start_read} EC -> ADC: Multiplex til salinitet
+{start_com} CC -> SC : Aflæs salinitet
+{start_read} SC -> ADC: Multiplex til salinitet
 ADC -> saltsensor: Aflæser saltindhold
-{end_read} EC -> ADC: Læs ADC  
-ADC --> EC: Salinitet
-{end_com} EC --> CC: Salinitet
+{end_read} SC -> ADC: Læs ADC  
+ADC --> SC: Salinitet
+{end_com} SC --> CC: Salinitet
 
 
 {start_com} <-> {end_com}: 1 sek
