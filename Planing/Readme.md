@@ -87,7 +87,7 @@
 - [ ] IBDer og forbindelser rettes jf. kommentarer
 
 ---
-### Analyse 1
+### Strukturering 3
 ##### Dato: 17/03/2021
 ##### Tidspunkt: 10:00 - 12:00
 ###### Mødeleder: 
@@ -95,8 +95,6 @@
 
 ##### Agenda:
 1. Hvordan gør vi analyse? 
-   1. Samtale omkring de dele analysen indebærer
-
 
 2. Team SE: 
    1.  Team SE: Kategorisering af krav for alle blokke? 
@@ -117,14 +115,15 @@
 - [ ] Analyseafsnit for delmoduler udarbejdes 
 
 ---
-### Analyse 2
+### Analyse 1
 ##### Dato: 24/03/2021
 ##### Tidspunkt: 10:00 - 12:00
 ###### Mødeleder: 
 ###### Referent: 
 
 ##### Agenda:
-1. Grupperne viser analyseafsnit for modul og gruppen kommer med kommentarer
+1. Hvordan gør vi analyse? 
+   1. Afstemning af hvad analyse-afsnittet indebærer
 
 2. Team AE:
    1. Ny strukturering af lys enhed gennemgås
