@@ -54,7 +54,7 @@ loop while true\
 \
     group if [regulate_flag == true]\
         group if [varmereg == true]\
-            group regulate()\
+            group control()\
                 CentralComputer -> Sensorenhed: get value\
                 Sensorenhed --> CentralComputer: value\
                 CentralComputer -> CentralComputer: Calculate controlValue\
@@ -62,10 +62,10 @@ loop while true\
             end\
         end\
         group if [saltreg == true]\
-            CentralComputer -> CentralComputer: regulate()\
+            CentralComputer -> CentralComputer: controle()\
         end\
         group if [vandreg == true]\
-            CentralComputer -> CentralComputer: regulate()\
+            CentralComputer -> CentralComputer: controle()\
         end\
         group if [lysreg == true]\
             CentralComputer -> Aktuatorenhed: setOutput()\
