@@ -18,7 +18,7 @@ ADC --> SC: Salinitet
 
 {start_com} <-> {end_com}: 1 sek
 
-{start_read} <-> {end_read}: 800 ms
+{start_read} <-> {end_read}: 600 ms
 
 
 @enduml
