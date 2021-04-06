@@ -143,6 +143,9 @@
 
 ##### Agenda:
 1. Hvordan gør vi design? 
+
+Team AE:
+1. Skillelinje mellem analyse og design ifht. f.eks. valg af transistorer for driver kredsløb
   
 ##### Action Item Liste: 
 - [ ] Design udarbejdes for moduler
