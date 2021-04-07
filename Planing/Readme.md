@@ -135,33 +135,34 @@
 
 
 ---
-### Design 1
+### Analyse 3
 ##### Dato: 07/04/2021
 ##### Tidspunkt: 10:00 - 12:00
-###### Mødeleder: 
-###### Referent: 
+###### Mødeleder: Christian
+###### Referent: David
 
 ##### Agenda:
-1. Hvordan gør vi design? 
+1. Valg af ny mødeleder
+2. Hvordan gør vi design? 
+3. Spørgsmål fra CC ang: 
+   1. Controlboard
+   2. Embedded Controller
+   3. Hjemmeside
 
 Team AE:
 1. Skillelinje mellem analyse og design ifht. f.eks. valg af transistorer for driver kredsløb
-  
-##### Action Item Liste: 
-- [ ] Design udarbejdes for moduler
+
 
 ---
-### Design 2
+### Design 1
 ##### Dato: 14/04/2021
 ##### Tidspunkt: 10:00 - 12:00
 ###### Mødeleder: 
 ###### Referent: 
 
 ##### Agenda:
-1. Grupperne viser designafsnit og gruppen kommer med kommentarer
-  
-##### Action Item Liste: 
-- [ ] Designafsnit tilrettes jf. feedback fra gruppen
+1. Nye ting i analyseafsnit gennemgås + De designafsnit der måtte være færdige vises
+2. Eksakt afleveringsdato? (Simon har ledt overalt på BB uden held)
 
 ---
 ### Implementering 1
@@ -173,9 +174,6 @@ Team AE:
 ##### Agenda:
   1. Hvordan gør vi implementering? 
   
-##### Action Item Liste: 
-- [ ] Implementeringafsnit udarbejdes for modulerne
-  
 ---
 ### Implementering 2
 ##### Dato: 28/04/2021
@@ -185,9 +183,6 @@ Team AE:
 
 ##### Agenda:
   1. Implementeringsafsnit fremvises og gruppen kommer med kommentarer
-  
-##### Action Item Liste: 
-- [ ] Implementeringsafsnit rettes jf. kommentarer fra gruppen
 
 ---
 ### Test 1
@@ -199,9 +194,6 @@ Team AE:
 ##### Agenda:
   1. Hvordan gør vi test? 
   2. Hvem laver integrationstest? 
-  
-##### Action Item Liste: 
-- [ ] Testafsnit udarbejdes 
 
 ---
 ### Test 2
@@ -213,7 +205,4 @@ Team AE:
 ##### Agenda:
   1. Testafsnit fremvises og gruppen kommer med kommentarer 
   
-##### Action Item Liste:  
-- [ ] Testafsnit rettes jf. gruppens kommentarer
-
 
