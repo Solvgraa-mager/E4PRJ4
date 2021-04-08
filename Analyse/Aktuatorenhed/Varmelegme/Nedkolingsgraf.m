@@ -1,9 +1,10 @@
 %Nedkolingsgraf
-load('Input_26_25');
-load('Input');
+%load('Input_26_25');
+%load('Input5LGlas');
+InPuT=load('Input_5_glas');
 
 %% Plot
-plot(Input);
+plot(Input5LGlas);
 xlabel('5 sekunder interval');
 ylabel('Grader');
 yline(36);
