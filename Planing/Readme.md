@@ -164,6 +164,7 @@ Team AE:
 1. Nye ting i analyseafsnit gennemgås + De designafsnit der måtte være færdige vises
 2. Eksakt afleveringsdato? (Simon har ledt overalt på BB uden held)
 3. Hvordan håndterer vi referencer?
+4. SE: Valid begrundelse for hastighed og bit på MCU'ens processor? 
 
 ---
 ### Implementering 1
