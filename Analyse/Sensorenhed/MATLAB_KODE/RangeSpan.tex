@@ -1,0 +1,125 @@
+
+\subsection{Analyse af sensorenheder}
+
+Der er valgt at brugen af \fourtwenty kommunikationsmetoden.
+
+
+\paragraph{4-20mA konceptet.}
+
+En analog sensortype er tilkoblet en  transmitter der konverterer sensorinput til en \fourtwenty-strøm.
+
+\begin{itemize}
+	\item \SI{4}{mA} indikerer en værdi beliggende ved 0\% af sensorensmåleområde
+	\item \SI{12}{mA} indikerer en værdi beliggende ved 50\% af sensorensmåleområde
+	\item \SI{20}{mA} indikerer en værdi beliggende ved 100\% af sensorensmåleområde
+\end{itemize}
+
+Denne strøm transmitteres til en digital opsamlingsenhed hvori strømmen måles over en præcisionsmodstand hvorved strømmen kan måles ved hjælp af Ohm's lov. Ved at måle over en præcisionsmodstand med værdierne \SIlist{100}{250}{\ohm}
+\footnote{\SI{250}{\ohm} er sammen med \SI{100}{\ohm} defacto standarder indenfor \fourtwenty målinger grundet de elegante spændingsværdier der produceres.}
+kan følgende
+\begin{table}[htbp]
+	\caption{Spændingsrelation ved \fourtwenty måletypen}
+	\label{tab:420table}
+	\centering\begin{tabular}{LSSS}
+        \toprule
+		\textrm{Måling} & {Strøm} \si{[mA]} & {\makecell{Spænding \\v.\SI{100}{\ohm}}}~ \si{[V]} & {\makecell{Spænding \\v.\SI{250}{\ohm}}}~ \si{[V]}\\
+        \midrule
+		0\%             & 4                 & 0.4                                   & 1                                       \\
+		25\%            & 8                 & 0.8                                   & 2                                       \\
+		50\%            & 12                & 1.2                                   & 3                                       \\
+		75\%            & 16                & 1.6                                   & 4                                       \\
+		100\%           & 20                & 2.0                                   & 5                                       \\
+        \bottomrule
+	\end{tabular}
+\end{table}
+
+% \begin{itemize}
+% 	\item \SI{1}{V} indikerer en værdi beliggende ved 0\% af sensorensmåleområde
+% 	\item \SI{2}{V} indikerer en værdi beliggende ved 25\% af sensorensmåleområde
+% 	\item \SI{3}{V} indikerer en værdi beliggende ved 50\% af sensorensmåleområde
+% 	\item \SI{4}{V} indikerer en værdi beliggende ved 75\% af sensorensmåleområde
+% 	\item \SI{5}{V} indikerer en værdi beliggende ved 100\% af sensorensmåleområde
+% \end{itemize}
+
+\subsubsection{4-20mA konvertering}
+\begin{equation}\label{eq:Sensor:4:20:ma:Convert}
+	\begin{split}
+		\textrm{Strømniveau}   & =   \frac{\textrm{Aflæst værdi} - \textrm{Laveste sensormåleværdi} }{\Delta \textrm{Sensor}} \cdot \Delta \textrm{Strøm} + \textrm{Laveste strømværdi} \\
+		\textrm{Fysisk værdi}  & =\,  \frac{\textrm{Aflæst strøm} - \textrm{Laveste strømværdi} }{\Delta\textrm{Strøm}} \cdot \Delta \textrm{Sensor}  + \textrm{Laveste sensormåleværdi} \\
+		\Delta \textrm{Sensor} & =  \textrm{Højeste sensormåleværdi} - \textrm{Laveste sensormåleværdi}                                                                                               \\
+		\Delta \textrm{Strøm}  & =  \textrm{Højeste strømværdi} -\textrm{Laveste strømværdi}                                            \\
+		\Delta \textrm{Strøm}  & =\, \SI{20}{mA} -\SI{4}{mA} = \SI{16}{mA}                                                                                                                            \\
+	\end{split}
+\end{equation}
+
+\paragraph{pH-område}
+For en sensor der måler i pH-områder 0 til 14\cite{NewportpHsensor,HachpHsensor} med outputtet \fourtwenty, vil der jævnfør kravene skulle måles i pH-området 6-8, hvilket ud fra \eqref{eq:Sensor:4:20:ma:Convert} svarer til \SIrange{10.8571}{13.1429}{mA} og giver et arbejdsområde på \SI{2.2858}{mA}
+
+Dette vil give et forhold der beskrives \SI{1.1429}{\milli\ampere\per\textrm{pH}}
+
+\paragraph{Temperatur-område}
+For en sensor der måler temperaturområdet \SIrange{-5}{45}{\celsius} med outputtet \fourtwenty\cite{OxyGuardTemperaturesensor}, vil der jævnfør kravene skulle måles i temperaturområdet \SIrange{21}{30}{\celsius}, hvilket ud fra \eqref{eq:Sensor:4:20:ma:Convert} svarer til \SIrange{12.32}{15.2}{mA}, hvilket giver en forskel på \SI{2.88}{mA} og en opløsning på \SI{0.320}{\milli\ampere\per\celsius}
+
+\fig{Analyse/SE/Sensorer/TemperaturRange}{0.8}{}
+
+Ligeledes vil en sensor med måleområdet \SIrange{-30}{80}{\celsius} give et arbejdsområde i området \SIrange{11.4182}{12.7273}{mA}. En forskel på \SI{1.3091}{mA} og en opløsning på \SI{0.145489}{\milli\ampere\per\celsius}
+
+\paragraph{Salinitets-område}
+For en sensor der måler i salinitetsområdet \SIrange{0}{50}{PSU} med outputtet \fourtwenty\cite{OxyGuardSalinitysensor}, vil der jævnfør kravene skulle måles i området \SIrange{30}{40}{PSU}, hvilket ud fra \eqref{eq:Sensor:4:20:ma:Convert} svarer til \SIrange{13.6}{16.8}{mA}, hvilket giver et arbejdsområde på \SI{3.2}{mA} og en opløsning på \SI{0.320}{\milli\ampere\per\textrm{PSU}}
+
+
+
+
+\fig{Analyse/SE/Sensorer/SensorSpan}{0.8}{Grafer der viser sammenhængen mellem en række \fourtwenty~sensorer der måler hhv. salinitet, pH og temperatur. I hvert plot er kravspunkterne markeret med en firkant. Det ses hvordan et stort spild er tilstede --- om det er muligt at ændre på selve \emph{spannet} af sensorerene endnu ikke undersøgt.}
+
+
+\subsubsection{Saltpåvirkning}
+
+Det er nødvendigt at overveje den effekt saltvand har på metaller og andre materialetyper der eventuelt nedsænkes i vandet.
+
+Der læses op på IP-koder\footnote{Ingress Protection Code, også kendt som IEC standard 60529, er en international standard der dikterer hvordan \emph{enclosures} skal beskyttes\tbd} --- dog ser det ud til at sensorerne bør opfylde IP68 standarden for at kunne nedsænkes i væske i længere tid \cite{IPstandardsIEC}
+
+Denne overvejelse bør kunne løses let ved at kontakte de respektive producenter og spørge ind til den konkrete problematik mht. saltvandet.
+
+
+\subsubsection{ADC bitmængde}
+
+Da temperatursensoren er den med de højeste krav tages der udgangspunkt i de efterfølgende udregninger.
+
+Jævnfør kravene er det nødvendigt at kunne måle temperaturen med \SI{\pm 0.1}{\celsius}, hvilket udfra en antaget sensormåleområde på \SIrange{-5}{45}{\celsius} giver en opløsning
+
+\begin{equation}
+    \frac{\Delta I}{\Delta T} = \frac{\SI{16}{mA}}{\SI{50}{\celsius}} = \SI{320}{\micro\ampere\per\celsius}
+\end{equation}
+
+Dermed kan en ændring \SI{0.1}{\celsius} ændring i systemet registreres ved en \SI{32}{\micro\ampere} strømændring. 
+
+Ved en \SI{100}{\ohm} måling vil dette være en ændring på \SI{3.2}{mV} og for en \SI{250}{\ohm} vil ændringen kunne ses som en \SI{8}{mV} ændring i spændingsfaldet over målemodstanden. Dette fastlægger de to laveste stepstørrelelser for en eventuelt ADC.
+
+\paragraph{ADC stepstørrelse}
+
+\SI{100}{\ohm} målingen ligger i området \SIrange{0.4}{2.0}{\volt} og vil derfor have gavn af en referencespænding i dette område 
+\begin{equation}
+   \textrm{Antal nødvendige bits} =\left\lceil \log_2 \left( \frac{\SI{2.5}{V}}{\SI{3.2}{mV}}\right)\right\rceil  = 10
+\end{equation}
+
+for \SI{250}{\ohm} målemodstanden er spændingsområdet \SIrange{1}{5}{V} og en referencespænding på \SI{5}{V} vil være passende.
+\begin{equation}
+    \textrm{Antal nødvendige bits} =\left\lceil \log_2 \left( \frac{\SI{5}{V}}{\SI{8}{mV}}\right)\right\rceil  = 10
+ \end{equation}
+
+ i begge tilfælde tages forbehold for heltalsafrund hvor der rundes op af hvor at undgå datatab.
+
+\paragraph{ADC bit-valg}
+
+Ved at vælge en ADC med minimum 10-bit opløsning er det garanteret at kunne måle en tilfredsstillende spændingsforskel henover en referencemodstand\footnote{Med en toleranceværdi i området 0.1\%}, hvad end den er \SI{100}{\ohm} eller \SI{250}{\ohm}
+
+
+\subsubsection{ADC hastighed}
+Grundet de langsomme reguleringstider for de forskellige systemprocesser er det muligt at nedprioritere samplerate for ADC'en frem for eventuel højere bit opløsning og dermed nøjagtighed.
+
+
+\subsubsection{Transmittering af ADC data}
+Da der givetvis må sidde en ADC pr. sensortype vil det være fordel agtigt at kunne transmittere signalet serielt over samme forbindelse, hvorved antallet af anvendte I/O porte holdes til et minimum.
+Dette kræver at der udtænkes en løsning hvor der uden tab i sensorsignalet kan skiftes mellem forskellige inputs og transmitteres til et enkelt output der kan videresende ADC data jævnfør SensorComprotokollen.
+
