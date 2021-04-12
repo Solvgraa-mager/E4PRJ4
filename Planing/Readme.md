@@ -157,13 +157,15 @@ Team AE:
 ### Design 1
 ##### Dato: 14/04/2021
 ##### Tidspunkt: 10:00 - 12:00
-###### Mødeleder: 
+###### Mødeleder: Adam
 ###### Referent: 
 
 ##### Agenda:
 1. Nye ting i analyseafsnit gennemgås + De designafsnit der måtte være færdige vises
 2. Eksakt afleveringsdato? (Simon har ledt overalt på BB uden held)
 3. Hvordan håndterer vi referencer?
+4. SE: Valid begrundelse for hastighed og bit på MCU'ens processor? 
+5. SE: 4-20mA forsyning - erfaringer?
 
 ---
 ### Implementering 1
