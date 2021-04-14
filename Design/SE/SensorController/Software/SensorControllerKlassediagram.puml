@@ -1,0 +1,12 @@
+@startuml
+title Statisk Klassediagram for SensorController
+
+class SensorController
+class ADCBlokIF
+class CentralComputerIF
+class Timer
+
+ADCBlokIF --> SensorController
+CentralComputerIF -> SensorController
+SensorController <- Timer 
+@enduml
