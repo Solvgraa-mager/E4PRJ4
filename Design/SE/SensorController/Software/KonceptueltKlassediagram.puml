@@ -1,0 +1,11 @@
+@startuml
+title Konceptuelt Klassediagram for SensorController
+
+class SensorController
+class ADCBlokIF
+class CentralComputerIF
+
+SensorController - ADCBlokIF
+CentralComputerIF - SensorController
+
+@enduml
