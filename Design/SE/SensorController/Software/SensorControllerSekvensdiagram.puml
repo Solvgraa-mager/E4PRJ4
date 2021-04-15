@@ -1,0 +1,76 @@
+@startuml
+title Sensor Controller Main Sequence
+
+skinparam shadowing false
+skinparam MaxMessageSize 10000
+
+actor Bruger #red
+actor CC as "Central Computer" 
+participant CCIF as "CentralComputerIF"
+participant SC as "SensorController"
+participant ADC as "ADCBlokIF"
+participant Timer as "Timer"
+
+
+sprite $interruptzigzag [16x16/16] {
+    0000000000000000
+    0000000000000000
+    0000000000000000
+    0000000000000000
+    000FFFFFFFFFFF00
+    000000000000F000
+    00000000000F0000
+    0000000000F00000
+    000000000F000F00
+    00000000F00000F0
+    0000000FFFFFFFFF
+    00000000000000F0
+    0000000000000F00
+    0000000000000000
+    0000000000000000
+    0000000000000000
+    }
+== Initialization ==
+Bruger -> SC : Powers up Sensor Controller 
+SC -> SC : Run()
+== Working ==
+loop  power on
+... Waiting for request ...
+CC -> SC : Request <$interruptzigzag>
+activate SC 
+SC -> CCIF : getRequest()
+deactivate SC
+activate CCIF
+CCIF --> SC : Sensor Number
+deactivate CCIF 
+activate SC 
+SC -> ADC : multiplex(Sensor Number)
+deactivate SC
+activate ADC 
+ADC --> SC : 
+deactivate ADC
+SC -> Timer : wait(600ms)
+activate Timer
+Timer --> SC : 
+deactivate Timer
+activate SC
+SC -> ADC : read(Sensor Number)
+deactivate SC
+activate ADC 
+ADC --> SC : value
+deactivate ADC 
+activate SC 
+SC -> CCIF : send(value)
+deactivate SC 
+activate CCIF
+CCIF --> SC :
+deactivate CCIF
+end loop
+
+
+
+
+
+
+
+@enduml
