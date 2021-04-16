@@ -168,17 +168,18 @@ Team AE:
 5. SE: 4-20mA forsyning - erfaringer?
 
 ---
-### Implementering 1
+### Design 2
 ##### Dato: 21/04/2021
 ##### Tidspunkt: 10:00 - 12:00
 ###### Mødeleder: 
 ###### Referent: 
 
 ##### Agenda:
-  1. Hvordan gør vi implementering? 
+  1. Designafsnit gennemgås 
+  2. Simon: FunctionDescription flyver lidt rundt - er der stemning for at overskrive Latex-float på dem? (Behøver ikke komme på agenda til John :-))
   
 ---
-### Implementering 2
+### Implementering 1
 ##### Dato: 28/04/2021
 ##### Tidspunkt: 10:00 - 12:00
 ###### Mødeleder: 
@@ -188,7 +189,7 @@ Team AE:
   1. Implementeringsafsnit fremvises og gruppen kommer med kommentarer
 
 ---
-### Test 1
+### Implementering 2
 ##### Dato: 05/05/2021
 ##### Tidspunkt: 10:00 - 12:00
 ###### Mødeleder: 
@@ -199,7 +200,7 @@ Team AE:
   2. Hvem laver integrationstest? 
 
 ---
-### Test 2
+### Test 1
 ##### Dato: 12/05/2021
 ##### Tidspunkt: 10:00 - 12:00
 ###### Mødeleder: 
