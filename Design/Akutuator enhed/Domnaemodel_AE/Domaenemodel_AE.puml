@@ -1,0 +1,28 @@
+@startuml
+title Domænemodel Aktuator Enhed
+
+object CC
+
+object Saltvandspumpe
+object DemineraliseretVandPumpe
+object Tømningspumpe
+object Varmelegeme
+object MotorDriver
+
+object Akvarievand
+object DemineraliseretVand
+object Saltvand
+
+CC --> MotorDriver : Styrer
+
+MotorDriver --> DemineraliseretVandPumpe : Aktiverer/Deaktiverer
+MotorDriver --> Tømningspumpe : Aktiverer/Deaktiverer
+MotorDriver --> Saltvandspumpe : Aktiverer/Deaktiverer
+MotorDriver --> Varmelegeme : Styrer
+
+DemineraliseretVandPumpe --> DemineraliseretVand : Tilfører
+Saltvandspumpe --> Saltvand : Tilfører
+Tømningspumpe --> Akvarievand : Fjerner
+Varmelegeme --> Akvarievand : Varmer
+
+@enduml
