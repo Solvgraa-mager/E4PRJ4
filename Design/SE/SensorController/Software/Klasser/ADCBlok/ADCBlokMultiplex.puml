@@ -1,0 +1,14 @@
+@startuml
+title void ADCBlokIF::multiplex(int sensorNo)
+
+skinparam MaxMessageSize 300
+
+actor sensorController as SC #red
+participant ADCBlokIF as ADCIF
+actor ADCBlok as ADC
+
+SC -> ADCIF : multiplex(sensorNo)
+ADCIF -> ADC : PORT_X = multiplexProtokol_[sensorNo]
+ADCIF --> SC : 
+
+@enduml
