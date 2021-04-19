@@ -32,29 +32,30 @@ sprite $interruptzigzag [16x16/16] {
     }
 == Initialization ==
 Bruger -> SC : Powers up Sensor Controller 
+SC -> SC : Init()
 SC -> SC : Run()
-== Working ==
+== Run() ==
 loop  power on
-... Waiting for request ...
+... Sleeping until request ...
 CC -> SC : Request <$interruptzigzag>
 activate SC 
 SC -> CCIF : getRequest()
 deactivate SC
 activate CCIF
-CCIF --> SC : Sensor Number
+CCIF --> SC : SensorNo
 deactivate CCIF 
 activate SC 
-SC -> ADC : multiplex(Sensor Number)
+SC -> ADC : multiplex(SensorNo)
 deactivate SC
 activate ADC 
 ADC --> SC : 
 deactivate ADC
 SC -> Timer : wait(600ms)
 activate Timer
-Timer --> SC : 
+Timer --> SC : Sucess
 deactivate Timer
 activate SC
-SC -> ADC : read(Sensor Number)
+SC -> ADC : read(SensorNo)
 deactivate SC
 activate ADC 
 ADC --> SC : value

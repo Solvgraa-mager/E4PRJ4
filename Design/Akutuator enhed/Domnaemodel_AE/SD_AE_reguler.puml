@@ -1,0 +1,28 @@
+@startuml SC_UC3
+title Reguler temperatur - UC3
+participant Temperaturesensor
+participant GUI
+participant UC3
+participant Varmelegeme
+participant PID
+
+loop reguler temperature = true
+    UC3 -> Temperaturesensor : getTemperature()
+    UC3 <-- Temperaturesensor : temperature
+    UC3 -> GUI : getTemperature()
+    UC3 <-- GUI : temperature
+    UC3 -> Varmelegeme ++ : setTemperature(temperature, mesuredTemperature)
+    Varmelegeme -> PID ++ : calculate(temperature, mesuredTemperature)
+    return result
+    Varmelegeme -> Varmelegeme : resultToPWM()
+    Varmelegeme -> Varmelegeme : setGPIODutyCycle(resultAsPWM);
+    return return 0
+
+    opt every 15 minutes
+        UC3 -> Temperaturesensor : getTemperature()
+        UC3 <-- Temperaturesensor : temperature
+        UC3 -> GUI : updateTable(temperature)
+        UC3 <-- GUI : return 0
+    end
+end
+@enduml
