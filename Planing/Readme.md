@@ -176,7 +176,7 @@ Team AE:
 
 ##### Agenda:
   1. Designafsnit gennemgås
-  1.2CC:
+  2. Team CentralComputer
       1. præs af NY domænemodel
       2. Groft forklaring af fremgangsmåde fra UseCases -> domæne -> koncep. klasse osv...
       3. Problematikken ved UseCases kontra CentralComputer - <<controller>>
