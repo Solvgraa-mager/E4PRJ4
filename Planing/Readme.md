@@ -175,8 +175,13 @@ Team AE:
 ###### Referent: 
 
 ##### Agenda:
-  1. Designafsnit gennemgås 
-  2. Simon: FunctionDescription flyver lidt rundt - er der stemning for at overskrive Latex-float på dem? (Behøver ikke komme på agenda til John :-))
+  1. Designafsnit gennemgås
+   1.2  CC:
+      1. præs af NY domænemodel
+      2. Groft forklaring af fremgangsmåde fra UseCases -> domæne -> koncep. klasse osv...
+      3. Problematikken ved UseCases kontra CentralComputer - <<controller>>
+      4. Problematikken ved to forskellige software arkitekturer - CC og hjemmesiden
+  3. Simon: FunctionDescription flyver lidt rundt - er der stemning for at overskrive Latex-float på dem? (Behøver ikke komme på agenda til John :-))
   
 ---
 ### Implementering 1
