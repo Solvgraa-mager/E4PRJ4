@@ -21,7 +21,7 @@ loop reguler temperature = true
     opt every 15 minutes
         UC3 -> Temperaturesensor : getTemperature()
         UC3 <-- Temperaturesensor : temperature
-        UC3 -> GUI : updateTable(temperature)
+        UC3 -> GUI : updateTabel(temperature)
         UC3 <-- GUI : return 0
     end
 end
