@@ -1,14 +1,11 @@
-@startuml PID_Con_destructor
+@startuml PID_Constructor
 title PID::PID(double Kp, double Ki, double Kd, double dt, double minOut, double maxOut)
 
 participant UC3
 participant PID
 
 create PID
-== Constructor ==
 UC3 -> PID : PID(Kp, Ki, Kd, dt, minOut, maxOut) 
 PID -> PID : _Kp = Kp;\n_Ki = Ki;\n_Kd = Kd;\n_deltaTime = dt;\n_preError = 0;\n_integral = 0;\n_out = 0;
 PID --> UC3
-== Destructor ==
-
 @enduml

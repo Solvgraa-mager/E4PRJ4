@@ -19,11 +19,13 @@ int PID::calculate(double setpoint, double measured, double resultBuffer){
     double pOut = _Kp * error;         //proportional part
 
     //-------------Integral part-----------------
+  
     _integral = error * _deltaTime;    //Integral
     double iOut = _Ki * _integral;     //Integral part
 
     //-------------Derivative part-----------------
     double derivative, dOut;
+    
     if (_preError != 0)                //Sikre der er taget min to målinger, før hældningen udregnes.
     {
         derivative = (error - _preError) / _deltaTime;

@@ -1,4 +1,4 @@
-@startuml SD_UC3_AE
+@startuml PID_calculate
 title int PID::calculate(double setpoint, double measured, double resultBuffer)
 
 participant Varmelegeme
@@ -35,6 +35,5 @@ end
 PID -> PID : resultBuffer = _out \n_preError = error
 note right : Save last error
 PID --> Varmelegeme : return 0
-
 
 @enduml
