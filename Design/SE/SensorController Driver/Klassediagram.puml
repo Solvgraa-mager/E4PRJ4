@@ -1,0 +1,22 @@
+@startuml
+title SensorControllerDriver Klassediagram
+
+class Sensor{
+    +Sensor(int sensorNumber)
+    +read() : double
+    +setConfig(string configPath) : int
+    ~Sensor()
+    -setupUART(int baud, int parity, int wordlength) : int
+    -_sensorNumber : int
+    -_sensorConvertionTable : sensorConvertionTable
+    -_filedescriptor : int
+}
+
+class sensorConvertionTable <<Struct>>{
+    -_Offset : double
+    -_Factor : double
+}
+
+Sensor -- sensorConvertionTable
+
+@enduml

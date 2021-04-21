@@ -1,0 +1,23 @@
+@startuml
+
+title Sensor::setConfig(string configPath) : int
+
+skinparam MaxMessageSize 150
+
+participant Main as Main
+participant Sensor as SD
+database configFile as config
+
+Main -> SD : setConfig(string configPath)
+SD -> config : Open
+opt Open failed
+SD --> Main : Fail
+end
+SD -> config : Get factor and offset for objects sensorNumber
+SD -> SD : Set Factor and Offset
+SD --> Main : Ok
+
+
+
+
+@enduml

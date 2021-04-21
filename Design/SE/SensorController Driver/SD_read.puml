@@ -1,0 +1,20 @@
+@startuml
+
+title Sensor::read() : double
+
+skinparam MaxMessageSize 150
+
+actor Main as Main
+participant Sensor as SD
+participant "UART Driver" as UART
+actor SensorController as SC #red
+
+Main -> SD : read()
+SD -> UART : 1 byte: Request
+SD -> SD : Sleep(1)
+SD -> UART : Read
+UART --> SD : Data
+SD --> Main : Data*_sensorConvertionTable[sensorNumber].Factor + _sensorConvertionTable[sensorNumber].Offset
+
+
+@enduml

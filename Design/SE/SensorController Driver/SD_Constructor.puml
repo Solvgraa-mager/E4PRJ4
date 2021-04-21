@@ -1,0 +1,25 @@
+@startuml
+title Sensor::Sensor(int sensorNumber)
+
+skinparam MaxMessageSize 150
+
+actor Main as Main
+participant Sensor as SD
+participant "UART Driver" as UART
+actor SensorController as SC #red
+
+Main -> SD : Sensor(sensorNumber)
+SD -> SD : setOffsetAndFactor(string configPath)
+opt config failed
+SD --> Main : <exception> \nConfig unavaliable
+end opt
+SD -> UART : setup(int baud, int parity, int wordlength)
+opt setup failed
+UART --> SD : Fail
+SD --> Main : <exception> \nUART unavaliable
+end opt
+SD --> Main : Sensor object for sensor with sensorNumber
+
+
+
+@enduml
