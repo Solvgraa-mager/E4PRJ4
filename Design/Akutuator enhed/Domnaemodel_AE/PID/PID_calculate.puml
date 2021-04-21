@@ -1,0 +1,39 @@
+@startuml PID_calculate
+title int PID::calculate(double setpoint, double measured, double resultBuffer)
+
+participant Varmelegeme
+participant PID
+
+
+Varmelegeme -> PID : calculate(setpoint, measured, reultBuffer)
+PID -> PID : error = setpoint-measured \n pOut = kp * error
+note right : calculating "P"
+
+PID -> PID : _integral = error * _deltaTime\n double iOut = _Ki * _integral
+note right : calculating "I"
+
+
+PID -> PID : double derivative, dOut
+note right : calculating "D"
+
+opt if _preError !=0
+    PID -> PID : derivative = (error - _preError) / _deltaTime \n dOut = derivative * _Kd
+end
+
+
+PID -> PID : _out = pOut + iOut + dOut
+note right : Sum
+
+opt _out < _minOut
+    PID -> PID : _out = _minOut
+end
+note right : Max, Min afgrænsninger.
+opt _out > _maxOut
+    PID -> PID : _out = _maxOut
+end
+
+PID -> PID : resultBuffer = _out \n_preError = error
+note right : Save last error
+PID --> Varmelegeme : return 0
+
+@enduml
