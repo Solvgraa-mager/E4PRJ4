@@ -68,7 +68,7 @@ sunday are closed
 [Rapport] as [Rapport] starts at [Test]'s end and lasts 10 days
 [Bløde afsnit] as [BA] starts at [Rapport]'s start and lasts 5 days
 [Korrektur] starts at [BA]'s end and lasts 5 days
-[Rapport deadline] happens at 2021/05/28
+[Rapport deadline] happens at 2021/06/04
 
 [Krav 1] is colored in Red
 [Krav 2] is colored in Red
