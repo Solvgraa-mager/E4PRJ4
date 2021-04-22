@@ -5,7 +5,7 @@ participant Varmelegeme
 participant PID
 
 
-Varmelegeme -> PID : calculate(setpoint, measured, reultBuffer)
+Varmelegeme -> PID : calculate(setpoint, measured, resultBuffer)
 PID -> PID : error = setpoint-measured \n pOut = kp * error
 note right : calculating "P"
 

@@ -1,0 +1,71 @@
+@startuml SD_pumpningsforløb
+
+!pragma teoz true
+
+participant CC
+participant Aktuatorenhed
+control Saltvandspumpe
+control Demineraliseretvandpumpe
+control Tømningspumpe
+title Processtrategi for pumpers reguleringsmekanismer
+
+
+loop En gang hvert 15 min
+
+    alt if "saltkoncentration < setpoint"
+        
+    CC -> Aktuatorenhed : saltvand + 0.25 PSU
+        {startTøm1} Aktuatorenhed -> Tømningspumpe : Pump(23.75ml, slow)
+        activate Tømningspumpe 
+        note right Tømningspumpe : Fjerner akvarievand\nfra akvarium\nslow = 20% duty cycle
+        {endTøm1} Tømningspumpe --> Aktuatorenhed
+        deactivate Tømningspumpe
+        {startTøm1} <-> {endTøm1} : 1.5 s\n 23.75ml
+        
+        {startSalt1} Aktuatorenhed -> Saltvandspumpe: Pump(23.75ml, slow)
+        activate Saltvandspumpe 
+        note right Saltvandspumpe : Pumper saltvand\ntil akvarium\nslow = 20% duty cycle
+        {endSalt1} Saltvandspumpe --> Aktuatorenhed
+        deactivate Saltvandspumpe
+        {startSalt1} <-> {endSalt1} : 1.5 s\n 23.75ml
+
+    else if "saltkoncentration > setpoint"
+
+        CC -> Aktuatorenhed : saltvand - 1 PSU (current psu)
+        Aktuatorenhed -> Aktuatorenhed : psuToMl(psu)
+        activate Aktuatorenhed
+        note right Aktuatorenhed : 25L/psu = ml
+        deactivate Aktuatorenhed
+
+        {startTøm2} Aktuatorenhed -> Tømningspumpe : Pump(ml, fast)
+        activate Tømningspumpe 
+        note right Tømningspumpe : Fjerner akvarievand\nfra akvarium\nfast = 90% dutyCycle
+        {endTøm2} Tømningspumpe --> Aktuatorenhed
+        deactivate Tømningspumpe
+        {startTøm2} <-> {endTøm2} : 35 s\n 793ml
+
+        {startDemi1} Aktuatorenhed -> Demineraliseretvandpumpe : Pump(90% duty cycle)
+        activate Demineraliseretvandpumpe 
+        note right Demineraliseretvandpumpe : Tilføjer Demineraliseret-\nvand til akvarium
+        {endDemi1} Demineraliseretvandpumpe --> Aktuatorenhed
+        deactivate Demineraliseretvandpumpe
+        {startDemi1} <-> {endDemi1} : 35 s\n 793ml
+    end
+
+    alt if vandstand > 28 cm
+        CC -> Aktuatorenhed : Fjern 3L akvarievand
+        {startTøm3} Aktuatorenhed -> Tømningspumpe : Pump(90% duty cycle)
+        activate Tømningspumpe 
+        note right Tømningspumpe : Fjerner akvarievand\nfra akvarium
+        {endTøm3} Tømningspumpe --> Aktuatorenhed
+        deactivate Tømningspumpe
+        {startTøm3} <-> {endTøm3} : 132 s\n 3000ml
+
+
+    else if vandstand < 22 cm
+
+
+
+end
+
+@enduml

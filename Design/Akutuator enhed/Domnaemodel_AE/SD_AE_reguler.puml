@@ -1,5 +1,5 @@
 @startuml SC_UC3
-title Reguler temperatur - UC3
+title Sekvens diagram. UC3: Reguler (temperatur)
 participant Temperaturesensor
 participant GUI
 participant UC3
@@ -25,4 +25,4 @@ loop reguler temperature = true
         UC3 <-- GUI : return 0
     end
 end
-@enduml
+@enduml 
