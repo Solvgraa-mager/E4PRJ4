@@ -169,9 +169,10 @@ Team AE:
 
 ---
 ### Design 2
-##### Dato: 21/04/2021
-##### Tidspunkt: 10:00 - 12:00
-###### Mødeleder: 
+##### ~Dato: 21/04/2021~
+##### Dato: 22/04/2021
+##### Tidspunkt: 14:00 - 15:00
+###### Mødeleder: Adam Høj
 ###### Referent: 
 
 ##### Agenda:
