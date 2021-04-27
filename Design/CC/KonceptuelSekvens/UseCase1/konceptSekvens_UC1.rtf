@@ -15,18 +15,18 @@ participant Lysindikator\
 \
 Bruger -> UC1: Presses ON button\
 UC1 -> Lysindikator: Turns green light ON\
-UC1 -> Init.ini: Read init-file\
+UC1 -> Init.ini: check init-file\
 activate UC1\
 activate Init.ini\
 \
 alt init-file exists\
-Init.ini --> UC1: settings, setpoints, Logged data etc.\
+Init.ini --> UC1: true\
 deactivate UC1\
 deactivate Init.ini\
 \
 else init-file doesn't exists\
 \
-Init.ini --> UC1: no init-file\
+Init.ini --> UC1: false\
 \
 UC1 -> Lysindikator: Turns red light ON\
 \
