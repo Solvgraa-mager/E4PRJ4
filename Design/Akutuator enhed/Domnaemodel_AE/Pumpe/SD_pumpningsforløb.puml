@@ -65,7 +65,7 @@ loop En gang hvert 15 min
     else if vandstand < 22 cm
         CC -> Aktuatorenhed : Tilføj 3 liter vand(currentPsu)
 
-        note over Aktuatorenhed : ml = currentPsu*(25L/(10*26.3))
+        note over Aktuatorenhed : ml = currentPsu*(3L/(10*26.3))
         {startSalt2} Aktuatorenhed -> Saltvandspumpe : Pump(ml, dutyCycle 90%)
         activate Saltvandspumpe
         note right Saltvandspumpe : Pumper saltvand\ntil akvarium\n90% dutyCycle = 1ml/0.044s

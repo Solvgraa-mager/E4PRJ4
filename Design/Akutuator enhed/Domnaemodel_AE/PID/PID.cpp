@@ -42,6 +42,11 @@ int PID::calculate(double setpoint, double measured, double resultBuffer){
     resultBuffer = _out;
     _preError = error;                  //save last error.
 
+    if (_out == _minOut)
+        return -1;
+    else if (_out == _maxOut)
+        return -2;
+
     return 0;
     
     }

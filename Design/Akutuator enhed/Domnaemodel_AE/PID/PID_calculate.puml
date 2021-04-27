@@ -34,6 +34,12 @@ end
 
 PID -> PID : resultBuffer = _out \n_preError = error
 note right : Save last error
+
+alt _out == _minOut
+PID --> Varmelegeme : return -1
+else _out == _maxOut
+PID --> Varmelegeme : return -2
+end
 PID --> Varmelegeme : return 0
 
 @enduml
