@@ -13,7 +13,7 @@ SD -> SD : setOffsetAndFactor(string configPath)
 opt config failed
 SD --> Main : <exception> \nConfig unavaliable
 end opt
-SD -> UART : setup(int baud, int parity, int wordlength)
+SD -> UART : setupUART(int baud, int parity, int wordlength)
 opt setup failed
 UART --> SD : Fail
 SD --> Main : <exception> \nUART unavaliable
