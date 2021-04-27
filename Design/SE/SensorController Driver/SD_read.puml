@@ -1,4 +1,4 @@
-@startuml
+@startuml SD_SensorControllerRead
 
 title Sensor::read() : double
 
@@ -10,10 +10,20 @@ participant "UART Driver" as UART
 actor SensorController as SC #red
 
 Main -> SD : read()
-SD -> UART : 1 byte: Request
-SD -> SD : Sleep(1)
-SD -> UART : Read
-UART --> SD : Data
+alt <u>do</u> while \n(Attempt <= 3) \nAND \n(Kontrol+Request =! Checksum) \n AND \n (Reply != null)
+SD -> SD : Attempt++
+SD -> UART : Send Request
+SD -> SD : Sleep(1 s)
+SD -> UART : Read reply
+opt reply == null
+    SD -> SD : uSleep(500 ms)
+    SD -> UART : Read reply
+    opt reply == null
+        SD -> SD : Checksum = 0xFFF
+    end opt 
+end opt
+UART --> SD : Data, Kontrol, Checksum
+end alt
 SD --> Main : Data*_sensorConvertionTable[sensorNumber].Factor + _sensorConvertionTable[sensorNumber].Offset
 
 
