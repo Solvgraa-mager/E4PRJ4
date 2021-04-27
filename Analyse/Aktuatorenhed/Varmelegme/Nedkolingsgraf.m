@@ -1,8 +1,25 @@
 %Nedkolingsgraf
-%load('Input_26_25');
-%load('Input5LGlas');
-load('Input_5_glas');
-load('Plast_25L');
+clear all;
+%%
+% nedkpoong af glas
+K = 0.045;
+A = 5.274;
+L = 0.394;
+BTUcon = 3.412;
+Res = zeros(20,1);
+n = zeros(25,1);
+
+% fordampning
+Kon = 14.48;
+for t = 1:25
+
+    DT = t*(9/5)+32;
+    QBTU = (K*A*DT*1.1)/L;
+    Wattloss = QBTU/BTUcon;
+    Res(t) = Wattloss+Kon;
+end
+
+plot(Res(1:length(Res)));
 
 
 %% Plot
@@ -14,22 +31,3 @@ hold on
 grid on
 plot(Plast_25L(381:length(Plast_25L)));
 hold off
-
-%% Plot fuld
-%%plot(Input);
-xlabel('5 sekunder interval');
-ylabel('Grader');
-yline(36);
-yline(35);
-yline(34);
-yline(33);
-yline(32);
-yline(31);
-yline(30);
-yline(29);
-yline(28);
-yline(27);
-yline(26);
-yline(25);
-hold on
-plot(Plast_25L);
