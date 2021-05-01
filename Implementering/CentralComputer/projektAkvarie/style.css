@@ -85,3 +85,113 @@ h1{
     background: transparent;
     color: #c9b023;
 }
+
+
+/* Main page */
+.HeadlineBox
+{
+width: 320px;
+height: 50px;
+background: rgb(21, 177, 21);
+border-radius: 30%;
+color: #fff;
+top: 2%;
+left: 10%;
+position: absolute;
+transform: translate(-50%, -50%);
+box-sizing: border-box;
+padding: 60px 40px;
+}
+
+
+.HentDataBox
+{
+    width: 320px;
+    height: 50px;
+ 
+   
+    color: #fff;
+    top: 50%;
+    left: 90%;
+    position: absolute;
+    transform: translate(-50%, -50%);
+    box-sizing: border-box;
+    
+}
+
+.ReguleringsIn
+{
+    width: 300px;
+    height: 50px;
+    
+   
+    color: #fff;
+    top: 20%;
+    left:10%;
+    position: absolute;
+    transform: translate(-50%, -50%);
+    box-sizing: border-box;
+    
+}
+
+.Kalibrer
+{
+    width: 50px;
+    height: 50px;
+    
+   
+    color: #fff;
+    top: 20.05%;
+    left: 18%;
+    position: fixed;
+    transform: translate(-50%, -50%);
+    box-sizing: border-box;
+    
+}
+.ParameterCheckBoxes
+{
+    width: 200px;
+    height: 50px;
+    color: #fff;
+    top: 27%;
+    left: 7%;
+    position: fixed;
+    transform: translate(-50%, -50%);
+    box-sizing: border-box;
+}
+
+.NuværendeSchedule
+{
+    width: 250px;
+    height: 200px;
+    color: rgb(255, 255, 255);
+    top: 36%;
+    left: 25%;
+    position: fixed;
+    transform: translate(-50%, -50%);
+    box-sizing: border-box;
+}
+
+.TilpasSchedule
+{
+    width: 250px;
+    height: 200px;
+    color: rgb(255, 255, 255);
+    top: 36%;
+    left: 50%;
+    position: fixed;
+    transform: translate(-50%, -50%);
+    box-sizing: border-box;
+}
+
+.Button
+{
+    width: 250px;
+    height: 200px;
+    color: rgb(255, 255, 255);
+    top: 50%;
+    left: 50%;
+    position: fixed;
+    transform: translate(-50%, -50%);
+    box-sizing: border-box;
+}
