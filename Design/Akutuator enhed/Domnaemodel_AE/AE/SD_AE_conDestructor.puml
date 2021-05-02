@@ -1,0 +1,29 @@
+@startuml SD_AE_conDestructor
+title Aktuatorenhed::Aktuatorenhed(double volume, double saltKonc)
+participant UC3
+participant Aktuatorenhed as AE
+participant _saltPumpe as SP
+participant _demiPumpe as DP
+participant _toemPumpe as TP
+participant _varmelegeme as V
+participant _PID as PID
+
+==Constructor==
+UC3 -> AE : Aktuatorenhed(volume, saltKonc)
+AE -> AE : _volume = volume\n_saltKonc = saltKonc
+AE -> SP ** : new Pumpe(GPIO1)
+AE -> DP ** : new Pumpe(GPIO2)
+AE -> TP ** : new Pumpe(GPIO3)
+AE -> V ** : new Varmelegeme(GPIO4)
+AE -> PID ** : new PID(kp, ki, kd, dt, minOut, maxOut)
+
+==Destructor==
+UC3 -> AE : ~Aktuatorenhed()
+AE -> SP !!
+AE -> DP !!
+AE -> TP !!
+AE -> V !!
+AE -> PID !!
+AE -> AE !!
+
+@enduml

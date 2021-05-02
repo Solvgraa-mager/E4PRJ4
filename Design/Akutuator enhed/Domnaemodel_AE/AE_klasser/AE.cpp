@@ -4,11 +4,11 @@ Aktuatorenhed::Aktuatorenhed(double volume, double saltKonc)
 {
     _volume = volume;
     _saltKonc = saltKonc; 
-    _saltPumpe = new Pumpe(1);      
+    _saltPumpe = new Pumpe(1); 
     _demiPumpe = new Pumpe(2);    
     _toemPumpe = new Pumpe(3);  
     _varmelegeme = new Varmelegeme();
-    _PID = new PID(1, 2, 3, 4, 5, 6);
+    _PID = new PID(1, 2, 3, 4, 5, 6); 
 }
 
 int Aktuatorenhed::addPsu(double psu)
@@ -60,7 +60,7 @@ int Aktuatorenhed::addWater(double ml, double currentPsu)
 
     _demiPumpe->setDutyCycle(90);                   //dutycycle 90%, pumper hutigt 1 ml/0.044 sekunder
     _demiPumpe->setState(true);                     //Pumpe ON  (tilføjer demineraliseret vand)
-    //-------- Wait (ml-mlSaltvand)*0.044 ------------
+    //-------- Wait (ml-mlSaltvand)*0.044 ------
     _demiPumpe->setState(false);                    //Pumpe OFF
 
     return 0;
@@ -79,7 +79,7 @@ int Aktuatorenhed::removeWater(double ml)
 int Aktuatorenhed::setTemperatur(double temperatur, double currentTemperatur)
 {
     double reguleretTemerature;
-    _PID->calculate(temperatur, currentTemperatur, reguleretTemerature);
+    _PID->calculate(temperatur, currentTemperatur, reguleretTemerature); //PID regulering, 
     _varmelegeme->setTemperatur(reguleretTemerature, currentTemperatur);
 
     return 0;
