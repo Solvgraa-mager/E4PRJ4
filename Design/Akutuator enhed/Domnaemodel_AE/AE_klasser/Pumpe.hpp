@@ -2,9 +2,9 @@ class Pumpe
 {
     public:
         Pumpe(int GPIO);
-        int setSpeed(int speed);    //duty cycle 0-100%
+        int setDutyCycle(int dutyCycle);    //duty cycle 0-100%
         int setState(bool state);   //ON or Off
-        int getSpeed(void);
+        int getDutyCycle(void);
         bool getState(void);
         ~Pumpe();
     private:

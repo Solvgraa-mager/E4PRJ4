@@ -51,20 +51,22 @@ class UC3_Reguler {
 
 class Aktuatorenhed
 {
+  -_volume : double
+  -double _saltKonc : double
   -_saltvandspumpt : Pumpe *
   -_Demineraliseretvandpumpe : Pumpe * 
   -_Toemningspumpe : Pumpe * 
   -_varmelegeme : Varmelegeme *
-  -_PIDregulering : PID *
+  -_PID : PID *
 
-  + Aktuatorenhed()
-  + addPsu(double psu, double currentPsu) : int
+  + Aktuatorenhed(double volume, double saltKonc)
+  + addPsu(double psu) : int
   + subtractPsu(double psu, currentPsu) : int
-  + addWater(double ml) : int
+  + addWater(double ml, double currentPsu) : int
   + removeWater(double ml) : int
-  + setTemperatur(doubletemperature) :  virtual int{abstract}
+  + setTemperatur(double temperatur, double currentTemperatur) :  int
   + ~Aktuatorenhed()
-  - psuToMl(double psu) : double-_PIDregulering : PID *
+  - psuToMl(double psu, double currentPsu, double volume) : double
 
 }
 
