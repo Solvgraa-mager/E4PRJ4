@@ -1,63 +1,78 @@
 @startuml
-title Klasse diagram: UC3
+title Klassediagram: UC3 (Aktuatorenhed)
 
 
 class Pumpe {
-  _speed : int
-  _state : bool
-  _GPIO : int
+  - _dutyCycle : int
+  - _state : bool
+  - _GPIO : int
 
-  Pumpe(int GPIO, int speed, bool state)
-  setSpeed(int) : void
-  setState(bool) : void
-  getSpeed() : int
-  getState() : bool
+  +Pumpe(int GPIO, int duty
+  Cycle, bool state)
+  +pump(int ml, int dutyCycle): int
+  +setState(bool) : void
+  +getDutyCycle() : int
+  +getState() : bool
 }
 
 class Varmelegeme {
-  temperatur_ : int
-  _state : bool 
-  _GPIO : int
-  _PIDregulering : PID 
+  -_temperatur : double
+  -_state : bool 
+  -_GPIO : int
 
-  setTemperatur(int) : void
-  setState(bool) : void
+  +setTemperatur(double temperatur) : void
+  +setState(bool) : void
 }
 class PID
 {
-  _Kp : double
-  _Ki : double
-  _Kd : double
-  _deltaTime : double
-  _preError : double
-  _minOut : double
-  _maxOut : double
+  -_Kp : double
+  -_Ki : double
+  -_Kd : double
+  -_deltaTime : double
+  -_preError : double
+  -_minOut : double
+  -_maxOut : double
 
-  PID(double Kp, double Ki, double Kd, double dt, double preError, double minOut, double maxOut)
-  calculate(double setpoint, double measured, double resultBuffer) : int
-  setKp(double Kp) : void
-  setKi(double Kp) : void
-  setKd(double Kp) : void
-  getKp(void) : double
-  getKi(void) : double
-  getKd(void) : double
-  getOutput(void) : double
+  +PID(double Kp, double Ki, double Kd, double dt, double preError, double minOut, double maxOut)
+  +calculate(double setpoint, double measured, double resultBuffer) : int
+  +setKp(double Kp) : void
+  +setKi(double Kp) : void
+  +setKd(double Kp) : void
+  +getKp(void) : double
+  +getKi(void) : double
+  +getKd(void) : double
+  +getOutput(void) : double
 }
 
 class UC3_Reguler {
-  String data
-  void methods()
+  +run() : void 
 }
 
-class En_Sensor_klasse{
-  int getMåltData()
+
+class Aktuatorenhed
+{
+  -_saltvandspumpt : Pumpe *
+  -_Demineraliseretvandpumpe : Pumpe * 
+  -_Toemningspumpe : Pumpe * 
+  -_varmelegeme : Varmelegeme *
+  -_PIDregulering : PID *
+
+  + Aktuatorenhed()
+  + addPsu(double psu, double currentPsu) : int
+  + subtractPsu(double psu, currentPsu) : int
+  + addWater(double ml) : int
+  + removeWater(double ml) : int
+  + setTemperatur(doubletemperature) :  virtual int{abstract}
+  + ~Aktuatorenhed()
+  - psuToMl(double psu) : double-_PIDregulering : PID *
 
 }
 
-Varmelegeme - PID
-Pumpe "3" - "1" UC3_Reguler
-UC3_Reguler - Varmelegeme
-UC3_Reguler -- En_Sensor_klasse
+PID -- Aktuatorenhed
+Aktuatorenhed -- UC3_Reguler
+Pumpe "3" - "1" Aktuatorenhed
+Aktuatorenhed - Varmelegeme
+
 
 @enduml
 
