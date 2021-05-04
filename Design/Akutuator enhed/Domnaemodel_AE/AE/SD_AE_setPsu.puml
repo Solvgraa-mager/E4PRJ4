@@ -1,0 +1,38 @@
+@startuml SD_AE_setPsu()
+title int Aktuatorenhed::setPsu(double setPsu, double currentPsu, double maxPsuChange)
+participant UC3 as u
+Participant Aktuatorenhed as ae
+
+
+u -> ae : setPsu(setPsu, currentPsu, maxPsuChange)
+alt if (currentPsu > setPsu)
+    alt if ((currentPsu - setPsu) > maxPsuChange)
+        ae -> ae : substractPsu(maxPsuChange, currentPsu)
+        activate ae
+        u <-- ae : return 1
+        deactivate ae
+    else
+        ae -> ae : substractPsu(currentPsu-setPsu, currentPsu);
+        activate ae
+        u <-- ae : return 2
+        deactivate ae
+    end
+else if (currentPsu < setPsu)
+    alt if((setPsu - currentPsu) > maxPsuChange)
+        ae -> ae : substractPsu(maxPsuChange, currentPsu)
+        activate ae
+        
+        u <-- ae : return 3
+        deactivate ae
+    else 
+        ae -> ae : addPsu(setPsu - currentPsu)
+        activate ae
+        u <-- ae : return 4
+        deactivate ae
+    end
+
+end
+u <-- ae : return 0
+
+
+@enduml

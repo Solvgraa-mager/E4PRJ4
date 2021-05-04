@@ -11,8 +11,6 @@ class Pumpe {
   Cycle, bool state)
   +pump(int ml, int dutyCycle): int
   +setState(bool) : void
-  +getDutyCycle() : int
-  +getState() : bool
 }
 
 class Varmelegeme {
@@ -35,13 +33,6 @@ class PID
 
   +PID(double Kp, double Ki, double Kd, double dt, double preError, double minOut, double maxOut)
   +calculate(double setpoint, double measured, double resultBuffer) : int
-  +setKp(double Kp) : void
-  +setKi(double Kp) : void
-  +setKd(double Kp) : void
-  +getKp(void) : double
-  +getKi(void) : double
-  +getKd(void) : double
-  +getOutput(void) : double
 }
 
 class UC3_Reguler {
@@ -60,13 +51,16 @@ class Aktuatorenhed
   -_PID : PID *
 
   + Aktuatorenhed(double volume, double saltKonc)
-  + addPsu(double psu) : int
-  + subtractPsu(double psu, currentPsu) : int
-  + addWater(double ml, double currentPsu) : int
-  + removeWater(double ml) : int
   + setTemperatur(double temperatur, double currentTemperatur) :  int
+  + setPsu(double setPsu, double currentPsu, double maxPsuChange) : int 
+  + setWaterLevel(double setWaterLevel, double currentWaterLevel, double currentPsu) : int 
   + ~Aktuatorenhed()
-  - psuToMl(double psu, double currentPsu, double volume) : double
+
+  # addPsu(double psu) : int
+  # subtractPsu(double psu, currentPsu) : int
+  # addWater(double ml, double currentPsu) : int
+  # removeWater(double ml) : int
+  # psuToMl(double psu, double currentPsu, double volume) : double
 
 }
 
