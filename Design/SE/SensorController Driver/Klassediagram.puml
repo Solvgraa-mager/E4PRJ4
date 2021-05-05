@@ -1,15 +1,17 @@
-@startuml
+@startuml CD_SensorControllerDriver
 title SensorControllerDriver Klassediagram
 
 class Sensor{
-    +Sensor(int sensorNumber)
+    +Sensor(int sensorNumber, string configPath)
     +read() : double
-    +setConfig(string configPath) : int
-    ~Sensor()
+    -setConfig(h) : int
     -setupUART(int baud, int parity, int wordlength) : int
+    ~Sensor()
     -_sensorNumber : int
+    -_configPath : string
+    -_configLastReadTimestamp : int
     -_sensorConvertionTable : sensorConvertionTable
-    -_filedescriptor : int
+    -_UARTfiledescriptor : int
 }
 
 class sensorConvertionTable <<Struct>>{

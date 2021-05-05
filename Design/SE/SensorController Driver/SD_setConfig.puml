@@ -1,6 +1,6 @@
-@startuml
+@startuml SD_SensorControllerDriverSetConfig
 
-title Sensor::setConfig(string configPath) : int
+title Sensor::setConfig() : int
 
 skinparam MaxMessageSize 150
 
@@ -8,7 +8,7 @@ participant Main as Main
 participant Sensor as SD
 database configFile as config
 
-Main -> SD : setConfig(string configPath)
+Main -> SD : setConfig()
 SD -> config : Open
 opt Open failed
 SD --> Main : Fail

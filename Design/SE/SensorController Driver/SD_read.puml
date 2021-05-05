@@ -9,22 +9,33 @@ participant Sensor as SD
 participant "UART Driver" as UART
 actor SensorController as SC #red
 
+
 Main -> SD : read()
-alt <u>do</u> while \n(Attempt <= 3) \nAND \n(Kontrol+Request =! Checksum) \n AND \n (Reply != null)
-SD -> SD : Attempt++
-SD -> UART : Send Request
-SD -> SD : Sleep(1 s)
-SD -> UART : Read reply
-opt reply == null
-    SD -> SD : uSleep(500 ms)
+
+opt config file updated
+SD -> SD : setConfig()
+end
+
+loop <u>do</u> while \n(Attempt <= 3) \nOR \n(Kontrol+Request =! Checksum) \nOR \n(Reply == null)
+    opt Attempt > 1
+        SD -> SD : uSleep(100 ms)
+    end opt
+    SD -> SD : Attempt++
+    SD -> UART : Send Request
+    SD -> SD : Sleep(1 s)
     SD -> UART : Read reply
     opt reply == null
-        SD -> SD : Checksum = 0xFFF
-    end opt 
-end opt
-UART --> SD : Data, Kontrol, Checksum
-end alt
+        SD -> SD : uSleep(500 ms)
+        SD -> UART : Read reply
+    end opt
+    UART --> SD : Data, Kontrol, Checksum
+end loop
+
+alt Kontrol+Request == Checksum \nAND \nReply != null
 SD --> Main : Data*_sensorConvertionTable[sensorNumber].Factor + _sensorConvertionTable[sensorNumber].Offset
+else 
+SD --> Main : 0
+end alt
 
 
 @enduml

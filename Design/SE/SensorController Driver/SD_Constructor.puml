@@ -1,5 +1,5 @@
-@startuml
-title Sensor::Sensor(int sensorNumber)
+@startuml SD_SensorControllerDriverConstructor
+title Sensor::Sensor(int sensorNumber, string configPath)
 
 skinparam MaxMessageSize 150
 
