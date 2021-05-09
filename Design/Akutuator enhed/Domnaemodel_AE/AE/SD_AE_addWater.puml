@@ -49,7 +49,7 @@ title int Aktuatorenhed::addWater(double ml, double currentPsu)
             ae <-- tp
             deactivate tp
                  
-        ae -> ae : sleep((ml-mlSaltvand)*0.04)
+        ae -> ae : sleep((ml-2*mlSaltvand)*0.04)
         ae -> sp : setState(false);
             activate sp
             sp -> os : setPWM(GPIO, 0)
