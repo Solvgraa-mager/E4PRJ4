@@ -1,0 +1,23 @@
+@startuml SD_AE_setWaterLevel
+
+
+title int Aktuatorenhed::setWaterLevel(double setWaterLevel, double currentWaterLevel, double currentPsu)
+participant UC3 as u
+
+participant Aktuatorenhed as ae
+
+u -> ae : setWaterLevel(setWaterLevel, currentWaterLevel, currentPsu)
+
+alt  if (currentWaterLevel > setWaterLevel)
+
+ae -> ae : removeWater(currentWaterLevel-setWaterLevel);
+u <-- ae : return 1
+
+else if (currentWaterLevel < setWaterLevel)
+
+ae -> ae : addWater(setWaterLevel - currentWaterLevel, currentPsu)
+u <-- ae : return 2
+end
+u <-- ae : return 0
+
+@enduml

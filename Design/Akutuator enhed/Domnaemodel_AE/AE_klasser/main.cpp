@@ -1,7 +1,8 @@
 #include "Varmelegeme.hpp"
 #include "PID.hpp"
+#include "AE.hpp"
 
 int main(void)
 {
-    return 0;
+    Aktuatorenhed AE(25000, 31.5);
 }

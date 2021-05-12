@@ -7,7 +7,7 @@ class SensorController{
 }
 class ADCBlokIF{
     +multiplex(int sensorNo) : void
-    +read(sensorNo) : uint16 value
+    +read() : uint16 value
     -multiplexProtokol_[4]
 }
 class CentralComputerIF{

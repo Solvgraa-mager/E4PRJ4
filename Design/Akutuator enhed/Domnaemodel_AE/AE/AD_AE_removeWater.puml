@@ -1,0 +1,30 @@
+@startuml SD_AE_removeWater
+
+Participant Aktuatorenhed as ae
+participant _toemPumpe as tp
+actor OS as os
+title int Aktuatorenhed::removeWater(double ml)
+
+ae -> ae : removeWater(double ml)
+        activate ae
+            ae -> tp :setDutyCycle(90)
+            activate tp
+            tp -> tp : _dutyCycle = 90
+            ae <-- tp
+            deactivate tp
+            ae -> tp : setState(true);
+            activate tp
+            tp -> os : setPWM(GPIO, _dutyCycle)
+            tp <-- os
+            ae <-- tp
+            deactivate tp
+        ae -> ae : sleep(ml*0.044)
+        ae -> tp : setState(false);
+            activate tp
+            tp -> os : setPWM(GPIO, 0)
+            tp <-- os
+            ae <-- tp
+            deactivate tp
+        ae <-- ae : return 0 
+        deactivate ae
+@enduml

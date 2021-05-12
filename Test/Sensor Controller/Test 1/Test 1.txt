@@ -1,0 +1,1 @@
+Main: Skriv 0xFAFA og vent 1 sek. 
