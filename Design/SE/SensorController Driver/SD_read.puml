@@ -12,20 +12,18 @@ actor SensorController as SC #red
 
 Main -> SD : read()
 
-opt config file updated
 SD -> SD : setConfig()
-end
 
 loop <u>do</u> while \n(Attempt <= 3) \nOR \n(Kontrol+Request =! Checksum) \nOR \n(Reply == null)
     opt Attempt > 1
-        SD -> SD : uSleep(100 ms)
+        SD -> SD : uSleep(20ms)
     end opt
     SD -> SD : Attempt++
     SD -> UART : Send Request
-    SD -> SD : Sleep(1 s)
+    SD -> SD : Sleep(10 ms)
     SD -> UART : Read reply
     opt reply == null
-        SD -> SD : uSleep(500 ms)
+        SD -> SD : uSleep(50 ms)
         SD -> UART : Read reply
     end opt
     UART --> SD : Data, Kontrol, Checksum

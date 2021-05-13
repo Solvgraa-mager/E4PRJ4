@@ -1,25 +1,22 @@
-@startuml
+@startuml StatiskKlassediagramforSensorController
 title Statisk Klassediagram for SensorController
 
 class SensorController{
     +Init() : void
     +Run() : void
+    +Sleep() : void
 }
 class ADCBlokIF{
-    +multiplex(int sensorNo) : void
-    +read() : uint16 value
-    -multiplexProtokol_[4]
+    +read(int sensorNummer) : uint16 value
+    -databits_[4]
 }
 class CentralComputerIF{
     +getRequest() : int sensorNo
     +send(uint16 value) : void
 }
-class Timer{
-    wait(int timeInMs) : void
-}
+
 
 ADCBlokIF --> SensorController
 CentralComputerIF -> SensorController
-SensorController <- Timer
 
 @enduml

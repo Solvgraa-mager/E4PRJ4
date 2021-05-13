@@ -1,5 +1,5 @@
 @startuml
-title Sensor Controller Main Sequence
+title SensorControlleRun
 
 skinparam shadowing false
 skinparam MaxMessageSize 10000
@@ -9,8 +9,6 @@ actor CC as "Central Computer"
 participant CCIF as "CentralComputerIF"
 participant SC as "SensorController"
 participant ADC as "ADCBlokIF"
-participant Timer as "Timer"
-
 
 sprite $interruptzigzag [16x16/16] {
     0000000000000000
@@ -44,16 +42,7 @@ deactivate SC
 activate CCIF
 CCIF --> SC : SensorNo
 deactivate CCIF 
-activate SC 
-SC -> ADC : multiplex(SensorNo)
-deactivate SC
-activate ADC 
-ADC --> SC : 
 deactivate ADC
-SC -> Timer : wait(600ms)
-activate Timer
-Timer --> SC : Sucess
-deactivate Timer
 activate SC
 SC -> ADC : read(SensorNo)
 deactivate SC
@@ -66,6 +55,7 @@ deactivate SC
 activate CCIF
 CCIF --> SC :
 deactivate CCIF
+SC -> SC : Sleep()
 end loop
 
 
