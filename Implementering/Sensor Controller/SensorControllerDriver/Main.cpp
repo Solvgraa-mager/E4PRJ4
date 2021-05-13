@@ -7,7 +7,17 @@ using namespace std;
 
 int main(void){
 
-    Sensor S(1,"/home/stud/E4PRJ4/Implementering/Sensor Controller/SensorControllerDriver/testConfig.txt");
-    S.sensorRead();
+    try
+    {
+        Sensor S1(3,"testConfig.txt");
+
+            S1.sensorRead();
+ 
+    }
+    catch(const Exception& e)
+    {
+        std::cerr << e.getError() << '\n';
+    }
+
     return 0; 
 }

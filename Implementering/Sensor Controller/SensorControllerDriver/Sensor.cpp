@@ -28,6 +28,10 @@ int Sensor::setConfig()
     string configLine;
 
     err = stat(configPath_.c_str(), &attr);
+    if (err < 0){
+        cout << "setConfig: stat returned " << err << endl;
+        cout << "setConfig: errno :" << errno << endl;  
+    }
 
     if (configEditTime_ != attr.st_mtim.tv_sec)
     {
@@ -108,41 +112,27 @@ uint16_t Sensor::readRaw(){
 
     setConfig();
 
+    request = (1 << (sensorNumber_-1));
+
     do{
         if (attempt == 0)
             usleep(20000);
         
         attempt++; 
 
+        ioctl(filedescriptor_, TCFLSH, 2); // flush both
+
+        usleep(1000);
         write(filedescriptor_,&request,1);
+        usleep(10000);
+        read(filedescriptor_,&reply,10);
 
-        err = tcgetattr(filedescriptor_, &options); //Get options
-        if (err < 0)
-            cout << "READ: Get attr returned " << err << endl;
-        err = tcsetattr(filedescriptor_, TCSAFLUSH, &options); //Flush buffer
-        if (err < 0)
-            cout << "READ: Set attr (buffer flush) returned " << err << endl;
-        
-        //Read with timeout
-        FD_ZERO(&set);
-        FD_SET(filedescriptor_, &set);
-        timeout.tv_sec = 0;
-        timeout.tv_usec = 50000;
-        rv = select(filedescriptor_ + 1, &set, NULL, NULL, &timeout);
-        if (err < 0)
-            cout << "UART: read returned with error: " << err << endl; 
-        else if(rv == 0)
-            cout << "UART: read returned with timeout" << endl; 
-        else
-            read(filedescriptor_,&reply,4);
-    }while( attempt <= 3 &&
-            (((kontrol + request) & 0xFF) != checksum) && 
-            reply == 0);
+        printf("Attempt: %i\n", attempt);
+        printf("Reply: %X\n", reply);
 
-    if ((((kontrol + request) & 0xFF) != checksum) && reply != 0)
-        return reply;
-    else
-        return 0;
+    }while( attempt < 3 && reply == 0);
+
+    return 1; 
 }
 
 double Sensor::sensorRead(){
@@ -170,4 +160,5 @@ void Sensor::setFactor(long double factor){
 
 Sensor::~Sensor()
 {
+    close(filedescriptor_);
 }
