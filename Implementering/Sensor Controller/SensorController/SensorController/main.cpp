@@ -13,19 +13,19 @@
 
 int main(void)
 {
-	DDRB |= 0b11110000;
-	ADCBlokIF ADCBlok;
+	//DDRB |= 0b11110000;
+	//ADCBlokIF ADCBlok;
 	CentralComputerIF CC;
-	Timer T;
+	//Timer T;
 	
 	//For test only
 	initLEDport();
 	
-    /* Replace with your application code */
+	char request = 0;
     while (1) 
     {
-		CC.send(0xFAFA);
-		T.wait(1000);
+		request = CC.getRequest();
+		CC.send(0xAAAA,0xFF,request);
     }
 }
 

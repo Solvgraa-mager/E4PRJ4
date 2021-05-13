@@ -1,0 +1,15 @@
+Uden aflæsning, skriver værdien 0xAAAA tilbage og kontrol 0xFF. Great success. 
+
+
+Waveforms: 
+
+// Script using Protocol UART.
+
+if(!('Protocol' in this)) throw "Please open the Protocol tool";
+
+Protocol.Mode.text = "UART" // make sure UART tab is selected
+Protocol.UART.Receiver() // reset receiver
+
+Protocol.UART.Send(0x1,false)
+var rx = Protocol.UART.Receive() // receive text
+print(rx)

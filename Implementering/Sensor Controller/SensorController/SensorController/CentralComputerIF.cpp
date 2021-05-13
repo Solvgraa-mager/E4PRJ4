@@ -15,10 +15,19 @@ CentralComputerIF::CentralComputerIF()
 	/***** Init UART and UART Interrupt *****/
 	InitUART(BAUDRATE,WORDLENGTH,1);
 } //CentralComputerIF
-void CentralComputerIF::send(uint16_t value)
+void CentralComputerIF::send(uint16_t value, uint8_t error, uint8_t request)
 {
+	//Data bytes
 	SendChar(value >> 8);
 	SendChar(value & 0xFF);
+	//Kontrol-byte
+	SendChar(error ? 0xFF : 0x00);
+	//Checksum-byte
+	SendChar((value+request) & 0xFF);
+}
+
+int CentralComputerIF::getRequest(){
+	return ReadChar();
 }
 
 // default destructor

@@ -8,6 +8,7 @@
 #include <stdlib.h>
 #include "uart_int.hpp"
 #include "avr/iom2560.h"
+#include "led.hpp"
 
 // Target CPU frequency
 #define XTAL 16000000

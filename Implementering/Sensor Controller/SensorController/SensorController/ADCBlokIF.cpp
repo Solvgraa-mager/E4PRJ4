@@ -18,11 +18,6 @@ ADCBlokIF::ADCBlokIF()
 	//Port C as output
 	DDRC = 0xFF; 
 	PORTC = 0; 
-	//MultiplexProtokol
-	_multiplexProtokol[0] = (1<<0);
-	_multiplexProtokol[1] = (1<<1);
-	_multiplexProtokol[2] = (1<<2);
-	_multiplexProtokol[3] = (1<<3);
 	
 	/***** Init SPI *****/
 	//SCK, MOSI, SS as output 
