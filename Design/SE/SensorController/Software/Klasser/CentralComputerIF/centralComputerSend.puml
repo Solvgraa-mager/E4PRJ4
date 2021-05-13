@@ -1,4 +1,4 @@
-@startuml
+@startuml   CentralComputerIFSendSekvens
 title void CentralComputer::send(int16 value)
 
 participant SensorController as SC
@@ -6,7 +6,7 @@ participant CentralComputerIF as CCIF
 actor "Central Computer" as CC #red
 
 SC -> CCIF : send(bool valid, int16 value)
-CCIF -> CC : uart.sendChar(value>>8)
+CCIF -> CC : uart.sendChar(value<<8)
 CCIF -> CC : uart.sendChar(value && 0xFF)
 CCIF --> SC : 
 

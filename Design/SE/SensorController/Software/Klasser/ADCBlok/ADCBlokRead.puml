@@ -1,0 +1,18 @@
+@startuml ADCBlokRead
+title void ADCBlokIF::Read(int sensorNummer)
+
+skinparam MaxMessageSize 300
+
+actor sensorController as SC #red
+participant ADCBlokIF as ADCIF
+actor ADCBlok as ADC
+
+SC -> ADCIF : read(sensorNumber)
+ADCIF -> ADCIF : request[0] = 0b11 << 5
+ADCIF -> ADCIF : request[1] = databit[sensorNumber] << 6
+ADCIF -> ADCIF : request[2] = 0b0
+ADCIF -> ADC : Spi transaction (request)
+ADC --> ADCIF : Spi transaction (request)
+ADCIF --> SC : (request[1] AND 0b1111) << 8 \nAND \nrequest[2] 
+
+@enduml

@@ -1,20 +1,19 @@
-@startuml
+@startuml SensorControllerSTM
 title SensorControllerSTM
 
 skinparam maxMessageSize 120
 
 state Idle 
 state EvaluateRequest <<choice>>
-state Afvent_ADC as "Afvent ADC"
+state Afvent_ADC as "Aflæs ADC"
 
 [*] -> Idle
 Idle -> EvaluateRequest : Request modtaget / 
 EvaluateRequest --> Afvent_ADC : Gyldig request
 EvaluateRequest ---> Idle : Ugyldig request / Send fejlmeddelelse
-Afvent_ADC -> Idle : Timeout / Send måling
+Afvent_ADC -> Idle : Timeout / Send måling til Central Computer
 
-Afvent_ADC : Enter: Sæt Multiplex
-Afvent_ADC : Do: Vent 600ms 
-Afvent_ADC : Exit: Aflæs måling og sluk Multiplex
+Afvent_ADC : Enter: Send request 
+Afvent_ADC : Exit: Aflæs måling
 
 @enduml

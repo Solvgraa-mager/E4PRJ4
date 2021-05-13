@@ -1,24 +1,18 @@
-@startuml
+@startuml SensorKonceptuelSekvens
 !pragma teoz true
 
-title "Aflæsning af salinitet sekvens"
+title "Konceptuel Aflæsning af salinitet"
 
 actor "Central Computer" as CC
 participant "Sensor Controller" as SC
 participant "ADC-Blok" as ADC
-participant "Salinitetsensor" as saltsensor
 
 {start_com} CC -> SC : Aflæs salinitet
-{start_read} SC -> ADC: Multiplex til salinitet
-ADC -> saltsensor: Aflæser saltindhold
-{end_read} SC -> ADC: Læs ADC  
-ADC --> SC: Salinitet
+{read_start} SC -> ADC: Læs kanal med salinitet
+{read_slut} ADC --> SC: Salinitet
 {end_com} SC --> CC: Salinitet
 
 
-{start_com} <-> {end_com}: 1 sek
-
-{start_read} <-> {end_read}: 600 ms
-
-
+{start_com} <-> {end_com}: 15 ms
+{read_start} <-> {read_slut}: 150 µs
 @enduml
