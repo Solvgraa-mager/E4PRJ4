@@ -3,3 +3,5 @@
 Sensorenhed::Sensorenhed(){};
 
 Sensorenhed::~Sensorenhed(){};
+
+double Sensorenhed::getSensorInput(){};

@@ -1,4 +1,5 @@
 <html>
+
 <head>
     <title>SmartAkvarie Login Formulua</title>
     <link rel="stylesheet" type="text/css" href="style.css">
@@ -17,19 +18,27 @@
         }
     </script> -->
 
- </head>   
- 
- <body>
+
+    <script>
+        function login() {
+            location.replace("/homepage/homepage.html")
+        }
+    </script>
+
+</head>
+
+<body>
     <div class="LoginBox">
         <img src="Avatar.jpeg" class="Avatar">
         <h1>Akvarie Regulator</h1>
-        <form>
-            <p>Username</p>
-            <input type="text" name="" placeholder="Enter Username"><br>
-            <p>Password</p>
-            <input type="password" name="" placeholder="Enter Password">
-            <input type="submit" name="" value="Login" onclick="login()"> <br>
-            <a href="/forgotPassword.html" >Forgot password?</a>
+        <form action="/homepage/homepage.html">
+            <!-- <p>Username</p> -->
+            <!-- <input type="text" name="" placeholder="Enter Username"><br> -->
+            <!-- <p>Password</p> -->
+            <!-- <input type="password" name="" placeholder="Enter Password"> -->
+        
+            <input type="submit" name="" value="Login"> <br>
+            <a href="/forgotPassword.html">Forgot password?</a>
         </form>
     </div>
 </body>
