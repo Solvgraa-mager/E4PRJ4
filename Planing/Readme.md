@@ -204,6 +204,7 @@ Team AE:
 ##### Agenda:
   1. Hvordan gør vi test? 
   2. Hvem laver integrationstest? 
+  3. Hvordan skriver man at man ikke er SW studerende og derfor ikke har fået undervisning i SW-test, men gerne vil gøre et ihærdigt forsøg (så det bliver positivt at der er forsøgt, fremfor negativt at der er lavet "dårlige" unittests)?
 
 ---
 ### Test 1
