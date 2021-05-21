@@ -1,0 +1,21 @@
+@startuml AE_Domaene
+title Domænemodel - Aktuatorenhed
+
+object "CentralComputer" as cc 
+
+package "Aktuatorenhed" {
+object "Driver kreds" as dk
+object "Saltvandspumpe" as sp
+object "Demineraliseret vand pumpe" as  dp
+object "Tømningspumpe" as tp
+object "Varmelegeme" as v
+
+}
+
+
+cc - dk
+dk -- sp
+dk -- dp
+dk-- tp
+dk -- v
+@enduml
