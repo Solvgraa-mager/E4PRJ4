@@ -14,18 +14,17 @@
 int main(void)
 {
 	//DDRB |= 0b11110000;
-	//ADCBlokIF ADCBlok;
+	ADCBlokIF ADCBlok;
 	CentralComputerIF CC;
-	//Timer T;
+	Timer T;
 	
 	//For test only
-	initLEDport();
-	
-	char request = 0;
+	//initLEDport();
+	DDRB |= (1<<4)|(1<<5)|(1<<6);
+	unsigned char answer = 0;
     while (1) 
     {
-		request = CC.getRequest();
-		CC.send(0xAAAA,0xFF,request);
+		
     }
 }
 

@@ -9,6 +9,7 @@ participant Sensor as SD
 database configFile as config
 
 Main -> SD : setConfig()
+alt config file updated
 SD -> config : Open
 opt Open failed
 SD --> Main : Fail
@@ -16,7 +17,9 @@ end
 SD -> config : Get factor and offset for objects sensorNumber
 SD -> SD : Set Factor and Offset
 SD --> Main : Ok
-
+else 
+SD --> Main : File not updated 
+end alt
 
 
 

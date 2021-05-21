@@ -1,14 +1,14 @@
-@startuml
-title SensorControlleRun
+@startuml SDtestSensorControllerRun
+title "Test: SensorController::run()"
 
 skinparam shadowing false
 skinparam MaxMessageSize 10000
 
-actor Bruger #red
-actor CC as "Central Computer" 
+actor UART as "UART Sniffer" 
 participant CCIF as "CentralComputerIF"
-participant SC as "SensorController"
+participant Test as "SensorController"
 participant ADC as "ADCBlokIF"
+actor Pin as "Pin"
 
 sprite $interruptzigzag [16x16/16] {
     0000000000000000
@@ -29,34 +29,35 @@ sprite $interruptzigzag [16x16/16] {
     0000000000000000
     }
 == Initialization ==
-Bruger -> SC : Powers up Sensor Controller 
-SC -> SC : Init()
-SC -> SC : Run()
+Test -> Test : Init()
+Test -> Test : Run()
 == Run() ==
 loop  power on
 ... Sleeping until request ...
-CC -> SC : Request <$interruptzigzag>
-activate SC 
-SC -> CCIF : getRequest()
-deactivate SC
+UART -> Test : Request <$interruptzigzag>
+activate Test 
+Test -> Pin : Test-Pin = 1
+Test -> CCIF : getRequest()
+deactivate Test
 activate CCIF
-CCIF --> SC : SensorNo
+CCIF --> Test : SensorNo
 deactivate CCIF 
 deactivate ADC
-activate SC
-SC -> ADC : read(SensorNo)
-deactivate SC
+activate Test
+Test -> ADC : read(SensorNo)
+deactivate Test
 activate ADC 
-ADC --> SC : value
+ADC --> Test : value
 deactivate ADC 
-activate SC 
-SC -> CCIF : send(value)
+activate Test 
+Test -> CCIF : send(value)
 activate CCIF
-CCIF --> CC : value
-CCIF --> SC :
-deactivate SC 
+CCIF -> UART : value
+Test -> Pin : Test-Pin = 0
+CCIF --> Test : 
+deactivate Test
 deactivate CCIF
-SC -> SC : Sleep()
+Test -> Test : Sleep()
 end loop
 
 

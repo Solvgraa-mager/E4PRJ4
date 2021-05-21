@@ -19,7 +19,7 @@ class CentralComputerIF
 public:
 	CentralComputerIF();
 	int getRequest();
-	void send(uint16_t value, uint8_t error, uint8_t request);
+	void send(uint16_t value, uint8_t valid, uint8_t request);
 	~CentralComputerIF();
 
 }; //CentralComputerIF

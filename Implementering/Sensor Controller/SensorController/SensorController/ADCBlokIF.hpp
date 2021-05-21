@@ -15,11 +15,11 @@ class ADCBlokIF
 //functions
 public:
 	ADCBlokIF();
-	void multiplex(uint8_t sensorNo);
-	uint16_t read();
+	uint16_t read(int channel);
 	~ADCBlokIF();
-private:
 	uint8_t SPI(uint8_t temp);
+private:
+	//SPI should be a private method
 	uint8_t _multiplexProtokol[4];
 }; //ADCBlokIF
 
