@@ -9,17 +9,16 @@ int main(void){
 
     try
     {
-        Sensor S1(2,"testConfig.txt");
-        for (int i = 0; i<100;i++){
-            S1.readRaw();
-            break;
+        Sensor S0(0,"testConfig.txt");
+        for(int i = 0; i<10; i++)
+        {
+            cout << "Reading: " << S0.sensorRead() << endl;
+            usleep(50000);
         }
- 
     }
     catch(const Exception& e)
     {
         std::cerr << e.getError() << '\n';
     }
-
     return 0; 
 }

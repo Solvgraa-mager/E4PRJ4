@@ -54,7 +54,7 @@ int Sensor::setConfig()
                 setFactor(stold(factor));
             }
         }
-        //cout << "Sensor " << sensorNumber_ << ": Offset = " << SCT_.offset_ << " Factor = " << SCT_.factor_ << endl; 
+        cout << "Sensor " << sensorNumber_ << ": Offset = " << SCT_.offset_ << " Factor = " << SCT_.factor_ << endl; 
     }
 
     return (err < 0 ? 0 : 1); 
@@ -62,17 +62,16 @@ int Sensor::setConfig()
 
 int Sensor::setupUART(){
     int err = 0; 
-    filedescriptor_ = -1;
+    int filedescriptor = -1;
     struct termios options;
     
-    filedescriptor_ = open("/dev/ttyS0", O_RDWR | O_NOCTTY | O_NDELAY);
-    cout << "Filedescriptor (setupUART): " << filedescriptor_ << endl; 
-    if (filedescriptor_ < 0)
+    filedescriptor = open("/dev/ttyS0", O_RDWR | O_NOCTTY | O_NDELAY);
+    if (filedescriptor < 0)
 	{
 		printf("Error - Unable to open UART.\n");
         return err; 
 	}
-    tcgetattr(filedescriptor_, &options);
+    tcgetattr(filedescriptor, &options);
     options.c_cflag &= ~PARENB; // Clear parity bit, disabling parity (most common)
     options.c_cflag &= ~CSTOPB; // Clear stop field, only one stop bit used in communication
     options.c_cflag &= ~CSIZE; // Clear all the size bits
@@ -92,30 +91,33 @@ int Sensor::setupUART(){
     cfsetispeed(&options, B9600);
     cfsetospeed(&options, B9600);
 
-	//tcflush(filedescriptor_, TCIFLUSH);
-	err = tcsetattr(filedescriptor_, TCSANOW, &options);
+	//tcflush(filedescriptor, TCIFLUSH);
+	err = tcsetattr(filedescriptor, TCSANOW, &options);
+    
+    close(filedescriptor);
 
     return err;  
 }
 
 uint16_t Sensor::readRaw(){
-    int attempt = 0, err = 0, rv = 0; 
-    unsigned char request = 0, kontrol = 0, checksum = 0xFF;
+    int attempt = 0, err = 0, rv = 0, filedescriptor; 
+    unsigned char requestEncoded = 0, kontrol = 0, checksum = 0xFF;
+    uint16_t value = 0; 
     char reply[1000];
     int rx_length = 0; 
 
     setConfig();
 
-    request = (1 << (sensorNumber_-1));
+    requestEncoded = (1 << (sensorNumber_));
     
     do{
         if (attempt == 0)
-            usleep(200000);
+            usleep(20000);
         
         attempt++; 
-        cout << "Filedescriptor (readRaw): " <<filedescriptor_ << endl; 
-        err = write(filedescriptor_, &request, 1);
-        //printf("%i bytes request written to UART\n", err);
+        filedescriptor = open("/dev/ttyS0", O_RDWR | O_NOCTTY | O_NDELAY);
+        tcflush(filedescriptor,TCIOFLUSH);
+        err = write(filedescriptor, &requestEncoded, 1);
         if (err < 0)
         {
            printf("Write error! Errno: %i\n", errno); 
@@ -125,9 +127,8 @@ uint16_t Sensor::readRaw(){
         
         memset(&reply, '\0', sizeof(reply));
 
-		rx_length = read(filedescriptor_, &reply, sizeof(reply));
+		rx_length = read(filedescriptor, &reply, sizeof(reply));
 
-        cout << "rx_length = " << rx_length << endl; 
 		if (rx_length < 0)
 		{
 			printf("Nothing to read from UART\n",rx_length);
@@ -135,26 +136,39 @@ uint16_t Sensor::readRaw(){
 		}
 		else if (rx_length == 0)
 		{
-			printf("Ny bytes read in UART\n");
+			printf("No bytes read in UART\n");
 		}
+        else if(rx_length == 4)
+        {
+            value = ((reply[0]<<8) + reply[1]);
+            kontrol = reply[2];
+            checksum = reply[3];
+
+            if(kontrol != 0xFF)
+            {
+                cout << "Invalid read!" << endl; 
+            }
+            if(checksum != ((value+sensorNumber_) & 0xFF))
+            {
+                cout << "Checksum not correct" << endl; 
+            }
+        }
 		else
 		{
-			//printf("Attempt: %i\n", attempt);
-            for(int i = 0; i<rx_length;i++)
-            {
-                printf("%#X ",reply[i]);
-            }
-            printf("\n");
+			cout << "Unparsable msg" << endl; 
+            value = -1;
 		}
-	
-    }while( (attempt < 3) && (rx_length < 0));
+    }while((attempt < 3) && (kontrol != 0xFF) && (checksum != ((value+sensorNumber_) & 0xFF)));
 
-    return 1; 
+    close(filedescriptor);
+
+    return value; 
 }
 
 double Sensor::sensorRead(){
     uint16_t data = readRaw();
-    return ((data * SCT_.factor_)+data + SCT_.offset_);
+    double reading = ((double)data*(double)SCT_.factor_)+(double)SCT_.offset_;
+    return reading;
 }
 
 void Sensor::setOffset(long double offset){
@@ -177,5 +191,4 @@ void Sensor::setFactor(long double factor){
 
 Sensor::~Sensor()
 {
-    close(filedescriptor_);
 }

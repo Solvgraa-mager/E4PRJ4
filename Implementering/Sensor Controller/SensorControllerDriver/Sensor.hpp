@@ -39,7 +39,7 @@ private:
     int setupUART();
     int sensorNumber_;
     sensorConversionTable SCT_;
-    int filedescriptor_; 
+
     string configPath_; 
     time_t configEditTime_;
 };
