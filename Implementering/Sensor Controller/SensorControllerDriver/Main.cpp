@@ -9,9 +9,8 @@ int main(void){
 
     try
     {
-        Sensor S1(3,"testConfig.txt");
-
-            S1.sensorRead();
+        Sensor S1(2,"testConfig.txt");
+        S1.readRaw();
  
     }
     catch(const Exception& e)

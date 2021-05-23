@@ -24,17 +24,16 @@ $(BIN_DIR)/$(EXE): $(DEPS) $(addprefix $(BUILD_DIR)/,$(OBJECTS)) # <<  Checkthe$
 	$(CXX) $(CXXFLAGS) -o $@ $(addprefix $(BUILD_DIR)/,$(OBJECTS))
 	@echo exe file made
 
-# %. cpp->  %. o needsto  be  added! Targetis  NOT just%. o...
-# Rulethatdescribeshowa .d (dependency) fileis  created from a .cpp file
-
 $(BUILD_DIR)/%.o: %.cpp
 	$(CXX) $(CXXFLAGS) -c -o $@ $<
 	@echo obj build in dir
 
-# Similarto  theassigmentthatyoujustcompleted%. cpp->  %. o
 %.d: %.cpp
 	$(CXX) -MT$@ -MM $(CXXFLAGS) $< > $@
 	$(CXX) -MT$(@:.d=.o) -MM $(CXXFLAGS) $< >>$@
+	
+copy:
+	scp bin/target/prog root@10.9.8.2:
 
 ifneq ($(MAKECMDGOALS),clean)
 -include $(DEPS)

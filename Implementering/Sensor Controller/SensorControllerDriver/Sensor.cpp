@@ -2,8 +2,6 @@
 #include "Sensor.hpp"
 #include "Exception.hpp"
 
-
-
 Sensor::Sensor(int sensorNumber, string configPath) :
     configPath_(configPath), sensorNumber_(sensorNumber), configEditTime_(0)
 {
@@ -62,53 +60,48 @@ int Sensor::setConfig()
 }
 
 int Sensor::setupUART(){
-    
-    struct termios options;
     int err = 0; 
-
+    filedescriptor_ = -1;
+    struct termios options;
+    
     filedescriptor_ = open("/dev/ttyS0", O_RDWR | O_NOCTTY | O_NDELAY);
-    cout << "Open UART driver. File descriptor: " << filedescriptor_ << endl; 
-    
-    if (filedescriptor_ == -1)
-    {
-        perror("open_port: Unable to open /dev/ttyf1 - ");
-        return -1; 
-    }
-    
-    err = fcntl(filedescriptor_, F_SETFL, FNDELAY); //Set delay
-    cout << "UART: set delay returned " << err << endl; 
+    if (filedescriptor_ < 0)
+	{
+		printf("Error - Unable to open UART.\n");
+        return err; 
+	}
+    tcgetattr(filedescriptor_, &options);
+    options.c_cflag &= ~PARENB; // Clear parity bit, disabling parity (most common)
+    options.c_cflag &= ~CSTOPB; // Clear stop field, only one stop bit used in communication
+    options.c_cflag &= ~CSIZE; // Clear all the size bits
+    options.c_cflag |= CS8;
+    options.c_cflag &= ~CRTSCTS; // Disable RTS/CTS hardware flow control
+    options.c_cflag |= CREAD | CLOCAL; // Turn on READ & ignore ctrl lines (CLOCAL = 1)
+    options.c_lflag &= ~ICANON; //Cannonical mode disable
+    options.c_lflag &= ~ISIG; // Disable interpretation of INTR, QUIT and SUSP
+    options.c_iflag &= ~(IXON | IXOFF | IXANY); // Turn off s/w flow ctrl
+    options.c_iflag &= ~(IGNBRK|BRKINT|PARMRK|ISTRIP|INLCR|IGNCR|ICRNL); // Disable any special handling of received bytes
+    options.c_oflag &= ~OPOST; // Prevent special interpretation of output bytes (e.g. newline chars)
+    options.c_oflag &= ~ONLCR; // Prevent conversion of newline to carriage return/line feed
 
-    err = tcgetattr(filedescriptor_, &options); //Get options 
-    cout << "UART: get options returned " << err << endl; 
-    
-    err = cfsetispeed(&options, B9600); //Set input BAUD
-    err = cfsetospeed(&options, B9600); //Set output BAUD
-    cout << "UART: set baud returned " << err << endl; 
-   
-    options.c_cflag |= (CLOCAL | CREAD); //Set CLOCAL = no modem, CREAD = possible to read
-    options.c_lflag &= ~(ICANON | ECHO | ECHOE | ISIG); //Raw input
-    
-    options.c_cflag &= ~CSIZE; //Mask to set data bit
-    options.c_cflag |= CS8;    //8 data bit
+    options.c_cc[VTIME] = 100;    // Wait for up to 1s (10 deciseconds), returning as soon as any data is received.
+    options.c_cc[VMIN] = 0;
 
-    options.c_lflag &= ~ICANON; // Set non-canonical mode
-    
-    err = tcsetattr(filedescriptor_, TCSANOW, &options); //Set changes
+    cfsetispeed(&options, B9600);
+    cfsetospeed(&options, B9600);
 
-    //Timeout 
+	//tcflush(filedescriptor_, TCIFLUSH);
+	err = tcsetattr(filedescriptor_, TCSANOW, &options);
 
-    cout << "UART: set options returned " << err << endl; 
-
-    return err;
+    return err;  
 }
 
 uint16_t Sensor::readRaw(){
+    const char sensorNumberEncoded[4] = {0b1000, 0b0100, 0b0010, 0b0001};
     int attempt = 0, err = 0, rv = 0; 
     unsigned char request = 0, kontrol = 0, checksum = 0xFF;
-    uint32_t reply = 0; 
-    struct termios options;
-    fd_set set; 
-    struct timeval timeout; 
+    unsigned char reply[120] = {0};
+    int rx_length = 0; 
 
     setConfig();
 
@@ -116,21 +109,32 @@ uint16_t Sensor::readRaw(){
 
     do{
         if (attempt == 0)
-            usleep(20000);
+            usleep(200000);
         
         attempt++; 
 
-        ioctl(filedescriptor_, TCFLSH, 2); // flush both
+        err = write(filedescriptor_, &request, 1);
+        printf("%i bytes request written to UART\n", err);
+        usleep(15000); //According to protocol
 
-        usleep(1000);
-        write(filedescriptor_,&request,1);
-        usleep(10000);
-        read(filedescriptor_,&reply,10);
+		rx_length = read(filedescriptor_, &reply, 120);
 
-        printf("Attempt: %i\n", attempt);
-        printf("Reply: %X\n", reply);
-
-    }while( attempt < 3 && reply == 0);
+		if (rx_length < 0)
+		{
+			printf("Nothing to read from UART\n",rx_length);
+            printf("Errno: %i\n", errno); 
+		}
+		else if (rx_length == 0)
+		{
+			printf("Ny bytes read in UART\n");
+		}
+		else
+		{
+			printf("Attempt: %i\n", attempt);
+            printf("Reply: %X\n", reply);
+		}
+	
+    }while( (attempt < 3) && (rx_length < 0));
 
     return 1; 
 }
