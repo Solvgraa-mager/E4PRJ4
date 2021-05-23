@@ -2,6 +2,7 @@
 #include "Sensor.hpp"
 #include "Exception.hpp"
 
+
 Sensor::Sensor(int sensorNumber, string configPath) :
     configPath_(configPath), sensorNumber_(sensorNumber), configEditTime_(0)
 {
@@ -53,7 +54,7 @@ int Sensor::setConfig()
                 setFactor(stold(factor));
             }
         }
-        cout << "Sensor " << sensorNumber_ << ": Offset = " << SCT_.offset_ << " Factor = " << SCT_.factor_ << endl; 
+        //cout << "Sensor " << sensorNumber_ << ": Offset = " << SCT_.offset_ << " Factor = " << SCT_.factor_ << endl; 
     }
 
     return (err < 0 ? 0 : 1); 
@@ -65,6 +66,7 @@ int Sensor::setupUART(){
     struct termios options;
     
     filedescriptor_ = open("/dev/ttyS0", O_RDWR | O_NOCTTY | O_NDELAY);
+    cout << "Filedescriptor (setupUART): " << filedescriptor_ << endl; 
     if (filedescriptor_ < 0)
 	{
 		printf("Error - Unable to open UART.\n");
@@ -97,28 +99,35 @@ int Sensor::setupUART(){
 }
 
 uint16_t Sensor::readRaw(){
-    const char sensorNumberEncoded[4] = {0b1000, 0b0100, 0b0010, 0b0001};
     int attempt = 0, err = 0, rv = 0; 
     unsigned char request = 0, kontrol = 0, checksum = 0xFF;
-    unsigned char reply[120] = {0};
+    char reply[1000];
     int rx_length = 0; 
 
     setConfig();
 
     request = (1 << (sensorNumber_-1));
-
+    
     do{
         if (attempt == 0)
             usleep(200000);
         
         attempt++; 
-
+        cout << "Filedescriptor (readRaw): " <<filedescriptor_ << endl; 
         err = write(filedescriptor_, &request, 1);
-        printf("%i bytes request written to UART\n", err);
+        //printf("%i bytes request written to UART\n", err);
+        if (err < 0)
+        {
+           printf("Write error! Errno: %i\n", errno); 
+           perror("Write error: ");
+        }
         usleep(15000); //According to protocol
+        
+        memset(&reply, '\0', sizeof(reply));
 
-		rx_length = read(filedescriptor_, &reply, 120);
+		rx_length = read(filedescriptor_, &reply, sizeof(reply));
 
+        cout << "rx_length = " << rx_length << endl; 
 		if (rx_length < 0)
 		{
 			printf("Nothing to read from UART\n",rx_length);
@@ -130,8 +139,12 @@ uint16_t Sensor::readRaw(){
 		}
 		else
 		{
-			printf("Attempt: %i\n", attempt);
-            printf("Reply: %X\n", reply);
+			//printf("Attempt: %i\n", attempt);
+            for(int i = 0; i<rx_length;i++)
+            {
+                printf("%#X ",reply[i]);
+            }
+            printf("\n");
 		}
 	
     }while( (attempt < 3) && (rx_length < 0));
