@@ -6,7 +6,6 @@
 \pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
 
 \f0\fs24 \cf0 @startuml\
-\
 actor Bruger\
 participant CentralComputer\
 participant Aktuatorenhed\
@@ -16,18 +15,20 @@ Bruger -> CentralComputer: Set setPoints\
 \
 loop while true\
 \
-        alt tid = 15 min\
+        alt Hvert kvarter\
+            CentralComputer -> Sensorenhed: get sensorRead\
+            Sensorenhed --> CentralComputer: sensorRead\
             CentralComputer -> Bruger: sensorData\
-            CentralComputer -> CentralComputer:check parameter\
-        else Regulering\
+        end\
+\
+            CentralComputer -> CentralComputer:check schedule\
+    \
             \
-            CentralComputer -> Sensorenhed: get value\
-            Sensorenhed --> CentralComputer: value\
+            CentralComputer -> Sensorenhed: get sensorRead\
+            Sensorenhed --> CentralComputer: sensorRead\
         \
             CentralComputer -> Aktuatorenhed: set output\
-        \
-        end\
+\
         \
 end\
-\
 @enduml}
