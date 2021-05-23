@@ -12,7 +12,6 @@
 
 class ADCBlokIF
 {
-//functions
 public:
 	ADCBlokIF();
 	uint16_t read(int channel);

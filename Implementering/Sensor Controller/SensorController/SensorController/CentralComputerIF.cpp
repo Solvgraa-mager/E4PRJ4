@@ -9,11 +9,13 @@
 #include "CentralComputerIF.h"
 #include "uart_int.hpp"
 
+
 // default constructor
 CentralComputerIF::CentralComputerIF()
 {
 	/***** Init UART and UART Interrupt *****/
-	InitUART(BAUDRATE,WORDLENGTH,1);
+	InitUART(9600,8,1);
+	sei();
 } //CentralComputerIF
 void CentralComputerIF::send(uint16_t value, uint8_t valid, uint8_t request)
 {
@@ -24,10 +26,23 @@ void CentralComputerIF::send(uint16_t value, uint8_t valid, uint8_t request)
 	SendChar(valid ? 0xFF : 0x00);
 	//Checksum-byte
 	SendChar((value+request) & 0xFF);
+	return; 
 }
 
 int CentralComputerIF::getRequest(){
-	return ReadChar();
+	char requestRaw = 0, requestDecoded = 0; 
+	requestRaw = ReadChar();
+	if(requestRaw == 0b00000001)
+		requestDecoded = 0; 
+	else if(requestRaw == 0b00000010)
+		requestDecoded = 1; 
+	else if(requestRaw == 0b00000100)
+		requestDecoded = 2; 
+	else if(requestRaw == 0b00001000)
+		requestDecoded = 3;
+	else 
+		requestDecoded = 255;
+	return requestDecoded;
 }
 
 // default destructor

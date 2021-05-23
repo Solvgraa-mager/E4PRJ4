@@ -6,25 +6,47 @@
  */ 
 
 #include <avr/io.h>
+#include <avr/sleep.h>
 #include "CentralComputerIF.h"
 #include "Timer.hpp"
 #include "ADCBlokIF.hpp"
 #include "led.hpp"
+#include "uart_int.hpp"
+#include <avr/interrupt.h>
+
+int ReceivedSem = 0; 
 
 int main(void)
 {
-	//DDRB |= 0b11110000;
+	CentralComputerIF CCIF;
 	ADCBlokIF ADCBlok;
-	CentralComputerIF CC;
-	Timer T;
-	
-	//For test only
-	//initLEDport();
-	DDRB |= (1<<4)|(1<<5)|(1<<6);
-	unsigned char answer = 0;
-    while (1) 
-    {
-		
-    }
+	int request = 0, readValue = 0;
+	volatile int i = 0; 
+	DDRB = 0xFF;
+	PORTB = 0b00000000;
+	while(1)
+	{
+		i++;
+		PORTB |= 0b10000000;
+		if(ReceivedSem == 1)
+		{
+			ReceivedSem = 0;
+			request = CCIF.getRequest();
+			readValue = ADCBlok.read(request);
+			CCIF.send(readValue,true,request);
+			_delay_ms(1);
+		}
+		PORTB &= ~(0b10000000);
+		//Sleep mode
+		cli();
+		sleep_enable();
+		sei();
+		sleep_cpu();
+		sleep_disable();
+	}
 }
 
+ISR(USART2_RX_vect)
+{
+	ReceivedSem = 1;
+}
