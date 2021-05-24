@@ -29,9 +29,12 @@ void SensorController::Run(){
 		if(ReceivedSem == 1)
 		{
 			ReceivedSem = 0;
+			PORTD |= 0b1;
 			request = CC_->getRequest();
+			
 			readValue = ADCBlok_->read(request);
 			CC_->send(readValue,true,request);
+			PORTD &= ~(0b1);
 			_delay_ms(1);
 		}
 		//Sleep mode
@@ -55,4 +58,5 @@ SensorController::~SensorController()
 ISR(USART2_RX_vect)
 {
 	ReceivedSem = 1;
+	
 }

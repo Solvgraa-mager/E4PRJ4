@@ -20,7 +20,7 @@ int main(void)
 	CentralComputerIF CCIF;
 	ADCBlokIF ADCBlok;
 	SensorController SC(&ADCBlok, &CCIF); 
-	
+	DDRD |= 0b1;
 	SC.Run();
 }
 

@@ -23,9 +23,10 @@ SensorController::SensorController(ADCBlokIF *ADCBlok, CentralComputerIF *CC)
 
 void SensorController::Run(){
 	int request = 0, readValue = 0;
-	
+	DDRB |= 0b10000000;
 	while(1)
 	{
+		PORTB |= 0b10000000;
 		if(ReceivedSem == 1)
 		{
 			ReceivedSem = 0;
@@ -35,6 +36,7 @@ void SensorController::Run(){
 			_delay_ms(1);
 		}
 		//Sleep mode
+		PORTB &= ~(0b10000000);
 		Sleep();
 	}
 }
