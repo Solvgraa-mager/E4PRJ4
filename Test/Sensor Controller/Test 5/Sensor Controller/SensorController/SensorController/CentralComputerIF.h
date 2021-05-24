@@ -9,10 +9,7 @@
 #ifndef __CENTRALCOMPUTERIF_H__
 #define __CENTRALCOMPUTERIF_H__
 #include <stdint-gcc.h>
-
-//UART DEFINES
-#define BAUDRATE 9600
-#define WORDLENGTH 8
+#include <avr/interrupt.h>
 
 class CentralComputerIF
 {

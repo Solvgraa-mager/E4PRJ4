@@ -12,7 +12,5 @@ main.cpp
 
 SensorController.cpp
 
-Timer.cpp
-
 uart_int.cpp
 

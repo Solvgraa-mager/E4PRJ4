@@ -42,7 +42,6 @@ C_SRCS +=  \
 ../led.cpp \
 ../main.cpp \
 ../SensorController.cpp \
-../Timer.cpp \
 ../uart_int.cpp
 
 
@@ -58,7 +57,6 @@ CentralComputerIF.o \
 led.o \
 main.o \
 SensorController.o \
-Timer.o \
 uart_int.o
 
 OBJS_AS_ARGS +=  \
@@ -67,7 +65,6 @@ CentralComputerIF.o \
 led.o \
 main.o \
 SensorController.o \
-Timer.o \
 uart_int.o
 
 C_DEPS +=  \
@@ -76,7 +73,6 @@ CentralComputerIF.d \
 led.d \
 main.d \
 SensorController.d \
-Timer.d \
 uart_int.d
 
 C_DEPS_AS_ARGS +=  \
@@ -85,7 +81,6 @@ CentralComputerIF.d \
 led.d \
 main.d \
 SensorController.d \
-Timer.d \
 uart_int.d
 
 OUTPUT_FILE_PATH +=SensorController.elf
@@ -131,13 +126,6 @@ LINKER_SCRIPT_DEP+=
 	
 
 ./SensorController.o: .././SensorController.cpp
-	@echo Building file: $<
-	@echo Invoking: AVR8/GNU C Compiler : 5.4.0
-	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-g++.exe$(QUOTE) -funsigned-char -funsigned-bitfields -DDEBUG  -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.3.300\include"  -O1 -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -mrelax -g2 -Wall -mmcu=atmega2560 -B "C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.3.300\gcc\dev\atmega2560" -c -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
-	@echo Finished building: $<
-	
-
-./Timer.o: .././Timer.cpp
 	@echo Building file: $<
 	@echo Invoking: AVR8/GNU C Compiler : 5.4.0
 	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-g++.exe$(QUOTE) -funsigned-char -funsigned-bitfields -DDEBUG  -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.3.300\include"  -O1 -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -mrelax -g2 -Wall -mmcu=atmega2560 -B "C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.3.300\gcc\dev\atmega2560" -c -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 

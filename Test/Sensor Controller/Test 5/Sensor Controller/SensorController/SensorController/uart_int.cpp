@@ -30,20 +30,20 @@ void InitUART(unsigned long BaudRate, unsigned char DataBit, unsigned char Rx_In
 	if ((BaudRate >= 300) && (BaudRate <= 115200) && (DataBit >=5) && (DataBit <= 8))
 	{
 		// "Normal" clock, no multiprocessor mode (= default)
-		UCSR1A = 0b00100000;
+		UCSR2A = 0b00100000;
 		// No interrupts enabled
 		// Receiver enabled
 		// Transmitter enabled
 		// No 9 bit operation
-		UCSR1B = 0b00011000;
+		UCSR2B = 0b00011000;
 		// Asynchronous operation, 1 stop bit
 		// Bit 2 and bit 1 controls the number of data bits
-		UCSR1C = (DataBit-5)<<1;
+		UCSR2C = (DataBit-5)<<1;
 		// Set Baud Rate according to the parameter BaudRate:
 		// Adding (8*Baudrate) ensures correct rounding (up/down)
-		UBRR1 = (XTAL+(8*BaudRate))/(16*BaudRate) - 1;
+		UBRR2 = (XTAL+(8*BaudRate))/(16*BaudRate) - 1;
 		//Hvis Rx_Int er 0 skal UART modtager-interupt være disabled, hvis Rx_Int (!= 0) skal UART modtager-interupt være enabled
-		UCSR1B |= ((Rx_Int == 0) ? 0 : (1<<7));
+		UCSR2B |= ((Rx_Int == 0) ? 0 : (1<<7));
 	}
 }
 /*************************************************************************
@@ -52,7 +52,7 @@ void InitUART(unsigned long BaudRate, unsigned char DataBit, unsigned char Rx_In
 *************************************************************************/
 unsigned char CharReady()
 {
-	return UCSR1A & (1<<7);
+	return UCSR2A & (1<<7);
 }
 
 /*************************************************************************
@@ -62,10 +62,10 @@ Then this character is returned.
 char ReadChar()
 {
   // Wait for new character received
-  while ( (UCSR1A & (1<<7)) == 0 )
+  while ( !(UCSR2A & (1<<RXC2)) )
   {}
   // Then return it
-  return UDR1;
+  return UDR2;
 }
 
 /*************************************************************************
@@ -77,10 +77,10 @@ Parameter :
 void SendChar(char Tegn)
 {
   // Wait for transmitter register empty (ready for new character)
-  while ( (UCSR1A & (1<<5)) == 0 )
+  while ( (UCSR2A & (1<<UDRE2)) == 0 )
   {}
   // Then send the character
-  UDR1 = Tegn;
+  UDR2 = Tegn;
 }
 
 /*************************************************************************
@@ -114,7 +114,7 @@ void SendInteger(int Tal)
 }
 void SendCharSW(char Tegn)
 {
-	UCSR1B = 0;
+	UCSR2B = 0;
 }
 
 /************************************************************************/

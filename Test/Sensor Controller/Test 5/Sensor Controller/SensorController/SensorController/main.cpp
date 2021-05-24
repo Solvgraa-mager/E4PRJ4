@@ -6,25 +6,22 @@
  */ 
 
 #include <avr/io.h>
+
 #include "CentralComputerIF.h"
-#include "Timer.hpp"
+#include "SensorController.h"
 #include "ADCBlokIF.hpp"
 #include "led.hpp"
+#include "uart_int.hpp"
+
+
 
 int main(void)
 {
-	//DDRB |= 0b11110000;
+	CentralComputerIF CCIF;
 	ADCBlokIF ADCBlok;
-	CentralComputerIF CC;
-	Timer T;
+	SensorController SC(&ADCBlok, &CCIF); 
 	
-	//For test only
-	//initLEDport();
-	DDRB |= (1<<4)|(1<<5)|(1<<6);
-	unsigned char answer = 0;
-    while (1) 
-    {
-		
-    }
+	SC.Run();
 }
+
 

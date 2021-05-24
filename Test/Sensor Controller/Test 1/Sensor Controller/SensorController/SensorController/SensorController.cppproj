@@ -198,12 +198,6 @@
     <Compile Include="SensorController.h">
       <SubType>compile</SubType>
     </Compile>
-    <Compile Include="Timer.cpp">
-      <SubType>compile</SubType>
-    </Compile>
-    <Compile Include="Timer.hpp">
-      <SubType>compile</SubType>
-    </Compile>
     <Compile Include="uart_int.cpp">
       <SubType>compile</SubType>
     </Compile>

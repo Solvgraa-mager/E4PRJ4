@@ -10,6 +10,7 @@
 #include <AVR/io.h>
 #define F_CPU 16000000
 #include <util/delay.h>
+#include "uart_int.hpp"
 
 // default constructor
 ADCBlokIF::ADCBlokIF()
@@ -39,19 +40,20 @@ uint16_t ADCBlokIF::read(int channel){
 	uint8_t answer[3] = {0};
 	request[0] |= (1 << 1) | (1 << 2);
 	request[1] |= (channel << 6);
+	request[2] = 0xFF;
+	PORTB &= ~(0b1); //SS low
 	answer[0] = SPI(request[0]);
 	answer[1] = SPI(request[1]);
 	answer[2] = SPI(request[2]);
-	
-	return ((answer[1] & 0xF) << 8 | (answer[2]))  
+	PORTB |= 0b1; //SS high
+	return ((answer[1]) << 8 | (answer[2]));  
 }
 
 uint8_t ADCBlokIF::SPI(uint8_t temp){
-	//PORTB &= ~(0b1) //SS low
+	
 	SPDR = temp; 
 	while(!(SPSR & (1<<SPIF)));
-	//PORTB |= 0b1 //SS high
-	return SPSR;
+	return SPDR;
 }
 
 // default destructor
