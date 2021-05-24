@@ -21,7 +21,10 @@ int main(void)
 	ADCBlokIF ADCBlok;
 	SensorController SC(&ADCBlok, &CCIF); 
 	
-	SC.Run();
+	for(int i = 0; i < 0xFFFF : i++){
+		CentralComputerIF.send(i,(i%2),(i%4))
+	}
+	//SC.Run();
 }
 
 

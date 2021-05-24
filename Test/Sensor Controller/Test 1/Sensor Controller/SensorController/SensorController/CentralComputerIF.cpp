@@ -19,7 +19,6 @@ CentralComputerIF::CentralComputerIF()
 } //CentralComputerIF
 void CentralComputerIF::send(uint16_t value, uint8_t valid, uint8_t request)
 {
-	
 	SendChar(value >> 8); //Data MSB
 	SendChar(value & 0xFF); //Data LSB
 	SendChar(valid ? 0xFF : 0x00); //Control
@@ -31,14 +30,26 @@ int CentralComputerIF::getRequest(){
 	char requestRaw = 0, requestDecoded = 0; 
 	requestRaw = ReadChar();
 	
-	if(requestRaw == 0b00000001)
-		requestDecoded = 0; 
-	else if(requestRaw == 0b00000010)
+	if(requestRaw == 0b00000001){
+		requestDecoded = 0;
+		PORTB &= ~(0b11110000);
+		PORTB |= (1<< 4);
+		}
+	else if(requestRaw == 0b00000010){
 		requestDecoded = 1; 
-	else if(requestRaw == 0b00000100)
+		PORTB &= ~(0b11110000);
+		PORTB |= (0b10 << 4);
+	}
+	else if(requestRaw == 0b00000100){
 		requestDecoded = 2; 
-	else if(requestRaw == 0b00001000)
+		PORTB &= ~(0b11110000);
+		PORTB |= (0b100 << 4);
+	}
+	else if(requestRaw == 0b00001000){
 		requestDecoded = 3;
+		PORTB &= ~(0b11110000);
+		PORTB |= (0b1000 << 4);
+	}
 	else 
 		requestDecoded = 255;
 		

@@ -24,6 +24,8 @@ SensorController::SensorController(ADCBlokIF *ADCBlok, CentralComputerIF *CC)
 void SensorController::Run(){
 	int request = 0, readValue = 0;
 	
+	DDRB |= 0b11110000;
+	
 	while(1)
 	{
 		if(ReceivedSem == 1)
