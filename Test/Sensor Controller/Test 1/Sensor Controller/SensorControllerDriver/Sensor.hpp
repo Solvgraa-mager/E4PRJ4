@@ -33,11 +33,11 @@ public:
     uint16_t readRaw();
     void setOffset(long double offset);
     void setFactor(long double factor);
+    int sendRequest(int fd);
     ~Sensor();
 private:
     int setConfig();
     int setupUART();
-    int sendRequest(int fd);
     int receiveAnswer(int fd, uint16_t &value);
     int sensorNumber_;
     sensorConversionTable SCT_;

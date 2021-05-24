@@ -1,6 +1,11 @@
 
 #include "Sensor.hpp"
 #include "Exception.hpp"
+#include <chrono>
+
+using namespace std::chrono;
+using time_stamp = std::chrono::time_point<std::chrono::system_clock,
+                                           std::chrono::microseconds>;
 
 Sensor::Sensor(int sensorNumber, string configPath) :
     configPath_(configPath), sensorNumber_(sensorNumber), configEditTime_(0)
@@ -54,7 +59,7 @@ int Sensor::setConfig()
                 break;
             }
         }
-        cout << "Sensor " << sensorNumber_ << ": Offset = " << SCT_.offset_ << " Factor = " << SCT_.factor_ << endl; 
+        //cout << "Sensor " << sensorNumber_ << ": Offset = " << SCT_.offset_ << " Factor = " << SCT_.factor_ << endl; 
     }
 
     return (err < 0 ? 0 : 1); 
@@ -104,6 +109,9 @@ uint16_t Sensor::readRaw(){
     /**** Allocations ****/
     int attempt = 0, err = 0, filedescriptor, readErr; 
     
+    time_stamp ts_start, ts_stop;
+    uint64_t   ts_difference;
+
     uint16_t value = 0; 
     
     setConfig(); //Check if new calibration data
@@ -115,12 +123,26 @@ uint16_t Sensor::readRaw(){
         attempt++; //Increment attempt-count
 
         filedescriptor = open("/dev/ttyS0", O_RDWR | O_NOCTTY | O_NDELAY);
-
+        
+        
+        
+        
+        ts_start      = time_point_cast<microseconds>(system_clock::now());
         sendRequest(filedescriptor); //Send request encoded
         
         usleep(10000); //Wait for reply according to protocol
 
         readErr = receiveAnswer(filedescriptor,value); //Read and parse reply
+        ts_stop       = time_point_cast<microseconds>(system_clock::now());
+
+        ts_difference = ts_stop.time_since_epoch().count() -
+        ts_start.time_since_epoch().count();
+        cout << "; value: " << value;
+        cout << "; ts_start: " << ts_start.time_since_epoch().count();
+        cout << "; ts_stop: " << ts_stop.time_since_epoch().count();
+        cout << "; ts_difference: " << ts_difference;
+        cout << endl << endl;
+
         
     }while((attempt < 3) && !readErr);
 

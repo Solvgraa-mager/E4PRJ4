@@ -9,18 +9,12 @@ int main(void){
 
     try
     {
-        Sensor S0(0,"testConfig.txt");
-        S0.sensorRead();
+        for(int i = 0; i<4;i++){
+        Sensor S0(i,"testConfig.txt");
+        cout << S0.sensorRead() << endl; 
         sleep(3);
-        Sensor S1(1,"testConfig.txt");
-        S0.sensorRead();
-        sleep(3);
-        Sensor S2(2,"testConfig.txt");
-        S0.sensorRead();
-        sleep(3);
-        Sensor S3(3,"testConfig.txt");
-        S0.sensorRead();
-        sleep(3);
+        }
+
     }
     catch(const Exception& e)
     {

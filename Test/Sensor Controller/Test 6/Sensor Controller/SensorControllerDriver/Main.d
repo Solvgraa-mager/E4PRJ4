@@ -1,2 +1,2 @@
-Main.d: Main.cpp Sensor.hpp Exception.hpp
-Main.o: Main.cpp Sensor.hpp Exception.hpp
+Main.d: Main.cpp Exception.hpp Sensor.hpp
+Main.o: Main.cpp Exception.hpp Sensor.hpp

@@ -13,7 +13,7 @@ int main(void){
         for(int i = 0; i<100; i++)
         {
             cout << "Reading: " << S0.sensorRead() << endl;
-            usleep(50000);
+            usleep(1000000);
         }
     }
     catch(const Exception& e)

@@ -10,7 +10,7 @@ int main(void){
     try
     {
         Sensor S0(0,"testConfig.txt");
-        for(int i = 0; i<100; i++)
+        for(int i = 0; i<100; )
         {
             cout << "Reading: " << S0.sensorRead() << endl;
             usleep(50000);

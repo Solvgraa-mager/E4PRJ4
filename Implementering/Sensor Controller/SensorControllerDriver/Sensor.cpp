@@ -2,7 +2,6 @@
 #include "Sensor.hpp"
 #include "Exception.hpp"
 
-
 Sensor::Sensor(int sensorNumber, string configPath) :
     configPath_(configPath), sensorNumber_(sensorNumber), configEditTime_(0)
 {
@@ -28,8 +27,8 @@ int Sensor::setConfig()
 
     err = stat(configPath_.c_str(), &attr);
     if (err < 0){
-        cout << "setConfig: stat returned " << err << endl;
-        cout << "setConfig: errno :" << errno << endl;  
+        cout << "setConfig: stat returned " << err << " with errno: " << errno << endl;
+        return 0; 
     }
 
     if (configEditTime_ != attr.st_mtim.tv_sec)
@@ -52,6 +51,7 @@ int Sensor::setConfig()
             {
                 setOffset(stold(offset));
                 setFactor(stold(factor));
+                break;
             }
         }
         cout << "Sensor " << sensorNumber_ << ": Offset = " << SCT_.offset_ << " Factor = " << SCT_.factor_ << endl; 
@@ -68,11 +68,12 @@ int Sensor::setupUART(){
     filedescriptor = open("/dev/ttyS0", O_RDWR | O_NOCTTY | O_NDELAY);
     if (filedescriptor < 0)
 	{
-		printf("Error - Unable to open UART.\n");
-        return err; 
+		cout << "Error - Unable to open UART." << endl; 
+        return err;
 	}
-    tcgetattr(filedescriptor, &options);
-    options.c_cflag &= ~PARENB; // Clear parity bit, disabling parity (most common)
+    tcgetattr(filedescriptor, &options); //Get attributes
+    /**** UART Options ****/
+    options.c_cflag &= ~PARENB; // Clear parity bit, disabling parity
     options.c_cflag &= ~CSTOPB; // Clear stop field, only one stop bit used in communication
     options.c_cflag &= ~CSIZE; // Clear all the size bits
     options.c_cflag |= CS8;
@@ -91,8 +92,8 @@ int Sensor::setupUART(){
     cfsetispeed(&options, B9600);
     cfsetospeed(&options, B9600);
 
-	//tcflush(filedescriptor, TCIFLUSH);
-	err = tcsetattr(filedescriptor, TCSANOW, &options);
+	//tcflush(filedescriptor, TCIFLUSH); //Flush UART receive buffer
+	err = tcsetattr(filedescriptor, TCSANOW, &options); //Set attributes
     
     close(filedescriptor);
 
@@ -100,69 +101,92 @@ int Sensor::setupUART(){
 }
 
 uint16_t Sensor::readRaw(){
-    int attempt = 0, err = 0, rv = 0, filedescriptor; 
-    unsigned char requestEncoded = 0, kontrol = 0, checksum = 0xFF;
-    uint16_t value = 0; 
-    char reply[1000];
-    int rx_length = 0; 
-
-    setConfig();
-
-    requestEncoded = (1 << (sensorNumber_));
+    /**** Allocations ****/
+    int attempt = 0, err = 0, filedescriptor, readErr; 
     
+    uint16_t value = 0; 
+    
+    setConfig(); //Check if new calibration data
+
     do{
         if (attempt == 0)
-            usleep(20000);
+            usleep(20000); //Protocol flow control
         
-        attempt++; 
+        attempt++; //Increment attempt-count
+
         filedescriptor = open("/dev/ttyS0", O_RDWR | O_NOCTTY | O_NDELAY);
-        tcflush(filedescriptor,TCIOFLUSH);
-        err = write(filedescriptor, &requestEncoded, 1);
-        if (err < 0)
-        {
-           printf("Write error! Errno: %i\n", errno); 
-           perror("Write error: ");
-        }
-        usleep(15000); //According to protocol
+
+        sendRequest(filedescriptor); //Send request encoded
         
-        memset(&reply, '\0', sizeof(reply));
+        usleep(10000); //Wait for reply according to protocol
 
-		rx_length = read(filedescriptor, &reply, sizeof(reply));
+        readErr = receiveAnswer(filedescriptor,value); //Read and parse reply
+        
+    }while((attempt < 3) && !readErr);
 
-		if (rx_length < 0)
+    close(filedescriptor);
+
+    return value; 
+}
+
+int Sensor::receiveAnswer(int fd, uint16_t &value){
+    int rx_length = 0;
+    char reply[256] = {0};
+    unsigned char kontrol = 0, checksum = 0xFF;
+
+    rx_length = read(fd, &reply, sizeof(reply)); //Get reply
+
+		if (rx_length < 0) //Error handling
 		{
-			printf("Nothing to read from UART\n",rx_length);
-            printf("Errno: %i\n", errno); 
+            printf("UART: Errno: %i\n", errno); 
+            return false; //UART Error 
 		}
-		else if (rx_length == 0)
+		else if (rx_length == 0) //No bytes in UART
 		{
 			printf("No bytes read in UART\n");
+            return false; 
 		}
-        else if(rx_length == 4)
+        else if(rx_length == 4) //Answer according to protocol
         {
+            /*** Parse answer ***/
             value = ((reply[0]<<8) + reply[1]);
             kontrol = reply[2];
             checksum = reply[3];
 
             if(kontrol != 0xFF)
             {
-                cout << "Invalid read!" << endl; 
+                cout << "Invalid read!" << endl;
+                return false;
             }
             if(checksum != ((value+sensorNumber_) & 0xFF))
             {
                 cout << "Checksum not correct" << endl; 
+                return false; 
             }
+            return true; 
         }
 		else
 		{
 			cout << "Unparsable msg" << endl; 
-            value = -1;
+            return false; 
 		}
-    }while((attempt < 3) && (kontrol != 0xFF) && (checksum != ((value+sensorNumber_) & 0xFF)));
+}
 
-    close(filedescriptor);
-
-    return value; 
+int Sensor::sendRequest(int fd){
+    unsigned char requestEncoded; 
+    int err; 
+    
+    requestEncoded = (1 << (sensorNumber_)); //Request one-hot encoding
+    
+    tcflush(fd,TCIOFLUSH); //Flush UART receive buffer
+    
+    err = write(fd, &requestEncoded, 1); //Write request
+        if (err < 0)
+        {
+           printf("Write error! Errno: %i\n", errno); 
+           perror("Write error: ");
+        }
+    return err; 
 }
 
 double Sensor::sensorRead(){

@@ -37,6 +37,8 @@ public:
 private:
     int setConfig();
     int setupUART();
+    int sendRequest(int fd);
+    int receiveAnswer(int fd, uint16_t &value);
     int sensorNumber_;
     sensorConversionTable SCT_;
 

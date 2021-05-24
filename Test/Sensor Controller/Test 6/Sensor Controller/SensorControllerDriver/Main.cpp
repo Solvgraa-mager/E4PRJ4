@@ -1,24 +1,29 @@
-#include "Sensor.hpp"
 #include "Exception.hpp"
+#include "Sensor.hpp"
+#include <chrono>
 #include <iostream>
 #include <unistd.h>
 
 using namespace std;
 
-int main(void){
 
-    try
+int main(void)
+{
+  cout << "Test 6, Channel 0 active" << endl;
+  try
+  {
+    
+    for (int i = 0; i < 1000; i++)
     {
-        Sensor S0(0,"testConfig.txt");
-        for(int i = 0; i<100; i++)
-        {
-            cout << "Reading: " << S0.sensorRead() << endl;
-            usleep(50000);
-        }
+        Sensor S0((i%4), "testConfig.txt");
+        cout << "Run #"<< i; 
+        S0.sensorRead(); 
+        usleep(50000);
     }
-    catch(const Exception& e)
-    {
-        std::cerr << e.getError() << '\n';
-    }
-    return 0; 
+  }
+  catch (const Exception &e)
+  {
+    std::cerr << e.getError() << '\n';
+  }
+  return 0;
 }
