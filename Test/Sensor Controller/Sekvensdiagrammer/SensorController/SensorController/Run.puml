@@ -1,0 +1,69 @@
+@startuml SDtestSensorControllerRun
+title "Test: SensorController::run()"
+
+skinparam shadowing false
+skinparam MaxMessageSize 10000
+
+actor UART as "UART Sniffer" 
+participant CCIF as "CentralComputerIF"
+participant Test as "SensorController"
+participant ADC as "ADCBlokIF"
+actor Pin as "Pin"
+
+sprite $interruptzigzag [16x16/16] {
+    0000000000000000
+    0000000000000000
+    0000000000000000
+    0000000000000000
+    000FFFFFFFFFFF00
+    000000000000F000
+    00000000000F0000
+    0000000000F00000
+    000000000F000F00
+    00000000F00000F0
+    0000000FFFFFFFFF
+    00000000000000F0
+    0000000000000F00
+    0000000000000000
+    0000000000000000
+    0000000000000000
+    }
+== Initialization ==
+Test -> Test : Init()
+Test -> Test : Run()
+== Run() ==
+loop  power on
+... Sleeping until request ...
+UART -> Test : Request <$interruptzigzag>
+activate Test 
+Test -> Pin : Test-Pin = 1
+Test -> CCIF : getRequest()
+deactivate Test
+activate CCIF
+CCIF --> Test : SensorNo
+deactivate CCIF 
+deactivate ADC
+activate Test
+Test -> ADC : read(SensorNo)
+deactivate Test
+activate ADC 
+ADC --> Test : value
+deactivate ADC 
+activate Test 
+Test -> CCIF : send(value)
+activate CCIF
+CCIF -> UART : value
+Test -> Pin : Test-Pin = 0
+CCIF --> Test : 
+deactivate Test
+deactivate CCIF
+Test -> Test : Sleep()
+end loop
+
+
+
+
+
+
+
+@enduml

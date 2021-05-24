@@ -1,0 +1,20 @@
+@startuml SDtestADCBlokIFRead
+title "Test: ADCBlokIF::read()"
+
+actor "UART Sniffer" as UART
+participant "Test" as Test
+participant "ADCBlokIF" as CCIF
+actor "PWM" as PWM
+
+Test -> UART : "Test start channel x"
+
+loop for (i = 0:100)
+    Test -> PWM : PWM = i
+    PWM --> Test : 
+    Test -> ADCBlokIF : read()
+    ADCBlokIF --> Test : value
+    Test -> UART : "PWM%: i, VALUE: value"
+    Test -> Test : 50ms 
+end loop
+
+@enduml
