@@ -6,24 +6,22 @@
 \pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
 
 \f0\fs24 \cf0 @startuml\
-title: Use Case 5 --- Hent data\
-\
+title Sekvensdiagram for UseCase 5\
 actor Bruger\
-participant Webbrowser\
-participant UC5\
-participant Logfil\
+participant Website <<HTML>>\
+participant UC5 <<PHP>>\
+participant akvarieDB <<Database>>\
 \
-Bruger -> Webbrowser: types in start date\
-Bruger -> Webbrowser: types in end date\
-Bruger -> Webbrowser: Presses "Gem Data"\
-Webbrowser -> UC5: sends data request\
-UC5 -> UC5: validate requested data\
+Bruger -> Website: chooses start timeStamp\
+Bruger -> Website: chooses end timeStamp\
+Bruger -> Website: 'Download'\
+Website -> UC5: redirect to download.php\
+UC5 -> UC5: read selected timeStamps\
 activate UC5\
-UC5 -> Logfil: get earliest and latest sample\
-Logfil --> UC5: sampledates\
-UC5 -> UC5: compare\
-UC5 -> Logfil: request CSV - file\
-Logfil --> UC5: CSV-file\
-deactivate UC5\
-UC5 -> Webbrowser: sends CSV - file\
+\
+UC5 -> akvarieDB: SQLcmd"SELECT * FROM..."\
+akvarieDB --> UC5: dataArray[]\
+\
+UC5 -> UC5: generate .csv \
+UC5 -> Website: redirect to 'homepage.php'\
 @enduml}
