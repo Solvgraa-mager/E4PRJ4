@@ -215,5 +215,16 @@ Team AE:
 
 ##### Agenda:
   1. Testafsnit fremvises og gruppen kommer med kommentarer 
+ 
+### Sidste vejledermøde
+##### Dato: 26/05/2021
+##### Tidspunkt: 10:00 - 12:00
+###### Mødeleder: 
+###### Referent: 
+   
+##### Agenda: 
+   1. Kan vi overskrive floats på metode-beskrivelserne, de flyver rundt. 
+   
+
   
 
