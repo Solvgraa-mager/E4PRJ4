@@ -9,30 +9,22 @@
 title: Use Case 6 --- Opdat\'e9r Schedule\
 \
 actor Bruger\
-participant Webbrowser\
-participant UC6\
-participant init.ini\
+participant Website <<HTML>>\
+participant UC6 <<PHP>>\
+participant akvarieDB <<Database>>\
 \
-Bruger -> Webbrowser: Chooses parameter to edit\
-Webbrowser -> UC6: get current schedule for param\
-UC6 -> init.ini: read schedule\
-init.ini --> Webbrowser: display schedule\
-Bruger -> Webbrowser: write input "Opdat\'e9r schedule"\
-Webbrowser -> UC6: sends schedule request\
+Bruger -> Website: Choose parameter to edit\
+Bruger -> Website: write wished setpoint\
+Bruger -> Website: Choose wished timerinterval\
+Bruger -> Website: 'Update'\
 \
-UC6 -> UC6: valdiating request\
-activate UC6\
+Website -> UC6: redirect to 'changeSetpoint.php'\
 \
-UC6 -> init.ini: read schedule\
-init.ini --> UC6: schedule\
+UC6 -> UC6: read and process userinputs\
 \
-UC6 -> UC6: compare schedules\
-deactivate UC6\
+UC6 -> akvarieDB: SQLcmd"UPDATE setpoints WHERE..."\
 \
-alt compare == OK\
-UC6 -> init.ini: set new schedule\
-UC6 -> Webbrowser: display new schedule\
-else compare != OK\
-UC6 -> Webbrowser: popup message "invalid input"\
-end\
+akvarieDB --> UC6: OK\
+\
+UC6 -> Website: redirect to "homepage.php"\
 @enduml}
