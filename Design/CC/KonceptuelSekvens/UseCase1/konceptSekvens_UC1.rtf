@@ -7,30 +7,33 @@
 
 \f0\fs24 \cf0 @startuml\
 actor Bruger\
-participant Init.ini\
-participant installWizard\
-participant UC1\
-participant Timers\
+participant akvarieDB\
 participant Lysindikator\
+participant UC1\
+participant network.conf\
+participant installWizard\
+\
 \
 Bruger -> UC1: Presses ON button\
 UC1 -> Lysindikator: Turns green light ON\
-UC1 -> Init.ini: check init-file\
+UC1 -> network.conf: check network.conf\
 activate UC1\
-activate Init.ini\
+activate network.conf\
 \
-alt init-file exists\
-Init.ini --> UC1: true\
-deactivate UC1\
-deactivate Init.ini\
+alt network.conf exists\
+network.conf --> UC1: true\
 \
-else init-file doesn't exists\
+else network.conf doesn't exists\
 \
-Init.ini --> UC1: false\
+network.conf --> UC1: false\
+deactivate network.conf\
 \
 UC1 -> Lysindikator: Turns red light ON\
 \
 UC1 -> installWizard: run\
+rnote right installWizard\
+**external program**\
+endrnote\
 activate UC1\
 activate installWizard\
 \
@@ -39,19 +42,20 @@ deactivate UC1\
 deactivate installWizard\
 \
 UC1 -> UC1 : reboot\
+deactivate UC1\
 \
 end\
 \
-UC1 -> Timers: start timers\
-activate Timers\
+UC1 -> UC1: initiating threads\
+activate UC1\
 \
 UC1 -> UC1: Start GUI\
 rnote right UC1\
-**GUI may be up and running py Apache automatically**\
+**GUI is up and running py Apache automatically**\
 endrnote\
 \
 loop while true\
-note over UC1 : Timers interrupts accure in while loop\
+note over UC1 : stay here forever\
 end\
-deactivate Timers\
+deactivate UC1\
 @enduml}
