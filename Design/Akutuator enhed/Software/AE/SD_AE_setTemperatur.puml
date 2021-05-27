@@ -1,0 +1,20 @@
+@startuml SD_AE_setTemperature
+title Aktuatorenhed::setTemperature(temperature)
+
+participant "UC3" as u
+participant Aktuatorenhed as a
+participant PI as p
+
+loop every 15 minuts
+    u -> a : setTemperature(temperature)
+    activate a
+    a -> p : setSetpoint(temperature)
+    a <-- p
+    a -> p : rateLimiter()
+    a <-- p 
+    u <-- a
+    deactivate a
+end
+
+
+@enduml

@@ -1,0 +1,38 @@
+@startuml SD_PI_calculate
+title int PI::calculate(double measured, double resultBuffer)
+
+participant Aktuatorenhed as a
+participant PI
+
+
+a -> PI : calculate(measured, resultBuffer)
+
+PI -> PI : error = _setpoint - measured
+
+PI -> PI : integral = (_Ts/2)*(error+_preError)+_preIntegral
+note right : udregning af\nintegrale
+PI -> PI : proportional = error
+note right : udregning af\nproportional
+PI -> PI : controlSignal = _Kp*(proportional+(1/_Ti)*integral)
+note right : udregning af\nstyresignal
+
+opt controlSignal < _minOut
+    PI -> PI : controlSignal = _minOut
+end
+note right : Max, Min afgrænsninger.\n0-100% dutycycle
+opt controlSignal > _maxOut
+    PI -> PI : controlSignal = _maxOut
+end
+PI -> PI :resultBuffer = controlSignal
+note right : return result
+PI -> PI : _preError = error\n_preIntegrale=integrale
+note right : Opdater hukommelse for\nerror og integral
+
+alt _out == _minOut
+PI --> a : return -1
+else _out == _maxOut
+PI --> a : return -2
+end
+PI --> a : return 0
+
+@enduml

@@ -1,0 +1,25 @@
+@startuml SD_Varmelegme_con_destructor
+title Varmelegeme::Varmelegeme(int GPIO) 
+participant Aktuatorenhed as a
+participant Varmelegeme as v
+actor OS as o
+
+== Constructor ==
+create v
+a -> v : Varmelegeme(int GPIO) 
+v -> o : inti(GPIO)
+note right o: Initialisere PWM-GPIO port
+v <-- o 
+a <-- v
+
+== Destructor == 
+
+a -> v : ~Varmelegeme(int GPIO) 
+
+v -> o : terminate(GPIO)
+note right o: frigiver PWM-GPIO port
+v <-- o 
+a <-- v
+destroy v
+
+@enduml

@@ -1,0 +1,24 @@
+@startuml SD_Pumpe_activate_deactivatePumpe
+
+participant Aktuatorenhed as a
+participant Pumpe as p
+actor OS as o
+title Pumpe::activatePumpe(dutycycle)\nPumpe::deactivatePumpe()
+
+== Activate == 
+
+a -> p : activatePump(dutycycle)
+p -> o : setDutycycle(_GPIO, dutycycle)
+note right o: Indstiller mikrocontrollerens\nGPIO port, pumpen er til-\nkoblet, til at switche med\n den valgte dutycycle.
+p <-- o
+a <-- p
+
+== Deactivate ==
+
+a -> p : deactivatePump()
+p -> o : setDutycycle(_GPIO, 0)
+p <-- o
+a <-- p
+
+
+@enduml

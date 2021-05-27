@@ -1,0 +1,72 @@
+@startuml AE_Klaseediagram
+class "Aktuatorenhed" as a
+{
+    - _volume: double
+    - _saltKonc : double
+    - _saltPumpe : Pumpe*
+    - _demiPumpe : Pumpe*
+    - _toemPumpe : Pumpe*
+    - _varmelegeme : Varmelegeme*
+    - _PI : PI*
+
+    + Aktuatorenhed(double volume, double saltKonc)
+    + setTemperature(temperature) : int 
+    + setPsu(double setPsu, double currentPsu, double maxPsuChange) : int 
+    + setWaterLevel(double setWaterLevel, double currentWaterLevel, double currentPsu) : int   
+    ~ ~Aktuatorenhed()
+
+    # addPsu(double amountPsuToAdd) : int 
+    # substractPsu(double amountPsuToSubstract, double currentPsu) : int
+    # addWater(double ml, double currentPsu) : int
+    # removeWater(double ml) : int 
+    # updateTemperature(double currentTemperature) : int
+}
+
+class "Varmelegeme" as v
+{
+    -_GPIO
+    
+    +Varmelegeme(int GPIO)
+    +setDutycycle(double dutycycle) : void
+    ~ ~Varmelegeme(int GPIO)
+}
+
+class "Pumpe" as p
+{
+    -GPIO
+
+    +Pumpe(ing GPIO)
+    +activatePump(int dutycycle) : void
+    +deactivatePump(): void
+     ~ ~Pumpe() 
+}
+
+class "PI" as pi
+{
+    -_Kp : double
+    -_Ti : double
+    -_Ts : double
+    -_minOut : double
+    -_maxOut : double
+    -_preError : double
+    -_preIntegral : double
+    -_setpoint : double
+    -_oldSetpoint : double
+    -_newSetpoint : double
+
+    + PI(double Kp, double Ti, double Ts, double minOut, double maxOut)
+    + calculate(double measured, double resultBuffer) : int
+    + rateLimiter() : void
+}
+
+
+class "UC3" as u
+
+pi -- a
+p - a
+a - v
+a -- u
+
+
+
+@enduml

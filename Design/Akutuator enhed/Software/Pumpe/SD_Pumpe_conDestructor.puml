@@ -1,0 +1,29 @@
+@startuml SD_Pumpe_con_destructor
+title Pumpe::Pumpe(int GPIO)
+participant Aktuatorenhed as a
+participant Pumpe as p
+actor OS as o
+
+== Constructor ==
+create p
+a -> p : Pumpe(int GPIO) 
+p -> o : inti(GPIO)
+activate o
+note right o: Initialisere PWM-GPIO port
+p <-- o 
+deactivate o
+p -> o : setDutycycle(0)
+p <-- o
+a <-- p
+
+== Destructor == 
+
+a -> p : ~Pumpe() 
+
+p -> o : terminate(GPIO)
+note right o: frigiver PWM-GPIO port
+p <-- o 
+a <-- p
+destroy p
+
+@enduml

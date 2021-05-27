@@ -6,20 +6,34 @@
 \pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
 
 \f0\fs24 \cf0 @startuml\
-title: Use Case 4 --- Kalibrer\
+title: Use Case 4 --- Kalibr\'e9r\
 \
 actor Bruger\
-participant Webbrowser\
-participant UC4\
-participant SensorIF\
-participant init.ini\
+participant Website <<HTML>>\
+participant UC4 <<PHP>>\
+participant calibrate <<.exe>>\
+participant calibrations.txt <<file>>\
 \
-Bruger -> Webbrowser: chooses parameter\
-Bruger -> Webbrowser: Inputs value for correct value.\
-Bruger -> Webbrowser: Pushes "Kalibrer" button.\
-Webbrowser->UC4: sends calibration request\
-UC4 -> SensorIF: take sample\
-SensorIF --> UC4: sample\
-UC4 -> UC4: calculate offset\
-UC4 -> init.ini: set offset\
+Bruger -> Website: choose calibration paramter\
+Bruger -> Website: input actual value\
+Bruger -> Website: 'kalibr\'e9r'\
+\
+Website -> UC4: redirect to 'calibration.php'\
+UC4 -> UC4: read userinputs\
+UC4 -> calibrate: start calibrate by userinputs\
+activate calibrate\
+activate UC4\
+\
+calibrate -> calibrate: read sensorinput\
+\
+calibrate -> calibrate: process sensorinput & userinput\
+deactivate calibrate\
+\
+calibrate -> calibrations.txt: store new calibrationvalues\
+calibrations.txt --> calibrate: ok\
+\
+calibrate --> UC4: return\
+deactivate UC4\
+\
+UC4 -> Website: redirect to 'homepage.php'\
 @enduml}
