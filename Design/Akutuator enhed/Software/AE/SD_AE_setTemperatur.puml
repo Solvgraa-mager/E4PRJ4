@@ -1,0 +1,36 @@
+@startuml 
+title Ændring i temperatur
+
+participant "tråd1\n(UC3)" as u
+participant tråd2 as t2
+participant Aktuatorenhed as a
+participant PI as p
+participant Varmelegeme as v
+actor OS as os
+
+loop every 15 minuts
+    u -> a : setTemperature(temperature)
+    activate a
+    a -> p : setSetpoint(temperature)
+    a <-- p
+    a -> p : rateLimiter()
+    a <-- p 
+    u <-- a
+    deactivate a
+end
+
+loop every 60 seconds.
+    t2 -> a : updateTemperature(currentTemperature)
+    activate a
+    a -> p : calculate(mesured, min, max, dutyCycle)
+    a <-- p
+    a -> v : setDutycycle(dutyCycle)
+    v -> os : setGPIO(dutycycle)
+    v <-- os
+    a <-- v
+    t2 <-- a
+    deactivate a
+end
+
+
+@enduml
