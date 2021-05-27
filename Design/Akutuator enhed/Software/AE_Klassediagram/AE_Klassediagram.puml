@@ -21,21 +21,21 @@ class "Aktuatorenhed" as a
     # removeWater(double ml) : int 
     # updateTemperature(double currentTemperature) : int
 }
+
 class "Varmelegeme" as v
 {
     -_GPIO
+    
     +Varmelegeme(int GPIO)
     +setDutycycle(double dutycycle) : void
     ~ ~Varmelegeme(int GPIO)
-
-
-
 }
+
 class "Pumpe" as p
 {
     -GPIO
 
-    +Pumpe()
+    +Pumpe(ing GPIO)
     +activatePump(int dutycycle) : void
     +deactivatePump(): void
      ~ ~Pumpe() 

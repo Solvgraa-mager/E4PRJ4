@@ -1,6 +1,13 @@
+#ifndef _AE_HPP
+#define _AE_HPP
+
+
 #include "Pumpe.hpp"
 #include "Varmelegeme.hpp"
-#include "PID.hpp"
+#include "PI.hpp"
+#include <wiringPi.h>                   //Gør brug af wiring pi bibloteket. http://wiringpi.com/reference/software-pwm-library/
+#include <softPwm.h>                    //Wiring pi, software PWM til GPIO pins.
+#include <iostream>                     //For printfunktioner: cout
 
 class Aktuatorenhed
 {
@@ -12,11 +19,11 @@ class Aktuatorenhed
         ~Aktuatorenhed();
     
     protected: 
-        double psuToMl(double psu, double currentPsu, double volume);
-        int addPsu(double psu);
-        int substractPsu(double psu, double currentPsu);
+        int addPsu(double amountPsuToAdd);
+        int substractPsu(double amountPsuTosubstract, double currentPsu);
         int addWater(double ml, double currentPsu);
         int removeWater(double ml);
+        int updateTemperature(double currentTemperature);
         
     private: 
         double _volume;     //Total mængde vand i akvariet
@@ -25,7 +32,7 @@ class Aktuatorenhed
         Pumpe * _demiPumpe;
         Pumpe * _toemPumpe;
         Varmelegeme * _varmelegeme;
-        PID * _PID;
-
-       
+        PI * _PI;      
 };
+
+#endif

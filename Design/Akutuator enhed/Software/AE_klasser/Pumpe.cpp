@@ -2,36 +2,25 @@
 
 Pumpe::Pumpe(int GPIO)
  {
-    setDutyCycle(0);
-    setState(false);
-    //############## INIT GPIO PIN ################
-      int _GPIO = GPIO;
+    _GPIO = GPIO;
 
- }
-
-int Pumpe::setDutyCycle(int speed)    //duty cycle 0-100%
-{
-    //_GPIO får sat sin duty cycle til speed
-    
-}
-int Pumpe::setState(bool state)   //ON or Off
-{
-    _state = state;
+    int err = softPwmCreate(_GPIO, 0, 100);      //initialize GPIO til PWM pin, med range 0-100%
+    if (err != 0)
+        std::cout << "PWM pin for pump, with GPIO (" << _GPIO << ") not initialized. ERROR: " << err << endl;   
+    softPwmWrite(_GPIO, 0);
 }
 
-int Pumpe::getDutyCycle(void)
+void Pumpe::activatePump(int dutycycle)
 {
-    return _speed;
+    softPwmWrite(_GPIO, dutycycle);              //wiring pi metode. Sætter PWM dutycycle
 }
 
-bool Pumpe::getState(void){
-    return _state;
+void Pumpe::deactivatePump()
+{
+    softPwmWrite(_GPIO, 0);                      //wiring pi metode. Sætter PWM dutycycle 
 }
 
 Pumpe::~Pumpe()
  {
-    setDutyCycle(0);
-    setState(false);
-    //############## terminate GPIO PIN ###############
-
+    softPwmWrite(_GPIO, 0);                      //Wiring pi frigiver selv GPIO pins. 
  }

@@ -8,27 +8,22 @@ Aktuatorenhed::Aktuatorenhed(double volume, double saltKonc)
     _saltPumpe = new Pumpe(1); 
     _demiPumpe = new Pumpe(2);    
     _toemPumpe = new Pumpe(3);  
-    _varmelegeme = new Varmelegeme();
-    _PID = new PID(1, 2, 3, 4, 5, 6); 
+    _varmelegeme = new Varmelegeme(4);
+    _PI = new PI(46.0802, 0.00034014, 60, 0, 100);          //Kp, Ti og Ts udregnet i design af temperturregulator
 }
 
-//###########PROTECTED MOTHODS
 
-
-int Aktuatorenhed::addPsu(double psu)
+int Aktuatorenhed::addPsu(double amountPsuToAdd)
 {                      
-    double ml = (_volume/(10*_saltKonc))*psu;       //Mængde saltvand der skal tilføjdes (se Analyse/Aktuatorenhed/Pumper)
+    double ml = (_volume/(10*_saltKonc))*amountPsuToAdd;       //Mængde saltvand der skal tilføjdes (se Analyse/Aktuatorenhed/Pumper)
      
-    _toemPumpe->setDutyCycle(10);                   //dutycycle 10%, pumper langsomt 1 ml/0.07 sekunder
-    _toemPumpe->setState(true);                     //Pumpe ON (fjerner akvarievand)
-    sleep(ml * 0.07);                               //wait "pumping"
-    _toemPumpe->setState(false);                    //Pumpe OFF
+    _toemPumpe->activatePump(10)                    //dutycycle 10%, pumper langsomt 1 ml pr 0.07 sekunder
+    sleep(ml * 0.07);                               //wait "pumping" (fjerner akvarievand)
+    _toemPumpe->deactivatePump();                    //Pumpe OFF
 
-
-    _saltPumpe->setDutyCycle(10);                   //dutycycle 10%, pumper langsomt 1 ml/0.07 sekunder
-    _saltPumpe->setState(true);                     //Pumpe ON  (tilføjer saltvand)
-    sleep(ml * 0.07);                               //wait "pumping"
-    _saltPumpe->setState(false);                    //Pumpe OFF
+    _saltPumpe->activatePump(10);                   //dutycycle 10%, pumper langsomt 1 ml pr 0.07 sekunder
+    sleep(ml * 0.07);                               //wait "pumping" (tilføjer saltvand)
+    _saltPumpe->deactivatePump();                    //Pumpe OFF
 
     return 0;
 }
@@ -37,16 +32,13 @@ int Aktuatorenhed::substractPsu(double psu, double currentPsu)
 {
     double ml = psuToMl(psu, currentPsu, _volume);  //retunere mængden af akvarievand der skal erstattes med demineraliseretvand for at reducere med x psu
     
-    _toemPumpe->setDutyCycle(90);                   //dutycycle 90%, pumper hutigt 1 ml/0.044 sekunder
-    _toemPumpe->setState(true);                     //Pumpe ON (fjerner akvarievand)
-    sleep(ml * 0.044);                               //wait "pumping"
-    _toemPumpe->setState(false);                    //Pumpe OFF
+    _toemPumpe->activatePump(90);                    //dutycycle 90%, pumper hutigt 1 ml pr 0.044 sekunder
+    sleep(ml * 0.044);                               //wait "pumping" (fjerner akvarievand)
+    _toemPumpe->deactivatePump();                    //Pumpe OFF
 
-
-    _demiPumpe->setDutyCycle(90);                   //dutycycle 90%, pumper hutigt 1 ml/0.044 sekunder
-    _demiPumpe->setState(true);                     //Pumpe ON  (tilføjer demineraliseret vand)
-    sleep(ml * 0.044);                               //wait "pumping"
-    _demiPumpe->setState(false);                    //Pumpe OFF
+    _demiPumpe->activatePump(90);                    //dutycycle 90%, pumper hutigt 1 ml/0.044 sekunder
+    sleep(ml * 0.044);                               //wait "pumping" (tilføjer demineraliseret vand)
+    _demiPumpe->deactivatePump();                    //Pumpe OFF
     
     return 0;
 }
@@ -55,41 +47,41 @@ int Aktuatorenhed::addWater(double ml, double currentPsu)
 {
     double mlSaltvand = (ml/(10*_saltKonc))*currentPsu; //Mængde saltvand der skal tilføjdes (se Analyse/Aktuatorenhed/Pumper)
 
-    _demiPumpe->setDutyCycle(90);                   //dutycycle 90%, pumper hutigt 1 ml/0.044 sekunder
-    _saltPumpe->setDutyCycle(90);                   //dutycycle 90%, pumper hutigt 1 ml/0.044 sekunder
+    _demiPumpe->activatePump(90);                    //dutycycle 90%, pumper hutigt 1 ml/0.044 sekunder
+    _saltPumpe->activatePump(90);;                   //dutycycle 90%, pumper hutigt 1 ml/0.044 sekunder
+    sleep(mlSaltvand * 0.044);                       //wait "pumping" (tilføjer saltvand og demineraliseret vand) 
 
-    _saltPumpe->setState(true);                     //Pumpe ON  (tilføjer saltvand)
-    _demiPumpe->setState(true);                     //Pumpe ON  (tilføjer demineraliseret vand)
-    
-    sleep(mlSaltvand * 0.044);                       //wait "pumping"
+    _saltPumpe->deactivatePump();                    //Saltvandspumpe OFF
+    sleep((ml-mlSaltvand) * 0.044);                  //wait "pumping" (demineraliseret vand) 
+    _demiPumpe->deactivatePump();                    //Demineraliseret vandpumpe OFF
 
-    _saltPumpe->setState(false);                    //Pumpe OFF
-
-    sleep((ml-mlSaltvand) * 0.044);                 //wait "pumping"
-    
-    _demiPumpe->setState(false);                    //Pumpe OFF
-
-   
     return 0;
 }
 
 int Aktuatorenhed::removeWater(double ml)
 {
-    _toemPumpe->setDutyCycle(90);                   //dutycycle 90%, pumper hutigt 1 ml/0.044 sekunder
-    _toemPumpe->setState(true);                     //Pumpe ON (fjerner akvarievand)
-    sleep(ml * 0.044);                               //wait "pumping"
-    _toemPumpe->setState(false);                    //Pumpe OFF
+    _toemPumpe->activatePump(90);                   //dutycycle 90%, pumper hutigt 1 ml/0.044 sekunder
+    sleep(ml * 0.044);                               //wait "pumping" (fjerner akvarievand)
+    _toemPumpe->deactivatePump();                    //Pumpe OFF
 
     return 0;
 }
 
-int Aktuatorenhed::setTemperatur(double temperatur, double currentTemperatur)
+int Aktuatorenhed::setTemperatur(double temperatur)
 {
-    double reguleretTemerature;
-    _PID->calculate(temperatur, currentTemperatur, reguleretTemerature); //PID regulering, 
-    _varmelegeme->setTemperatur(reguleretTemerature, currentTemperatur);
+    _PI->setNewSetpoint(temperatur);                //Setpoint sættes hvert kvarter
+    _PI->rateLimit();                               //Setpoint begrænses således én grader celsius pr time overholdes. 
 
     return 0;
+}
+
+int Aktuatorenhed::updateTemperature(double currentTemperature)
+{
+    int dutycycle;
+    int report = _PI->calculate(currentTemperature, 0, 100, dutycycle); //Regulere temperturen, og retunere en dutycycle. 
+    _varmelegeme->setDutycycle(dutycycle);                              //varmelegemet opdateres til dutycyclen fra reguleringen 
+    
+    return report;                                                      //retunere om reguleringen gik i mætning. min max eller non.
 }
 
 
@@ -103,7 +95,7 @@ int Aktuatorenhed::setWaterLevel(double setWaterLevel, double currentWaterLevel,
         addWater(setWaterLevel - currentWaterLevel, currentPsu);
         return 2;
         }
-    
+        
     return 0;
 
 }
@@ -138,12 +130,6 @@ int Aktuatorenhed::setPsu(double setPsu, double currentPsu, double maxPsuChange)
     }
     return 0;
 }
-
-
-double Aktuatorenhed::psuToMl(double psu, double currentPsu, double volume)
-{
-    return (volume/currentPsu)*psu;
-};
 
 Aktuatorenhed::~Aktuatorenhed()
 {
