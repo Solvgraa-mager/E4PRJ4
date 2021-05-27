@@ -1,4 +1,4 @@
-@startuml 
+@startuml SD_AE_setTemperature
 title Aktuatorenhed::setTemperature(temperature)
 
 participant "UC3" as u

@@ -1,4 +1,4 @@
-@startuml SD_Varmelegme_setDutycycle
+@startuml SD_Varmelegme_con_destructor
 title Varmelegeme::Varmelegeme(int GPIO) 
 participant Aktuatorenhed as a
 participant Varmelegeme as v

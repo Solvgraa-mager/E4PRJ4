@@ -1,4 +1,4 @@
-@startuml PI_calculate
+@startuml SD_PI_calculate
 title int PI::calculate(double measured, double resultBuffer)
 
 participant Aktuatorenhed as a

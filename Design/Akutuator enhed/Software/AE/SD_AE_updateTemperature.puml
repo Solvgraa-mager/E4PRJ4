@@ -1,5 +1,5 @@
 
-@startuml 
+@startuml SD_AE_updateTemperature
 title :Aktuatorenhed::updateTemperature(double currentTemperature)
 
 participant "UC3" as u
