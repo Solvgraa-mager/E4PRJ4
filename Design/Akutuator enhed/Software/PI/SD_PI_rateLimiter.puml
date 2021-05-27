@@ -1,4 +1,4 @@
-@startuml rateLimit
+@startuml SD_PI_rateLimit
 
 participant Aktuatorenhed as a
 participant PI as p

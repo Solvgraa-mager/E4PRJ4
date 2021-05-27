@@ -1,4 +1,4 @@
-@startuml PI_Constructor
+@startuml SD_PI_constructor
 title PID::PI(double Kp, double Ti, double Ts, double minOut, double maxOut)
 
 participant UC3
