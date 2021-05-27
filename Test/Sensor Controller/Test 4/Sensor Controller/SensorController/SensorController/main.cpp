@@ -15,8 +15,11 @@
 
 
 
+
 int main(void)
 {
+	DDRH = 0xFF;
+	PORTH = 0x0;
 	CentralComputerIF CCIF;
 	ADCBlokIF ADCBlok;
 	SensorController SC(&ADCBlok, &CCIF); 

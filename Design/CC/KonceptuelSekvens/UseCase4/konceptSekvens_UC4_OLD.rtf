@@ -1,0 +1,25 @@
+{\rtf1\ansi\ansicpg1252\cocoartf1671\cocoasubrtf600
+{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
+{\colortbl;\red255\green255\blue255;}
+{\*\expandedcolortbl;;}
+\paperw11900\paperh16840\margl1440\margr1440\vieww10800\viewh8400\viewkind0
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+
+\f0\fs24 \cf0 @startuml\
+title: Use Case 4 --- Kalibrer\
+\
+actor Bruger\
+participant Webbrowser\
+participant UC4\
+participant SensorIF\
+participant init.ini\
+\
+Bruger -> Webbrowser: chooses parameter\
+Bruger -> Webbrowser: Inputs value for correct value.\
+Bruger -> Webbrowser: Pushes "Kalibrer" button.\
+Webbrowser->UC4: sends calibration request\
+UC4 -> SensorIF: take sample\
+SensorIF --> UC4: sample\
+UC4 -> UC4: calculate offset\
+UC4 -> init.ini: set offset\
+@enduml}
