@@ -19,7 +19,6 @@ CentralComputerIF::CentralComputerIF()
 } //CentralComputerIF
 void CentralComputerIF::send(uint16_t value, uint8_t valid, uint8_t request)
 {
-	
 	SendChar(value >> 8); //Data MSB
 	SendChar(value & 0xFF); //Data LSB
 	SendChar(valid ? 0xFF : 0x00); //Control
