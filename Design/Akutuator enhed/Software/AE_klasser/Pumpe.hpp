@@ -1,14 +1,14 @@
+#ifndef _PUMPE_HPP
+#define _PUMPE_HPP
 class Pumpe
 {
     public:
         Pumpe(int GPIO);
-        int setDutyCycle(int dutyCycle);    //duty cycle 0-100%
-        int setState(bool state);   //ON or Off
-        int getDutyCycle(void);
-        bool getState(void);
+        void activatePump(int dutycycle);
+        void deactivatePump();
         ~Pumpe();
     private:
-        int _speed;
-        bool _state;
         int _GPIO;
 };
+
+#endif 

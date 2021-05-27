@@ -16,11 +16,11 @@ note right : udregning af\nproportional
 PI -> PI : controlSignal = _Kp*(proportional+(1/_Ti)*integral)
 note right : udregning af\nstyresignal
 
-opt _out < _minOut
+opt controlSignal < _minOut
     PI -> PI : controlSignal = _minOut
 end
 note right : Max, Min afgrænsninger.\n0-100% dutycycle
-opt _out > _maxOut
+opt controlSignal > _maxOut
     PI -> PI : controlSignal = _maxOut
 end
 PI -> PI :resultBuffer = controlSignal

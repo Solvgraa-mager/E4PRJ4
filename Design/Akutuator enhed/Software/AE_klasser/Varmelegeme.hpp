@@ -1,15 +1,12 @@
-#include "PID.hpp"
-
+#ifndef _VARMELEGEME_HPP
+#define _VARMELEGEME_HPP
 class Varmelegeme{
     
     private:
-        PID * PIDregulerineg;
-        int GPIO_;
+        int _GPIO;
     public:
-        Varmelegeme();
-        int setTemperatur(double temperatur, double maaltTemperatur);
-        int temepratureToDutyCylce(double temp, int dutyCycleBuffer);
-        int setGPIODutyCycle(int dutyCycle);
-        ~Varmelegeme();
-    
+        Varmelegeme(int GPIO);
+        int setDutycycle(double dutycycle);
 };
+
+#endif

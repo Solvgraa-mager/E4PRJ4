@@ -1,39 +1,21 @@
 #include "Varmelegeme.hpp"
 
-Varmelegeme::Varmelegeme()
+Varmelegeme::Varmelegeme(int GPIO)
 {
-    PIDregulerineg = new PID(1,2,3,4,5,6);
+    _GPIO = GPIO;
 
+    int err = softPwmCreate(_GPIO, 0, 100);         //initialize GPIO til PWM pin, med range 0-100%
+    if (err != 0)
+        std::cout << "PWM pin for varmelegeme, with GPIO (" << _GPIO << ") not initialized. ERROR: " << err << endl;
+    softPwmWrite(_GPIO, 0); 
 }
 
-
-int Varmelegeme::setTemperatur(double temperatur, double maaltTemperatur)
+ int Varmelegeme::setDutycycle(double dutycycle)
 {
-    double result;
-    int dutyCycle;
-    
-    PIDregulerineg->calculate(temperatur, maaltTemperatur, result);  
-    double temperaturOut = PIDregulerineg->getOutput();
-
-    temepratureToDutyCylce(temperaturOut, dutyCycle);
-    //set GPIO port til ønsket duty cycle.
-    return 0;
-}
-
-int Varmelegeme::temepratureToDutyCylce(double temperature, int dutyCycleBuffer)
-{   
-    //############### MATEMATIK ##########
-
-    int k = 1;  //konstant eller funktion der oversætter en temperatur til en dutycycle. 
-                //Denne konstant/Funktion kan ikke laves før vi ved hvad de forskellige
-                //pulsbredder giver af temperatur. AKA freddy skal lave sin tmperatur
-                //del færdig først.
-    dutyCycleBuffer = temperature*k;
-    
-    return 0;
+    softPwmWrite(_GPIO, (int)dutycycle);                 //wiring PI metode. Sætter PWM dutycycle. 
 }
 
 Varmelegeme::~Varmelegeme()
 {
-    delete PIDregulerineg;
+    softPwmWrite(_GPIO, 0);                         //Sætter dutycycle til 0, Wiring PI frigiver selv GPIO porten.
 }
