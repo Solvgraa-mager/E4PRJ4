@@ -1,0 +1,11 @@
+@startuml PI_Constructor
+title PID::PI(double Kp, double Ti, double Ts, double minOut, double maxOut)
+
+participant UC3
+participant PID
+
+create PID
+UC3 -> PID : PI(Kp, Ti, Ts, minOut, maxOut)
+PID -> PID : _Kp = Kp\n_Ti = Ti\n_Ts = Ts\n_minOut = minOut\n_maxOut = maxOut\n\n_preError = 0\n_preIntegral = 0\n\n_setpoint = 0\n_oldSetpoint = 0\n_newSetpoint = 0
+PID --> UC3
+@enduml

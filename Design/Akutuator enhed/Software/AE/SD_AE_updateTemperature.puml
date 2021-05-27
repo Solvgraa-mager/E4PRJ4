@@ -1,0 +1,22 @@
+
+@startuml 
+title :Aktuatorenhed::updateTemperature(double currentTemperature)
+
+participant "UC3" as u
+participant Aktuatorenhed as a
+participant PI as p
+participant Varmelegeme as v
+
+loop every 60 seconds.
+    u -> a : updateTemperature(currentTemperature)
+    activate a
+        a -> p : report = calculate(currentTemperature, 0, 100, dutyCycle)
+        a <-- p
+        a -> v : setDutycycle(dutyCycle)
+        a <-- v
+        u <-- a : return report
+    deactivate a
+end
+
+
+@enduml

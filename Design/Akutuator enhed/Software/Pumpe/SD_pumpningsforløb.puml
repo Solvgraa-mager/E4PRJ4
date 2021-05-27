@@ -2,11 +2,11 @@
 
 !pragma teoz true
 
-participant CC
+participant UC3 as u
 participant Aktuatorenhed
-control Saltvandspumpe
-control Demineraliseretvandpumpe
-control Tømningspumpe
+participant Saltvandspumpe
+participant Demineraliseretvandpumpe
+participant Tømningspumpe
 title Processtrategi for pumpers reguleringsmekanismer
 
 
@@ -14,7 +14,7 @@ loop En gang hvert 15 min
 
     alt if "saltkoncentration < setpoint"
         
-    CC -> Aktuatorenhed : saltvand + 0.25 PSU
+    u -> Aktuatorenhed : saltvand + 0.25 PSU
         {startTøm1} Aktuatorenhed -> Tømningspumpe : Pump(23.75ml, 10% dutyCycle)
         activate Tømningspumpe 
         note right Tømningspumpe : Fjerner akvarievand\nfra akvarium\n 10% dutyCycle =  1ml/0.07s
@@ -29,9 +29,9 @@ loop En gang hvert 15 min
         deactivate Saltvandspumpe
         {startSalt1} <-> {endSalt1} : 1,7 s
 
-    else if "saltkoncentration > setpoint"
+    else "       if saltkoncentration > setpoint"
 
-        CC -> Aktuatorenhed : saltvand - 0.25 PSU (currentPsu)
+        u -> Aktuatorenhed : saltvand - 0.25 PSU (currentPsu)
         Aktuatorenhed -> Aktuatorenhed : psuToMl(currentPsu)
         activate Aktuatorenhed
         note right Aktuatorenhed : (25L/currentPsu)*0.25 = ml
@@ -53,8 +53,8 @@ loop En gang hvert 15 min
     end
 
     alt if vandstand > 28 cm
-        CC -> Aktuatorenhed : Fjern 3L akvarievand
-        {startTøm3} Aktuatorenhed -> Tømningspumpe : Pump(3000ml, 90% duty cycle)
+        u -> Aktuatorenhed : Fjern 3000ml akvarievand
+        {startTøm3} Aktuatorenhed -> Tømningspumpe : Pump(3000, 90% duty cycle)
         activate Tømningspumpe 
         note right Tømningspumpe : Fjerner akvarievand\nfra akvarium\n90% dutyCycle = 1ml/0.044s
         {endTøm3} Tømningspumpe --> Aktuatorenhed
@@ -62,25 +62,28 @@ loop En gang hvert 15 min
         {startTøm3} <-> {endTøm3} : 132 s
 
 
-    else if vandstand < 22 cm
-        CC -> Aktuatorenhed : Tilføj 3 liter vand(currentPsu)
+    else "     (if vandstand < 22 cm) || (counter > 0)"
 
+        u -> Aktuatorenhed : Tilføj 750 ml vand(currentPsu)
+        alt if vandstand < 22 cm
+            note over Aktuatorenhed : counter = 4
+        end
         note over Aktuatorenhed : ml = currentPsu*(3L/(10*26.3))
-        {startSalt2} Aktuatorenhed -> Saltvandspumpe : Pump(ml, dutyCycle 90%)
+        {startSalt2} Aktuatorenhed -> Saltvandspumpe : Pump(750, dutyCycle 90%)
         activate Saltvandspumpe
         note right Saltvandspumpe : Pumper saltvand\ntil akvarium\n90% dutyCycle = 1ml/0.044s
         {endSalt2} Saltvandspumpe --> Aktuatorenhed
         deactivate Saltvandspumpe
         {startSalt2} <-> {endSalt2} : (ml * 0.044) = \npump time\nin seconds
 
-        {startDemi2} Aktuatorenhed -> Demineraliseretvandpumpe : Pump(3000 - ml, dutyCycle 90%)
+        {startDemi2} Aktuatorenhed -> Demineraliseretvandpumpe : Pump(750 - ml, dutyCycle 90%)
         activate Demineraliseretvandpumpe
         note right Demineraliseretvandpumpe : Tilføjer Demineraliseret-\nvand til akvarium\n90% dutyCycle = 1ml/0.044s
         {endDemi2} Demineraliseretvandpumpe --> Aktuatorenhed
         deactivate Demineraliseretvandpumpe
         {startDemi2} <-> {endDemi2} : (ml * 0.044) = \npump time in seconds
-        
-        Aktuatorenhed --> CC
+        note over Aktuatorenhed : counter = counter - 1
+        Aktuatorenhed --> u
 end
 
 @enduml

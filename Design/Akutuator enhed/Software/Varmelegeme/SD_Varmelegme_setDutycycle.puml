@@ -1,0 +1,12 @@
+@startuml SD_Varmelegme_setDutycycle
+title Varmelegeme::setDutycycle(double dutycycle)
+participant Aktuatorenhed as a
+participant Varmelegeme as v
+actor OS as o
+
+a -> v : setDutycycle(dutycycle)
+v -> o : setDutycycle(_GPIO, dutycycle)
+note right o: Indstiller mikrocontrollerens\nGPIO port, varmelegemet\ner tilkoblet, til at switche med\n den valgte dutycycle.
+v <-- o
+a <-- v
+@enduml

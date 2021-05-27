@@ -3,49 +3,23 @@
 Participant Aktuatorenhed as ae
 participant "Pumpe\n(Demineraliseret)" as sp
 participant "Pumpe\n(Tømning)" as tp
-actor OS as os
-title int Aktuatorenhed::substractPsu(double psu, double currentPsu)
+title int Aktuatorenhed::substractPsu(double amountPsuToSubstract, double currentPsu)
 
 
-        ae -> ae : substractPsu(maxPsuChange, currentPsu)
+        ae -> ae : substractPsu(amountPsuToSubstract, currentPsu)
         activate ae
-        ae -> ae : double ml = psuToMl(psu, currentPsu, _volume)
-            ae -> tp : setDutyCycle(90)
-            activate tp
-            tp -> tp : _dutyCycle = 90
+            ae -> ae : ml = (volume/currentPsu)*amountPsuToSubstract
+            ae -> tp : activatePump(90)
             ae <-- tp
-            deactivate tp
-            ae -> tp : setState(true);
-            activate tp
-            tp -> os : setPWM(GPIO, _dutyCycle)
-            tp <-- os
+            ae -> ae : sleep(ml*0.044)
+            ae -> tp : deactivatePump()
             ae <-- tp
-            deactivate tp
-        ae -> ae : sleep(ml*0.04)
-        ae -> tp : setState(false);
-            activate tp
-            tp -> os : setPWM(GPIO, 0)
-            tp <-- os
+            ae -> tp : activatePump(90)
             ae <-- tp
-            deactivate tp
-            ae -> sp : setDutyCycle(90)
-            activate sp
-            sp -> sp : _dutyCycle = 90
-            ae <-- sp
-            deactivate sp
-            ae -> sp : setState(true);
-            activate sp
-            sp -> os : setPWM(GPIO, _dutyCycle)
-            sp <-- os
-            ae <-- sp
-            deactivate sp
-        ae -> ae : sleep(ml*0.04)
-        ae -> sp : setState(false);
-            activate sp
-            sp -> os : setPWM(GPIO, 0)
-            sp <-- os
-            ae <-- sp
-            deactivate sp
+            ae -> ae : sleep(ml*0.044)
+
+            ae -> tp : deactivatePump()
+            ae <-- tp
             ae <-- ae : return 0
      
 

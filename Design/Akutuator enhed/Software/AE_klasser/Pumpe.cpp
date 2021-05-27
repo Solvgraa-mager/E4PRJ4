@@ -27,3 +27,11 @@ int Pumpe::getDutyCycle(void)
 bool Pumpe::getState(void){
     return _state;
 }
+
+Pumpe::~Pumpe()
+ {
+    setDutyCycle(0);
+    setState(false);
+    //############## terminate GPIO PIN ###############
+
+ }

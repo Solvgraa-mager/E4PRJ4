@@ -1,0 +1,14 @@
+@startuml rateLimit
+
+participant Aktuatorenhed as a
+participant PI as p
+
+a -> p : rateLimiter() 						
+alt if (_newSetpoint - _oldSetpint > 0.25)		
+	p -> p : _setpoint = _oldSetpoint + 0.25\n_oldSetpint = _setpoint
+else
+	p -> p : _setpoint = _newSetpoint
+end
+a <-- p 
+
+@enduml
