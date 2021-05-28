@@ -1,46 +1,17 @@
 <html>
-
 <head>
     <title>SmartAkvarie Login Formulua</title>
-    <link rel="stylesheet" type="text/css" href="style.css">
-
-    <!-- <script>
-        function login(){
-            console.log("MOJN")
-            // 
-            const password = ... 
-
-            if(password === 'KURT'){
-                // ... 
-            }
-
-            http.get('www.minserver.dk/api/login', {username: ..., password: .. });
-        }
-    </script> -->
-
-
-    <script>
-        function login() {
-            location.replace("/homepage/homepage.html")
-        }
-    </script>
-
+        <link rel="stylesheet" type="text/css" href="style.css">
+    <body>
+        <div class="LoginBox">
+            <img src="Avatar.jpeg" class="Avatar">
+            <h1>Akvarie Regulator</h1>
+            <form action="/homepage/homepage.php">
+                <input type="submit" name="" value="Login"> <br>
+                <a href="/forgotPassword.html" >Forgot password?</a>
+            </form>
+        </div>
+    </body>
 </head>
-
-<body>
-    <div class="LoginBox">
-        <img src="Avatar.jpeg" class="Avatar">
-        <h1>Akvarie Regulator</h1>
-        <form action="/homepage/homepage.html">
-            <!-- <p>Username</p> -->
-            <!-- <input type="text" name="" placeholder="Enter Username"><br> -->
-            <!-- <p>Password</p> -->
-            <!-- <input type="password" name="" placeholder="Enter Password"> -->
-        
-            <input type="submit" name="" value="Login"> <br>
-            <a href="/forgotPassword.html">Forgot password?</a>
-        </form>
-    </div>
-</body>
-
 </html>
+
