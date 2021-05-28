@@ -96,7 +96,7 @@ while($row = $result->fetch_assoc()){
 <div class = "userInputs">
 <h2>Download måledata</h1>
 
-<p>Vælg ønsket start- og sluttidspunkt og tryk på 'Gem data'.</p>
+<p>Vælg ønsket start- og sluttidspunkt og tryk på 'Gem Data'.</p>
 
 <form method= 'POST' action = "includes/download.php">
     <label for = "startTimeStamp">Vælg ønsket start-tidspunkt:</label>
