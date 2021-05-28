@@ -29,8 +29,21 @@ int PI::calculate(double measured, double resultBuffer){
   
     double integral = (_Ts/2)*(error+_preError)+_preIntegral;
 
+    //-------------Anti windyp -------------------
+
+
+    _Kp*integral = (100*TI)/Kp_
+
+    if (integral > 0.00073814+0.000073814) 
+        integral = 0.00073814;
+    else if (integral < 0-0.000073814)
+        integral = 0;
+
     //-------------control signal------------------------
     double controlSignal = _Kp*(proportional+(1/_Ti)*integral);
+
+
+
 
     if (controlSignal < _minOut)            //minimum output
         controlSignal = _minOut;            
