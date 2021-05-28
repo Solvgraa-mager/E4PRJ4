@@ -4,13 +4,24 @@ title int PI::calculate(double measured, double resultBuffer)
 participant Aktuatorenhed as a
 participant PI
 
-
 a -> PI : calculate(measured, resultBuffer)
 
 PI -> PI : error = _setpoint - measured
 
 PI -> PI : integral = (_Ts/2)*(error+_preError)+_preIntegral
 note right : udregning af\nintegrale
+
+
+PI -> PI : maxIntegral = (100*_Ti)/_Kp 
+note right : Anti-Windup
+alt integral > maxIntegral
+    PI -> PI : integral = maxIntegral
+else integral < 0
+    PI -> PI : integral = 0
+end 
+
+
+
 PI -> PI : proportional = error
 note right : udregning af\nproportional
 PI -> PI : controlSignal = _Kp*(proportional+(1/_Ti)*integral)

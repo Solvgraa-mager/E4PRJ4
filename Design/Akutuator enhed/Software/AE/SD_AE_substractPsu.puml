@@ -1,8 +1,8 @@
 @startuml SD_AE_substractPsu
 
 Participant Aktuatorenhed as ae
-participant "Pumpe\n(Demineraliseret)" as sp
-participant "Pumpe\n(Tømning)" as tp
+participant "_demiPumpe" as dp
+participant "_toemPumpe" as tp
 title int Aktuatorenhed::substractPsu(double amountPsuToSubstract, double currentPsu)
 
 
@@ -14,12 +14,12 @@ title int Aktuatorenhed::substractPsu(double amountPsuToSubstract, double curren
             ae -> ae : sleep(ml*0.044)
             ae -> tp : deactivatePump()
             ae <-- tp
-            ae -> tp : activatePump(90)
-            ae <-- tp
+            ae -> dp : activatePump(90)
+            ae <-- dp
             ae -> ae : sleep(ml*0.044)
 
-            ae -> tp : deactivatePump()
-            ae <-- tp
+            ae -> dp : deactivatePump()
+            ae <-- dp
             ae <-- ae : return 0
      
 

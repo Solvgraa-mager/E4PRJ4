@@ -3,13 +3,14 @@
 
 
 #include "PI.hpp"
+#define 
 
 PI::PI(double Kp, double Ti, double Ts, double minOut, double maxOut){
         _Kp = Kp;                       //proportional konstant
         _Ti = Ti;                       //Integral konstant
         _Ts = Ts;                       //Tid mellem hvert sample
         _preError = 0;                  //Afstand mellem setpoint og mplte værdi 
-        _preIntegral = 0;               //Samlet integrale
+        _preIntegral = 0;               //Samlet integrale        
         _minOut = minOut;               //Minimum afgrænsning (0% dutycycle)
         _maxOut = maxOut;               //Maximum afgrænsning (100% dutycycle)
         _setpoint = 0;                  //aktuelle setpoint for regulatoren
@@ -31,12 +32,11 @@ int PI::calculate(double measured, double resultBuffer){
 
     //-------------Anti windyp -------------------
 
+    double maxIntegral = (100*_Ti)/_Kp;     //Integralets afgrænses, såledsden alene ikke kan leveremere end 100% pwm.
 
-    _Kp*integral = (100*TI)/Kp_
-
-    if (integral > 0.00073814+0.000073814) 
-        integral = 0.00073814;
-    else if (integral < 0-0.000073814)
+    if (integral > maxIntegral) 
+        integral = maxIntegral;
+    else if (integral < 0)
         integral = 0;
 
     //-------------control signal------------------------
