@@ -6,8 +6,10 @@ participant CentralComputerIF as CCIF
 actor "Central Computer" as CC #red
 
 SC -> CCIF : send(bool valid, int16 value)
-CCIF -> CC : uart.sendChar(value<<8)
-CCIF -> CC : uart.sendChar(value && 0xFF)
+CCIF -> CC : MSB: SendChar(value >> 8)
+CCIF -> CC : LSB: SendChar(value & 0xFF)
+CCIF -> CC : Kontrol: SendChar(valid ? 0xFF : 0x00)
+CCIF -> CC : Checksum: SendChar((value+request) & 0xFF)
 CCIF --> SC : 
 
 

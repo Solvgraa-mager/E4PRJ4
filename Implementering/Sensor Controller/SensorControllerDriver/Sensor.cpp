@@ -109,8 +109,6 @@ uint16_t Sensor::readRaw(){
     setConfig(); //Check if new calibration data
 
     do{
-        if (attempt == 0)
-            usleep(20000); //Protocol flow control
         
         attempt++; //Increment attempt-count
 

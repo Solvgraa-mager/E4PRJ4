@@ -9,7 +9,7 @@ participant "UART Driver" as UART
 actor SensorController as SC #red
 
 Main -> SD : Sensor(sensorNumber)
-SD -> SD : setOffsetAndFactor(string configPath)
+SD -> SD : setConfig()
 opt config failed
 SD --> Main : <exception> \nConfig unavaliable
 end opt

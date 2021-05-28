@@ -8,7 +8,7 @@ actor "PWM" as PWM
 
 Test -> UART : "Test start channel x"
 
-loop for (i = 0:100)
+loop for (i = 0:255)
     Test -> PWM : PWM = i
     PWM --> Test : 
     Test -> ADCBlokIF : read()
