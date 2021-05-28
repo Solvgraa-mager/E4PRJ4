@@ -4,19 +4,21 @@ title SensorControllerDriver Klassediagram
 class Sensor{
     +Sensor(int sensorNumber, string configPath)
     +read() : double
+    +readRaw() : uint16_t
     -setConfig(h) : int
-    -setupUART(int baud, int parity, int wordlength) : int
+    -setupUART() : int
+    -sendRequest(int fd) : int
+    -receiveAnswer(int fd, uint16_t &value) : int
     ~Sensor()
-    -_sensorNumber : int
-    -_configPath : string
-    -_configLastReadTimestamp : int
-    -_sensorConvertionTable : sensorConvertionTable
-    -_UARTfiledescriptor : int
+    -sensorNumber_ : int
+    -configPath_ : string
+    -configEditTime_ : int
+    -SCT_ : sensorConvertionTable
 }
 
 class sensorConvertionTable <<Struct>>{
-    -_Offset : double
-    -_Factor : double
+    -Offset_ : double
+    -Factor_ : double
 }
 
 Sensor -- sensorConvertionTable
