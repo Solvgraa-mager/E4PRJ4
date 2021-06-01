@@ -1,0 +1,197 @@
+body{
+    margin: 0;
+    padding: 0;
+    background: url(login.jpeg);
+    background-size: cover;
+    background-position: center;
+    font-family: sans-serif;
+}
+.LoginBox{
+    width: 320px;
+    height: 250px;
+    background: #000;
+    border-radius: 30%;
+    color: #fff;
+    top: 50%;
+    left: 50%;
+    position: absolute;
+    transform: translate(-50%, -50%);
+    box-sizing: border-box;
+    padding: 80px 60px;
+}
+
+.Avatar{
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    position: absolute;
+    top: -50px;
+    left: calc(50% - 50px);
+}
+
+h1{
+    margin: 0;
+    padding: 10 0 20px;
+    text-align:center;
+    font-size: 22px;
+}
+
+.LoginBox p{
+    margin: 0;
+    padding: 0;
+    font-weight: bold;
+    text-align: center;
+}
+
+.LoginBox input{
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+.LoginBox input[type="text"], input[type="password"]
+{
+    border: none;
+    border-bottom: 1px solid #fff;
+    background: transparent;
+    outline: none;
+    height: 40px;
+    color: #fff;
+    font-size: 16px;
+}
+.LoginBox input[type="submit"]
+{
+    border: none;
+    outline: none;
+    height: 40px;
+    background: rgb(255, 205, 43);
+    color: #000;
+    font-size: 18px;
+    border-radius: 20px;
+}
+.LoginBox input[type="submit"]:hover
+{
+    cursor: pointer;
+    background: #b88e12;
+    color: #000;
+}
+.LoginBox a{
+    text-decoration: none;
+    font-size: 12px;
+    line-height: 20px;
+    color: darkgray;
+}
+.LoginBox a:hover
+{
+    background: transparent;
+    color: #c9b023;
+}
+
+
+/* Main page */
+.HeadlineBox
+{
+width: 320px;
+height: 50px;
+background: rgb(21, 177, 21);
+border-radius: 30%;
+color: #fff;
+top: 2%;
+left: 10%;
+position: absolute;
+transform: translate(-50%, -50%);
+box-sizing: border-box;
+padding: 60px 40px;
+}
+
+
+.HentDataBox
+{
+    width: 320px;
+    height: 50px;
+ 
+   
+    color: #fff;
+    top: 50%;
+    left: 90%;
+    position: absolute;
+    transform: translate(-50%, -50%);
+    box-sizing: border-box;
+    
+}
+
+.ReguleringsIn
+{
+    width: 300px;
+    height: 50px;
+    
+   
+    color: #fff;
+    top: 20%;
+    left:10%;
+    position: absolute;
+    transform: translate(-50%, -50%);
+    box-sizing: border-box;
+    
+}
+
+.Kalibrer
+{
+    width: 50px;
+    height: 50px;
+    
+   
+    color: #fff;
+    top: 20.05%;
+    left: 18%;
+    position: fixed;
+    transform: translate(-50%, -50%);
+    box-sizing: border-box;
+    
+}
+.ParameterCheckBoxes
+{
+    width: 200px;
+    height: 50px;
+    color: #fff;
+    top: 27%;
+    left: 7%;
+    position: fixed;
+    transform: translate(-50%, -50%);
+    box-sizing: border-box;
+}
+
+.NuværendeSchedule
+{
+    width: 250px;
+    height: 200px;
+    color: rgb(255, 255, 255);
+    top: 36%;
+    left: 25%;
+    position: fixed;
+    transform: translate(-50%, -50%);
+    box-sizing: border-box;
+}
+
+.TilpasSchedule
+{
+    width: 250px;
+    height: 200px;
+    color: rgb(255, 255, 255);
+    top: 36%;
+    left: 50%;
+    position: fixed;
+    transform: translate(-50%, -50%);
+    box-sizing: border-box;
+}
+
+.Button
+{
+    width: 250px;
+    height: 200px;
+    color: rgb(255, 255, 255);
+    top: 50%;
+    left: 50%;
+    position: fixed;
+    transform: translate(-50%, -50%);
+    box-sizing: border-box;
+}
