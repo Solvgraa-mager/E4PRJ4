@@ -1,0 +1,17 @@
+@startuml SD_AE_removeWater
+
+Participant Aktuatorenhed as ae
+participant _toemPumpe as tp
+title int Aktuatorenhed::removeWater(double ml)
+
+ae -> ae : removeWater(double ml)
+        activate ae
+            ae -> tp : activatePump(90)
+            ae <-- tp
+            ae -> ae : sleep(mlSaltvand*0.044)
+
+            ae -> tp : deactivatePump()
+            ae <-- tp
+            ae <-- ae : return 0 
+        deactivate ae
+@enduml

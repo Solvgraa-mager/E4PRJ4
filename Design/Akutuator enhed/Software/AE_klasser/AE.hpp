@@ -16,6 +16,7 @@ class Aktuatorenhed
         int setTemperatur(double setTemperatur, double currentTemperatur);
         int setPsu(double setPsu, double currentPsu, double maxPsuChange);
         int setWaterLevel(double setWaterLevel, double currentWaterLevel, double currentPsu);
+        int updateTemperature(double currentTemperature);
         ~Aktuatorenhed();
     
     protected: 
@@ -23,7 +24,7 @@ class Aktuatorenhed
         int substractPsu(double amountPsuTosubstract, double currentPsu);
         int addWater(double ml, double currentPsu);
         int removeWater(double ml);
-        int updateTemperature(double currentTemperature);
+        
         
     private: 
         double _volume;     //Total mængde vand i akvariet
