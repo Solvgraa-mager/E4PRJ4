@@ -39,9 +39,9 @@ note right : return result
 PI -> PI : _preError = error\n_preIntegrale=integrale
 note right : Opdater hukommelse for\nerror og integral
 
-alt _out == _minOut
+alt controlSignal == _minOut
 PI --> a : return -1
-else _out == _maxOut
+else controlSignal == _maxOut
 PI --> a : return -2
 end
 PI --> a : return 0

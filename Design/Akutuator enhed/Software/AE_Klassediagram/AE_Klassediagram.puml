@@ -1,4 +1,4 @@
-@startuml AE_Klaseediagram
+@startuml AE_Klassediagram
 class "Aktuatorenhed" as a
 {
     - _volume: double
@@ -13,13 +13,13 @@ class "Aktuatorenhed" as a
     + setTemperature(temperature) : int 
     + setPsu(double setPsu, double currentPsu, double maxPsuChange) : int 
     + setWaterLevel(double setWaterLevel, double currentWaterLevel, double currentPsu) : int   
+    + updateTemperature(double currentTemperature) : int
     ~ ~Aktuatorenhed()
 
     # addPsu(double amountPsuToAdd) : int 
     # substractPsu(double amountPsuToSubstract, double currentPsu) : int
     # addWater(double ml, double currentPsu) : int
     # removeWater(double ml) : int 
-    # updateTemperature(double currentTemperature) : int
 }
 
 class "Varmelegeme" as v
@@ -63,7 +63,7 @@ class "PI" as pi
 class "UC3" as u
 
 pi -- a
-p - a
+p "3" - "1"a
 a - v
 a -- u
 
