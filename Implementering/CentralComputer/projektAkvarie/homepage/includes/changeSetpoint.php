@@ -2,8 +2,12 @@
 
 include_once 'dbh.inc.php';
 
+// reads global variables from homepage.php
 $setpointValue = $_POST['setValue'];
 $setpointParam = $_POST['parameter'];
+
+// validate values send from user and update setpoints by SQL-command "UPDATE 'table' SET..."
+// ignores unsupported values.
 
 if($setpointParam == 'Temp'){
     if($setpointValue >= 21 && $setpointValue <= 30){ //jævnfør krav
@@ -40,4 +44,5 @@ else
         $conn->close();
     }
 }
+    // redirects back to homepage
     header("Location: ../homepage.php");

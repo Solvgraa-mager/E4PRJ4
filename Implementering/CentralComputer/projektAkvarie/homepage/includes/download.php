@@ -2,9 +2,11 @@
 
 include_once "dbh.inc.php";
 
+// reads global variables from homepage send by user
 $startTimeStamp = $_POST['startTimeStamp'];
 $endTimeStamp = $_POST['endTimeStamp'];
 
+// reads data from table 'measurements'. The data has to be less than $endTimeStamp and bigger than $startTimeStamp
 $select = "SELECT * FROM measurements WHERE dateTime >= '{$startTimeStamp}' AND dateTime <= '{$endTimeStamp}'"; //mysql command
 $result = $conn->query($select);
 
