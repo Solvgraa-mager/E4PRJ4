@@ -15,8 +15,8 @@ participant Sensorenhed\
 \
 Bruger -> CentralComputer: Presses ON button\
 CentralComputer -> CentralComputer: Turns green light ON\
-alt init-file exists\
-    CentralComputer -> CentralComputer: Read init-file\
+alt startup file exists\
+    CentralComputer -> CentralComputer: Read startup file\
     activate CentralComputer\
     rnote left CentralComputer\
     * Network settings\
@@ -24,17 +24,17 @@ alt init-file exists\
     * Logged data\
     * Setpoint values\
     endrnote\
-    CentralComputer -> CentralComputer: init-file read\
+    \
     note right\
     For details,\
     read UseCase: Wizard\
     end note\
     deactivate CentralComputer\
-else init-file doesn't exists\
+else startup file doesn't exists\
     CentralComputer -> CentralComputer: Run wizard()\
     CentralComputer -> CentralComputer: Reboot system\
 end\
 \
 CentralComputer -> CentralComputer: start GUI\
-CentralComputer -> CentralComputer: initiating controlsystem\
+CentralComputer -> CentralComputer: initiating control system\
 @enduml}
