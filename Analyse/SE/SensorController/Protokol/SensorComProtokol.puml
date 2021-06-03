@@ -1,0 +1,25 @@
+@startuml SensorComProtokolOversigt
+title "SensorCom Protokol og ADCData Protokol"
+
+participant "Central Computer" as CC
+boundary "Sensor Controller Driver" as SCD
+boundary "CentralComputerIF" as CCIF
+participant "Sensor Controller" as SC
+boundary "ADCBlokIF" as ADCIF
+actor "ADC-Blok" as ADC
+
+CC -> SCD : Get Water Temperature
+SCD -> CCIF : <b>SensorCom</b> Request: 0b0100
+CCIF -> SC : Request channel 3
+SC -> ADCIF : Read channel 3
+ADCIF -> ADC : <b>ADCData</b> Request: 0b0000010 0b11
+ADC --> ADCIF : <b>ADCData</b> Response: 0x5EF
+ADCIF --> SC : 1519
+SC --> CCIF : Send 1519
+CCIF --> SCD : <b>SensorCom MSB</b> 0x05
+CCIF --> SCD : <b>SensorCom LSB</b> 0xEF
+CCIF --> SCD : <b>SensorCom Kontrol</b> 0xFF
+CCIF --> SCD : <b>SensorCom Checksum</b> 0xF2
+SCD --> CC : Temperature is 25,75 degress
+
+@enduml

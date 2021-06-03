@@ -11,7 +11,7 @@ state Afvent_ADC as "Aflæs ADC"
 Idle -> EvaluateRequest : Request modtaget / 
 EvaluateRequest --> Afvent_ADC : Gyldig request
 EvaluateRequest ---> Idle : Ugyldig request / Send fejlmeddelelse
-Afvent_ADC -> Idle : Timeout / Send måling til Central Computer
+Afvent_ADC -> Idle :  / Send måling til Central Computer
 
 Afvent_ADC : Enter: Send request 
 Afvent_ADC : Exit: Aflæs måling

@@ -30,7 +30,6 @@ sprite $interruptzigzag [16x16/16] {
     }
 == Initialization ==
 Bruger -> SC : Powers up Sensor Controller 
-SC -> SC : Init()
 SC -> SC : Run()
 == Run() ==
 loop  power on

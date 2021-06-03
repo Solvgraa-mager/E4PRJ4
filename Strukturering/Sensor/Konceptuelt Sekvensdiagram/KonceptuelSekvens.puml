@@ -1,0 +1,18 @@
+@startuml SensorKonceptuelSekvens
+!pragma teoz true
+
+title "Konceptuel aflæsning af temperatur"
+
+actor "Central Computer" as CC
+participant "Sensor Controller" as SC
+participant "ADC-Blok" as ADC
+
+{start_com} CC -> SC : Aflæs temperatur              
+{read_start} SC -> ADC: Læs kanal med temperatur
+{read_slut} ADC --> SC: Temperatur
+{end_com} SC --> CC: Temperatur
+
+
+{start_com} <-> {end_com}: 15 ms
+{read_start} <-> {read_slut}: 150 µs
+@enduml
